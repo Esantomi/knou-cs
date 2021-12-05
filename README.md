@@ -67,6 +67,8 @@
 - <strong>큐(Queue)</strong>는 한쪽에서는 삽입이 발생하고 다른 한쪽에서는 삭제가 발생하도록 정의되었으며, 먼저 삽입된 원소가 먼저 삭제되므로 <strong>선입 선출(First-In-First-Out : FIFO)</strong> 또는 <strong>선착순 서브(First-Come-First-Serve : FCFS)</strong> 알고리즘을 갖는 순서 리스트라고도 한다.
   - 큐에서는 원소의 삭제 연산이 이루어지는 곳을 <strong>앞(front)</strong>이라 하고 삽입 연산이 이루어지는 곳을 <strong>뒤(rear)</strong>라고 한다.
   - 큐의 추상 자료형에서 정의된 연산은 시스템 개발자에 따라 다르게 정의되고 구현될 수도 있고, 컴파일러 설계자에 따라 프로그래밍 언어에서 다르게 제공될 수도 있다.
+    - <strong>FCFS(First-Come First-Served) 스케줄링(또는 FIFO 스케줄링)</strong> : 작업(프로그램)이 준비 큐에 도착한 순서대로 CPU를 할당받도록 해 주는 기법
+    - <strong>RR(Round Robin) 스케줄링 기법</strong> : 작업이 도착한 순서대로 CPU가 할당되지만, CPU의 시간 할당량 또는 시간 간격에 의해 제한을 받으며, 일정한 크기의 시간 할당량을 모든 작업에게 주고 그 시간동안 작업이 완료되지 못하면 준비 큐의 맨 뒤에 다시 배치되는 기법
 
 - 큐 생성 함수(`Create_q(maxQueueSize)`)를 호출하기만 하면 프로그래머가 지정한 크기의 새로운 큐를 생성할 수 있다.
   - `Create_q(maxQueueSize)` 함수의 매개 변수인 `maxQueueSize`는 큐가 저장할 수 있는 최대 개수의 원소(element)를 의미한다.
@@ -79,4 +81,5 @@
   - `Element Delete_q(queue)` 연산자는 큐가 빈 상태라면 삭제할 원소가 없으므로 `queueEmpty`를 출력한다.
     - 빈 상태가 아니라면 삭제할 원소가 있으므로, 큐의 front가 가리키는 원소를 삭제하고 그 원소를 반환한다.
 
-- <strong>원형 큐(Circular Queue)</strong>는 파이프의 입구와 출구 부분을 연결시킨 형태이다. 연결된 부분의 데이터 공간을 연속적으로 사용하기 위해 '나머지 연산자'를 사용한다.
+- <strong>원형 큐(Circular Queue)</strong>는 파이프의 입구와 출구 부분을 연결시킨 형태로, 큐의 양 끝을 연결시켜서 원 형태로 만든 큐를 말한다.
+  - 연결된 부분의 데이터 공간을 연속적으로 사용하기 위해 '나머지 연산자'를 사용한다.
