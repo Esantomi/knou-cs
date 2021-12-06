@@ -241,9 +241,12 @@
   - <strong>최소 비용 신장 트리(Minimum Spanning Tree: MST)</strong> : 가중 그래프에서 비용이 최소인 신장 트리
     - 프림, 크루스컬, 솔린 알고리즘을 사용
       - <strong>프림 알고리즘(Prim's algorithm)</strong> : 최소 비용을 갖는 간선을 차례로 추가하는 방법으로 트리를 구축하는 알고리즘.
+        ![image](https://user-images.githubusercontent.com/61646760/144809681-c606a785-ff63-4a42-ad17-19215938845d.png)
+        - 최초 선택된 정점에 연결된 간선들 중에서 작은 가중치를 가지는 간선을 선택
         - 사이클이 형성되면 해당 간선은 포기한다.
         - 비용이 적은 것을 합치면 그들의 합이 최소가 될 것이라는 (항상 옳지는 않은) 가정을 근거로 한다.
       - <strong>크루스컬 알고리즘(Kruskal's algorithm)</strong> : 프림 알고리즘처럼 현재 완성한 트리에 간선을 붙여 트리를 키워 나가는 것이 아니라, 매 단계 최소 비용 간선을 선택해 사이클만 형성하지 않으면 받아들이는 알고리즘
+        ![image](https://user-images.githubusercontent.com/61646760/144809525-0a960610-4793-41aa-8ee3-0edf77deba11.png)
         - 따라서 중간 과정은 (트리가 아니고) 숲일 수 있다.
       - <strong>솔린 알고리즘(Solin's Algorithm)</strong> : 앞 두 방법과 다르게 매 단계에 다수의 간선을 선택하는 알고리즘
         - 먼저 간선이 하나도 없고 그래프의 모든 정점들로 구성된 숲에서 시작한다.
