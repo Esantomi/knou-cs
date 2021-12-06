@@ -249,6 +249,7 @@
         ![image](https://user-images.githubusercontent.com/61646760/144809525-0a960610-4793-41aa-8ee3-0edf77deba11.png)
         - 따라서 중간 과정은 (트리가 아니고) 숲일 수 있다.
       - <strong>솔린 알고리즘(Solin's Algorithm)</strong> : 앞 두 방법과 다르게 매 단계에 다수의 간선을 선택하는 알고리즘
+        ![image](https://user-images.githubusercontent.com/61646760/144810227-6bafe49d-e607-4327-af7f-6d4da1cc8ad0.png)
         - 먼저 간선이 하나도 없고 그래프의 모든 정점들로 구성된 숲에서 시작한다.
         - 그리고 단계가 거듭되면서 숲 내의 트리를 최소 비용을 갖는 간선으로 연결한다.
         - 이 과정을 남은 간선이 없거나 완전한 트리가 생성될 때까지 반복하면 신장 트리를 얻는다.
