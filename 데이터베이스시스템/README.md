@@ -13,6 +13,7 @@
   - [관계형 모델](#관계형-모델)
   - [ERD의 변환](#ERD의-변환)
   - [데이터 연산](#데이터-연산)
+- [4강. SQL (1)](#4강-SQL-1)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -296,6 +297,7 @@
     - 관계형 모델을 사용하는 관계형 DBMS(RDBMS)
     - Oracle, DB2, PostgreSQL, MySQL, MSSQL 등
 - **릴레이션(Relation)**
+  - 표와 매우 유사한 구조이지만 일반 표와는 달리, 레코드의 유일성, 레코드의 무순서성, 컬럼의 무순서성, 컬럼 값의 유일성이라는 특징을 갖는다.
   - 릴레이션의 구성
     ![image](https://user-images.githubusercontent.com/61646760/150096225-ea4ce392-3c10-45b9-8533-ed30d795a991.png)
     - **스키마(Schema)**
@@ -361,9 +363,10 @@
     - 적용 불가능한 값
 
 ### ERD의 변환
-- 논리적 데이터 모델링
+- **논리적 데이터 모델링**
   - 관계형 DBMS(RDBMS)의 구현 모델에 맞춰 데이터의 구조와 관계를 표현
     - 작성된 ERD를 RDBMS가 수용 가능한 구조, 즉 릴레이션으로 변환
+  - ER 모델링의 결과를 토대로 실제 상용 DBMS상의 데이터베이스를 만들기 위해서는 각 DBMS에 맞는 구현 데이터 모델로의 변환이 필요한데, 이러한 변환 과정을 **논리적 데이터 모델링**이라고 한다.
 - ERD의 관계형 모델로의 변환 방법
   1. 개체 집합 : 개체 집합은 릴레이션으로 변환
   2. 약한 개체 집합 : 강한 개체 집합의 키 속성을 약한 개체 집합의 릴레이션에 포함
@@ -433,14 +436,14 @@
         - `v` : 상수 값
         - `R` : 릴레이션
       - 조건의 결합 : `∧`(and), `∨`(or)
-  - [셀렉트 연산의 예](https://user-images.githubusercontent.com/61646760/150130084-e14890a4-3db9-4351-b518-abf86db18474.png)
+  - [`셀렉트 연산의 예`](https://user-images.githubusercontent.com/61646760/150130084-e14890a4-3db9-4351-b518-abf86db18474.png)
     - 교수 릴레이션에서 소속학과가 컴퓨터과학과인 레코드만 추출하여 임시 릴레이션 생성
 - **프로젝트 연산(PROJECT Operation)**
   - 기술된 컬럼만 갖는 릴레이션으로 재구성  
     π<컬럼리스트>(R)
     - <컬럼리스트> : A1, A2, …, An와 같이 R에 존재하는 컬럼을 ,(콤마)로 분리하여 기술
       - 아래 첨자로 표기
-  - [프로젝트 연산의 예](https://user-images.githubusercontent.com/61646760/150133368-01705af5-5e1d-4e91-aafa-39c85d0b37c5.png)
+  - [`프로젝트 연산의 예`](https://user-images.githubusercontent.com/61646760/150133368-01705af5-5e1d-4e91-aafa-39c85d0b37c5.png)
     - 교수이름, 소속학과만 있는 릴레이션 생성
 - 관계 대수 연산식의 활용
   - [`예) 단계1`](https://user-images.githubusercontent.com/61646760/150133664-ce3bf736-a643-4d56-a69b-6db969b9957f.png), [`예) 단계2`](https://user-images.githubusercontent.com/61646760/150133801-5c4f0f8e-4916-446f-8daf-2652176ad8e8.png)
@@ -468,4 +471,23 @@
       σ<sub>AθB</sub>(R × S)
   - '컴퓨터과학과' 소속의 교수가 강의하는 과목의 과목명과 과목코드는?
     - 교수 릴레이션과 과목 릴레이션이라는 서로 다른 두 개의 릴레이션에서 추출할 필요가 있다.
-    - `예) 조인 연산`
+    - 아래 조인 연산의 예에서 한 단계만 더 수행하면 됨
+  - [`조인 연산의 예`](https://user-images.githubusercontent.com/61646760/150163298-865ff02c-4f35-433d-9761-8356083d21bb.png)
+    - 과목 릴레이션의 교수번호와 교수 릴레이션의 교수번호가 같은 레코드만 생성
+    - 카테시안 프로덕트 & SELECT 연산과 동일 : [`카테시안`](https://user-images.githubusercontent.com/61646760/150162393-be1b6ba2-99e0-4d65-9a2b-8979c0a9148e.png), [`카테시안 결과`](https://user-images.githubusercontent.com/61646760/150162808-61ee9b1c-7a55-493b-892d-9fdfd16cbffa.png), [`SELECT 결과`](https://user-images.githubusercontent.com/61646760/150162946-605b5871-5823-4f48-b334-3210f88acada.png)
+- **집계 함수 연산(Aggregate Function Operation)**
+  - 집계 함수를 값들의 집합 또는 레코드의 집합에 적용하는 연산  
+    ![image](https://user-images.githubusercontent.com/61646760/150164696-98094b6d-b548-4bb4-9650-2b2fe9af0552.png)
+    - `x()` : AVG, SUM, MIN, MAX, COUNT 등의 집계 함수
+    - `A` : 집계 연산을 적용할 컬럼
+  - 레코드 그룹화를 위해 집계 함수 연산자 앞에 그룹화 속성을 기술  
+    ![image](https://user-images.githubusercontent.com/61646760/150165684-090f8d57-bb42-42d9-bf1b-dff194a05e76.png)
+    - `B` : 그룹의 기준이 되는 컬럼
+    - `x()` : 집계 함수
+    - `A` : 집계 연산을 적용할 컬럼
+    - `R` : 릴레이션
+  - [`집계 함수의 예 : count 연산`](https://user-images.githubusercontent.com/61646760/150165061-9a7c9726-00f7-4089-811c-89a316cc18e8.png)
+  - [`집계 함수의 예 : 소속학과별 교수 count`](https://user-images.githubusercontent.com/61646760/150166134-83c2b3a6-5cfc-4063-acb8-a5fe0abe9f4e.png)
+    - 즉, 그룹별로 수행하는 집계 함수 연산
+
+## 4강. SQL (1)
