@@ -14,6 +14,8 @@
   - [ERD의 변환](#ERD의-변환)
   - [데이터 연산](#데이터-연산)
 - [4강. SQL (1)](#4강-SQL-1)
+  - [데이터베이스 언어](#데이터베이스-언어)
+  - [데이터 정의 언어](#데이터-정의-언어)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -69,6 +71,8 @@
           - 다수의 데이터 조작 요청을 동시성 제어 기능을 통해 데이터의 일관성을 보장하면서 동시에 작업을 수행
 - **데이터베이스 관리 시스템(Database Management System: DBMS)**
   - 데이터베이스에 저장된 데이터의 구성, 저장, 관리, 사용을 위한 소프트웨어 패키지
+    ![image](https://user-images.githubusercontent.com/61646760/150522013-193db0de-06dd-4a55-8038-69cdbd4f099b.png)
+    - 데이터 사용과 데이터 관리 측면을 분리
   - **DBMS 3단계 구조(DBMS Three Level Architecture)**
     - 데이터 추상화와 데이터 독립성을 확보하기 위한 개념적-논리적-물리적 3단계 구조
       ![image](https://user-images.githubusercontent.com/61646760/149783043-713498db-ca00-4c0c-904d-be33c01f6933.png)
@@ -236,7 +240,7 @@
           - `예) 학생 이름, 성별, 나이`
         - **다중값 속성(Multi-Valued Attribute)**
           - 하나의 개체에 대해 여러 개의 값을 갖는 속성
-          - `예) {전화 번호}`
+          - `예) {전화번호}`
             - `{}`로 표기
       - 유도 속성과 저장 속성
         - **유도 속성(Derived Attribute)**
@@ -491,3 +495,144 @@
     - 즉, 그룹별로 수행하는 집계 함수 연산
 
 ## 4강. SQL (1)
+### 데이터베이스 언어
+- **SQL(Structured Query Language)**
+  - 관계 대수에 기초하여 RDBMS의 데이터 관리를 위해 설계된 언어
+  - 1986년 ANSI, 1987년 ISO에서 표준으로 제정
+    - `SQL 86, SQL 89, SQL 92, SQL:1999, SQL:2003, SQL:2008`
+    - 상용 DBMS의 특성에 맞게 국제표준을 확장한 독자적 버전이 존재
+  - 특징
+    - 비절차적(선언형) 언어, 필요한 데이터만 기술
+    - 자연어와 매우 유사하고 간단, 명료함
+  - 구성
+    - **데이터 정의 언어(DDL: Data Definition Language)**
+      - 데이터베이스 내의 객체를 생성 및 삭제하고 그 구조를 수정하는 명령어의 집합
+      - 데이터가 준수해야 하는 제약 조건을 기술
+      - `CREATE`, `ALTER`, `DROP`문 등
+    - **데이터 조작 언어 (DML: Data Manipulation Language)**
+      - DDL에 의해 정의된 테이블에 데이터를 조작하는 명령어의 집합
+      - 데이터에 대한 CRUD(생성, 검색, 삭제, 수정) 명령을 포함
+      - `INSERT`, `UPDATE`, `DELETE`, `SELECT`문 등
+### 데이터 정의 언어
+- **데이터 정의 언어(DDL: Data Definition Language)**
+  - 데이터베이스 객체를 생성, 삭제 또는 구조를 수정하는 명령어의 집합
+  - 데이터베이스 객체의 종류
+    - 데이터 저장 : 테이블(Table), 인덱스(Index), 뷰(View)
+    - 데이터 조작 : 트리거(Trigger), 프로시저(Procedure), 함수(function) 등
+  - DDL 명령어 종류
+    - `CREATE` : 객체 생성
+    - `ALTER` : 객체 수정
+    - `DROP` : 객체 삭제
+  - [DDL의 구문 형식](https://user-images.githubusercontent.com/61646760/150523924-eb4f0662-7006-4010-8477-dbf0786d13f5.png)
+    - 테이블 정의 구문 형식
+      - 새로운2 차원 형태의 테이블을 생성
+        ```
+        CREATE TABLE 테이블이름 (
+          <컬럼1> <데이터 타입1> [제약조건1]
+          <컬럼2> <데이터 타입2> [제약조건2]
+          ...
+          <컬럼n> <데이터 타입n> [제약조건n]
+         [PRIMARY KEY 컬럼명]
+         [UNIQUE 컬럼명]
+         [FOREIGN KEY 컬럼 REFERENCES 테이블이름(컬럼)]
+        )
+        ```
+      - [`테이블 생성의 예`](https://user-images.githubusercontent.com/61646760/150525505-924d05f9-ea10-427f-839b-eaca190e3d32.png)
+    - 테이블 수정 구문 형식
+      - 생성된 테이블에 새로운 컬럼을 추가, 수정(이름, 데이터 타입, 제약 조건) 또는 삭제하는 명령
+        ```
+        ALTER TABLE 테이블이름
+          [ADD COLUMN 컬럼 데이터타입 [제약조건]]
+          [DROP COLUMN 컬럼이름]
+          [CHANGE COLUMN 수정전컬럼 수정후컬럼]
+          [MODIFY COLUMN 컬럼 데이터타입]
+        ```
+      - 위에서부터 컬럼 추가, 컬럼 삭제, 컬럼명 변경, 컬럼 데이터 타입 변경
+      - [`테이블 수정의 예) 교수 테이블에 데이터 타입이 INT인 나이 컬럼을 추가하시오`](https://user-images.githubusercontent.com/61646760/150538679-71981ea1-8558-49b0-9269-904e81d87302.png)
+        ```
+        ALTER TABLE 교수
+          ADD COLUMN 나이 INT
+        ```
+    - 테이블 삭제 구문 형식
+      - 존재하는 테이블을 스키마에서 삭제
+      - 삭제할 테이블의 모든 데이터가 소실되어 복구가 불가능한 연산이므로 각별한 주의를 요구
+        ```
+        DROP TABLE 테이블이름
+        ```
+      - `테이블 삭제의 예) 교수 테이블을 삭제하시오.`
+        - `DROP TABLE 교수`
+- **스키마(Schema)**
+  - 한 조직의 데이터베이스 시스템 운영에 필요한 테이블, 인덱스, 뷰 등의 데이터베이스 객체의 집합
+    - 즉, `스키마 = 데이터베이스`
+  - 스키마 관리 방법
+    - Forward Engineer
+    - SQL 에디터
+    - 내비게이터 패널
+  - 스키마 관리 구문 형식
+    - 스키마 생성 : `CREATE SCHEMA 스키마 이름`
+    - 스키마 삭제 : `DROP SCHEMA 스키마 이름`
+- **데이터 타입(Data Type)**
+  - 컬럼이 가질 수 있는 값의 범위, 즉 도메인을 결정
+    - 프로그래밍 언어에서 변수를 생성하는 데이터 타입의 사용 목적 및 방법과 매우 유사
+  - 기본 데이터 타입
+    - 문자 : `CHAR(n)`, `VARCHAR(n)`, `TEXT`
+    - 숫자 : `INT`, `FLOAT`, `DOUBLE`, `DECIMAL(m, n)`
+    - 날짜/시간 : `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`
+  - 정수 데이터 타입
+    - `TINYINT`
+      - 1바이트 정수, -128~127
+      - 나이, 학년 등의 크기가 작은 정수
+    - `SMALLINT`
+      - 2바이트 정수, -32768~32767
+      - 물품 번호, 인원 등 중간 크기의 정수
+    - `INT`
+      - 4바이트 정수, 약 -20억~20억
+      - 물품의 금액, 전화번호 등의 일반 크기의 정수
+    - `BIGINT`
+      - 8바이트 정수
+      - 계좌의 잔고, 천문학적인 크기의 정수
+  - 실수 데이터 타입
+    - 고정 소수형
+      - `DECIMAL(M, N)` : 전체 M자리, 소수점 이하 N자리의 숫자
+        - `예)` `DECIMAL(5, 2)`는 -999.99~999.99
+      - `NUMERIC` : `DECIMAL`과 동일
+    - 부동 소수형
+      - `FLOAT` : 4바이트 크기 부동 소수
+      - `FLOAT(P)` : 소수점 이하 P개 자리의 부동 소수
+      - `DOUBLE` : 8바이트 크기 부동 소수형
+  - 날짜/시간 데이터 타입
+    - 날짜 데이터 타입
+      - `DATE` : `YYYY MM DD` 형식의 시간
+      - `YEAR` : `YYYY` 형식의 연도
+    - 시간 데이터 타입
+      - `TIME` : `HH:MI:SS` 형식의 시간
+    - 날짜/시간 데이터 타입
+      - `DATETIME` : `YYYY MM DD HH:MI:SS` 형식의 날짜 및 시간
+      - `TIMESTAMP` : `DATETIME`과 거의 동일
+  - 문자 데이터 타입
+    - `CHAR(N)` : 최대 길이가 N인 고정 길이 문자열
+    - `VARCHAR(N)` : 최대 길이가 N인 가변 길이 문자열
+      - 'DATABASE' 문자열 입력 시, 두 타입의 차이
+        ![image](https://user-images.githubusercontent.com/61646760/150534788-3888868c-b519-46b7-9f19-140a96cad294.png)
+        - 10칸이 고정이냐, 가변이냐의 차이
+          - `VARCHAR`가 유연해서 더 좋다고 생각할 수 있으나, 입력된 값이 변경되면 그 길이에 맞춰 뒤의 값들도 당겨지거나 밀리게 되므로, 자주 수정되는 값의 타입을 `VARCHAR`로 설정하면 악수가 될 수 있다.
+        - [CHAR와 VARCHAR](https://user-images.githubusercontent.com/61646760/150535257-35813192-3b1c-4110-a784-bb1ab6aacdbc.png)
+    - `TEXT`, `CLOB` : 길이가 최대 2~4GB인 가변 길이 문자열
+    - `ENUM` : 유한 개의 문자열 집합 중 하나의 값을 선택
+      - 성별 : `ENUM('남', '여')`
+      - 혈액형 : `ENUM('A', 'B', 'O', 'AB')`
+- **제약 조건(Constraint)**
+  - 테이블과 테이블에 존재하는 데이터를 보다 무결하게 관리하기 위한 목적으로 사용
+    - DBMS는 테이블 조작 시 테이블에 정의된 제약 조건을 만족시키는지 지속적으로 검사
+      - 즉, 제약 조건을 만족하지 않는 데이터를 DBMS에서 거절함
+    - DBMS는 적용하려는 제약의 유형에 따라 다양한 제약 조건을 지원
+  - 제약 조건의 종류
+    - `PRIMARY KEY` : 기본키 지정, `UNIQUE`와 `NOT NULL`특성을 모두 가짐
+    - `FOREIGN KEY` : 외래키 지정, 참조 컬럼 정의
+    - `NOT NULL` : NULL이 될 수 없는 컬럼에 지정
+    - `UNIQUE` : 동일한 컬럼 값을 가질 수 없음을 지정
+    - `AUTO_INCREMENT` : 레코드가 추가될 때 자동적으로 속성 값이 1부터 1씩 증가되어 입력
+    - `CHECK` : 컬럼 값이 특정 조건 준수 여부 지정
+  - [제약 조건 사용의 예1](https://user-images.githubusercontent.com/61646760/150542488-b5e7cc42-09d7-43e0-9882-cb16a1f68470.png)
+  - [제약 조건 응용해 보기](https://user-images.githubusercontent.com/61646760/150542672-532c3f48-dde8-4b9e-9678-8941095f0324.png)
+    - [제약 조건 응용해 보기 답안](https://user-images.githubusercontent.com/61646760/150542745-27ff76d5-2c6c-4f6a-b7b9-eb1f359a6aa7.png)
