@@ -16,6 +16,8 @@
 - [4강. SQL (1)](#4강-SQL-1)
   - [데이터베이스 언어](#데이터베이스-언어)
   - [데이터 정의 언어](#데이터-정의-언어)
+- [5강. SQL (2)](#5강-SQL-2)
+  - [데이터 삽입, 수정, 삭제](#데이터-삽입-수정-삭제)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -636,3 +638,25 @@
   - [제약 조건 사용의 예1](https://user-images.githubusercontent.com/61646760/150542488-b5e7cc42-09d7-43e0-9882-cb16a1f68470.png)
   - [제약 조건 응용해 보기](https://user-images.githubusercontent.com/61646760/150542672-532c3f48-dde8-4b9e-9678-8941095f0324.png)
     - [제약 조건 응용해 보기 답안](https://user-images.githubusercontent.com/61646760/150542745-27ff76d5-2c6c-4f6a-b7b9-eb1f359a6aa7.png)
+
+## 5강. SQL (2)
+### 데이터 삽입, 수정, 삭제
+- **데이터 조작 언어(Data Manipulation Language: DML)**
+  - 정의된 테이블에 레코드를 삽입·수정·삭제 및 검색하는 데 사용되는 명령어의 집합
+  - DML 명령어의 종류
+    - `INSERT` : 테이블 스키마에 적합한 새로운 레코드를 삽입
+      - 구문 형식1
+        ```
+        INSERT INTO 테이블 이름
+          VALUES(값1, 값2, … 값n)
+        ```
+      - 구문 형식2
+        ```
+        INSERT INTO 테이블이름(컬럼1, 컬럼2, … 컬럼m)
+          VALUES(값1, 값2, … 값m)
+        ```
+      - [`예) 학과이름 '영어영문학과', 단과대학 '인문과학대학', 주소 'http://eng.knou.ac.kr', 전화번호 '02-3668-4510', 졸업학점 135인 레코드를 학과 테이블에 삽입하시오.`](https://user-images.githubusercontent.com/61646760/150636388-fa491475-a3d4-4ca9-90b0-3da959a62fbb.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150636403-b2afec50-58b1-4449-a91e-bb6f6ed3a3b3.png)
+    - `UPDATE` : 테이블에서 조건을 만족하는 특정 레코드의 컬럼 값을 수정
+    - `DELETE` : 테이블에 조건을 만족하는 특정 레코드를 삭제
+    - `SELECT` : 조건을 만족하는 레코드를 테이블에서 검색
