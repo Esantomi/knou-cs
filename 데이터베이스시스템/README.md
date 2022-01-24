@@ -18,6 +18,7 @@
   - [데이터 정의 언어](#데이터-정의-언어)
 - [5강. SQL (2)](#5강-SQL-2)
   - [데이터 삽입, 수정, 삭제](#데이터-삽입-수정-삭제)
+  - [데이터 검색 (1)](#데이터-검색-1)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -657,6 +658,140 @@
         ```
       - [`예) 학과이름 '영어영문학과', 단과대학 '인문과학대학', 주소 'http://eng.knou.ac.kr', 전화번호 '02-3668-4510', 졸업학점 135인 레코드를 학과 테이블에 삽입하시오.`](https://user-images.githubusercontent.com/61646760/150636388-fa491475-a3d4-4ca9-90b0-3da959a62fbb.png)
         - [정답 보기](https://user-images.githubusercontent.com/61646760/150636403-b2afec50-58b1-4449-a91e-bb6f6ed3a3b3.png)
+      - [`예) 단과대학 '자연과학대학', 학과이름 '농학과', 졸업학점 140, 전화번호 '02-3668-4600'인 레코드를 학과 테이블에 삽입하시오.`](https://user-images.githubusercontent.com/61646760/150730035-7c440c08-e96a-4b69-8f97-51215a484dde.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150730115-6f884898-20fa-490b-81f2-1921fae3213d.png) (학과 이름 오기)
     - `UPDATE` : 테이블에서 조건을 만족하는 특정 레코드의 컬럼 값을 수정
+      - 구문 형식1
+        ```
+        UPDATE 테이블이름
+          SET 컬럼1=값1 [, 컬럼2=값2, …, 컬럼n=값n]
+          [WHERE 조건]
+        ```
+      - 구문 형식2
+        ```
+        UPDATE 테이블이름
+          SET 컬럼1=수식1 [, 컬럼2=수식2, …, 컬럼n=수식n]
+          [WHERE 조건]
+        ```
+      - [`예) 학과이름이 '농학과'인 레코드의 주소 컬럼 값을 'http://agri.knou.ac.kr'로 수정하시오.`](https://user-images.githubusercontent.com/61646760/150730416-040970da-debb-47c7-a1ca-e2e8762edce9.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150730517-6322e911-7f35-4076-8a92-9dec0ab9785d.png) (학과 이름 오기)
+      - [`예) 잔액이 500,000원 이상인 학생 계좌에 2% 이자를 지급하시오.`](https://user-images.githubusercontent.com/61646760/150730609-123b0da8-6ddc-4c58-aaeb-4461ee37620e.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150730681-ba214585-c6fa-4920-aae3-84c7e31f2989.png)
     - `DELETE` : 테이블에 조건을 만족하는 특정 레코드를 삭제
+      - 구문 형식
+        ```
+        DELETE FROM 테이블이름
+          [WHERE 조건]
+        ```
+      - [`예) 소속학과가 '행정학과'인 교수의 레코드를 삭제하라.`](https://user-images.githubusercontent.com/61646760/150730821-1d4c8683-1dee-40ee-b151-4bdbac5286ec.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150730944-9d256df7-dfbf-43c5-b423-98fefb4e941a.png)
+      - [`예) 모든 강의 레코드를 삭제하시오.`](https://user-images.githubusercontent.com/61646760/150731013-da9503f4-4288-4a64-b763-1091aad60a9c.png)
+        - [정답 보기](https://user-images.githubusercontent.com/61646760/150731151-09933eec-dc84-4ff0-8fbb-42e73f1f86d9.png)
+      - **SAFE UPDATES 모드**  
+        `SET SQL_SAFE_UPDATES = 0 또는 1`
+        - WHERE절이 없는 UPDATE/DELETE문은 테이블의 전체 레코드를 변경/삭제함
+        - 이때 의도하지 않은 데이터 변경/삭제 방지를 위해 MySQL은 **SAFE UPDATES 모드**를 지원
+        - 기본키가 아닌 컬럼을 대상으로 수정/삭제 조건을 명시할 경우 실행 여부를 결정
     - `SELECT` : 조건을 만족하는 레코드를 테이블에서 검색
+      - 자세한 것은 아래 상술
+### 데이터 검색 (1)
+- **SELECT문**
+  - 한 개 이상의 테이블에서 주어진 조건에 만족하는 레코드를 출력하는 명령문
+    - 관계 대수의 셀렉션, 프로젝션, 조인, 카티션 프로덕트 연산자의 기능을 모두 포함하는 명령문
+    - 필수적 절인 SELECT절과 부가적인 목적으로 사용할 수 있는 여러 절을 혼합하여 검색 기능을 구체화
+  - SELECT문의 구문 형식
+    ```
+    SELECT [DISTICT] 컬럼1, 컬럼2, ..., 컬럼n
+      FROM 테이블1 [INNER JOIN | OUTER JOIN
+           테이블2, INNER JOIN | OUTER JOIN
+           ON 조인 조건1
+           테이블3
+           ..., INNER JOIN | OUTER JOIN 
+           테이블m]
+      [ON 조인 조건식]
+      [WHERE 조건식 [중첩질의]]
+      [GROUP BY 컬럼1, 컬럼2, ..., 컬럼y
+        [HAVING 조건]]
+      [ORDER BY 컬럼1 [ASC | DESC], ... 컬럼z [ASC | DESC]]
+    ```
+  - SELECT문의 각 절의 기능
+    - `SELECT` 절 : 결과에 포함되는 컬럼을 지정
+    - `FROM` 절 : 질의를 적용할 테이블을 지정
+    - `ON/WHERE` 절 : 조인 조건/검색할 레코드 조건을 지정
+    - `GROUP BY` 절 : 레코드를 그룹화하기 위한 그룹 조건을 지정
+    - `HAVING` 절 : `GROUP BY` 절이 적용된 결과에 대한 조건을 지정
+    - `ORDER BY` 절 : 검색 결과의 정렬 기준을 지정
+- **단순 질의문(Simple Query)**
+  - 레코드를 제한하지 않고 전체 테이블을 검색하는 SELECT 문으로 WHERE 절이 없는 질의문
+  - 구문 형식1
+    ```
+    SELECT 컬럼1, 컬럼2 …, 컬럼n
+      FROM 테이블
+    ```
+  - 구문 형식2
+    ```
+    SELECT *
+      FROM 테이블
+    ```
+  - [`예) 교수 테이블에서 '소속학과' 컬럼을 선택하여 출력하시오.`](https://user-images.githubusercontent.com/61646760/150732640-e5f71dbf-6712-48b3-b88a-f89b43445a41.png)
+    - [정답 보기 : 중복 허용](https://user-images.githubusercontent.com/61646760/150732696-84e37641-96df-4f73-9314-533f0ab3b51f.png)
+    - [정답 보기 : 중복 비허용](https://user-images.githubusercontent.com/61646760/150733005-eec22931-04b7-46c1-b3de-708b86e9b002.png)
+      - `DISTINCT` : 중복 제거 키워드
+  - [`예) SELECT *`](https://user-images.githubusercontent.com/61646760/150733161-9f7277bd-45ef-4a32-bf1f-7c06b2f5fd29.png)
+- **조건 질의문(Conditional Query)**
+  - 산술연산식, 함수 등을 사용하여 표현한 조건을 `WHERE` 절에 기술하여 조건을 만족하는 레코드만 검색하는 `SELECT` 문
+    - 산술 연산자
+      - `SELECT` 절 또는 `WHERE` 절에 사용되어 컬럼 값 또는 상수와의 산술 계산을 나타내는 연산자
+        ![image](https://user-images.githubusercontent.com/61646760/150733578-fe15e389-0755-4d7e-b453-3467471ff169.png)
+    - 비교 연산자
+      - 컬럼 값과 상수 또는 컬럼 값과 다른 컬럼 값과의 크기를 비교하는 연산자
+        ![image](https://user-images.githubusercontent.com/61646760/150733614-fc127a54-2ca9-4292-b4be-2d9f2de54a50.png)
+    - 논리 연산자
+      - 두 개 이상의 조건이 기술되는 질의문에서 조건식 간의 관계를 정의하는 연산자
+        ![image](https://user-images.githubusercontent.com/61646760/150733660-5ae905d7-e324-4f44-b49f-7a51dad83e81.png)
+  - `WHERE` 절은 `UPDATE`, `DELETE` 문에서도 동일하게 적용
+  - [`예) 이수구분 전공필수인 과목의 과목명, 학점, 선수과목을 출력하시오.`](https://user-images.githubusercontent.com/61646760/150733777-bba004d0-808b-4d0b-b7ba-d5e36c93f702.png)
+    - [정답 보기](https://user-images.githubusercontent.com/61646760/150733850-95bd1eee-0acc-445b-8a54-8fc63b69254f.png)
+  - [`예) 남학생 중 2000년 이전에 태어난 학생의 학생번호, 학생이름, 전화번호, 나이를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150733900-7e002513-5e07-49bf-a012-5d6a44662ddc.png)
+    - [정답 보기](https://user-images.githubusercontent.com/61646760/150733966-deddbbca-f1f2-4d59-853d-b549e35b393e.png)
+- **데이터 정렬**
+  - `ORDER BY` 절을 사용
+  - 검색 결과를 특정 컬럼에 대해 오름차순 또는 내림차순으로 정렬
+    - 오름차순 : `ASC`
+    - 내림차순 : `DESC`
+  - 구문 형식
+    ```
+    SELECT 문 형식
+      ORDER BY 컬럼1 [ASC|DESC], 
+                …,
+               컬럼n [ASC|DESC]
+    ```
+  - [`예) 학생의 계좌정보를 '잔액' 기준으로 각각 오름차순, 내림차순으로 정렬하시오.`](https://user-images.githubusercontent.com/61646760/150734297-cecce600-e26a-4bf8-aae6-ddae8e345fc1.png)
+    - [정답 보기 : 오름차순](https://user-images.githubusercontent.com/61646760/150734381-67dedb1a-f7d2-4ef2-8310-ceca1236b588.png)
+    - [정답 보기 : 내림차순](https://user-images.githubusercontent.com/61646760/150734485-f3261b56-da9a-41a8-b877-f5708885e46c.png)
+- **특수 연산자**
+  - 범위 포함 여부, 부분 일치 여부, 포함 여부 등 **관계형 데이터베이스에서만 사용**되도록 고안된 연산자
+    ![image](https://user-images.githubusercontent.com/61646760/150734603-61947611-901e-4e1e-b498-1803f2536308.png)
+  - [`예) 잔액이 20만원 이상 40만원 이하인 계좌의 계좌번호, 잔액, 학생번호를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150734692-6ae8d8f9-cd1c-4967-87d8-9e8041a20656.png)
+    - [정답 보기 : 비교 연산자 사용](https://user-images.githubusercontent.com/61646760/150734783-e6d167da-7cd3-452c-8209-081ebc1832bc.png)
+    - [정답 보기 : 특수 연산자 `BETWEEN` 사용](https://user-images.githubusercontent.com/61646760/150734872-3aa3d8e1-4d6e-448f-96c9-629f28bd18b1.png)
+  - [`예) 소속학과가 '컴퓨터과학과', '행정학과', '법학과'인 교수의 교수이름, 직위, 소속학과를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150734997-a8f37bc3-ad70-461d-a472-cffddd865d91.png)
+    - [정답 보기 : 비교 연산자 사용](https://user-images.githubusercontent.com/61646760/150735065-7ef58f8a-a777-44bb-b7de-22cc334662df.png)
+    - [정답 보기 : 특수 연산자 `IN` 사용](https://user-images.githubusercontent.com/61646760/150735115-65f7f48e-5578-4b4a-8133-77aece79785f.png)
+  - [`예) 과목코드가 'COM'으로 시작하는 과목의 과목코드, 과목명, 이수구분을 출력하시오.`](https://user-images.githubusercontent.com/61646760/150735179-e3f71d36-2728-49b9-8b27-30bcbd6b5d6d.png)
+    - [잘못된 답안](https://user-images.githubusercontent.com/61646760/150735283-f32a9068-56b5-4d2e-b1be-680161d09679.png)
+    - [정답 보기 : 특수 연산자 `LIKE` 사용](https://user-images.githubusercontent.com/61646760/150735320-ed3ff589-6964-450f-acb3-286154a01cb2.png)
+- **함수(Function)**
+  - 특정 목적을 수행하도록 사전에 정의된 연산 및 기능을 수행한 후 결괏값을 반환하는 명령어 집합
+  - 상용 DBMS는 검색 결과가 사용자에게 여러 형태로 사용될 수 있도록 여러 데이터 타입에 대한 다양한 함수를 제공 (MySQL 기준)
+    - 문자 함수
+      - 문자열 조작 및 문자 형식 변환 등의 문자와 관련된 다양한 연산을 지원하는 함수
+        ![image](https://user-images.githubusercontent.com/61646760/150735649-f3813363-9f52-45ad-a8dd-2d1c94783516.png)
+    - 숫자 함수
+      - 삼각 함수, 상수, 올림과 버림, 난수 등의 숫자 데이터 타입에 적용할 수 있는 계산을 위한 함수
+        ![image](https://user-images.githubusercontent.com/61646760/150735598-2871772f-b76a-4e35-9e1a-07aa8379e403.png)
+    - 날짜 및 시간 함수
+      - 날짜 및 시간 데이터 타입에 적용되어 산술 연산 및 시간 형 변환 등의 조작을 위한 함수
+        ![image](https://user-images.githubusercontent.com/61646760/150735734-abc9e7c6-8ad0-43cd-bd26-f151a94baa14.png)
+  - [`예) 학생의 학생번호, 학생이름, 성별, 생년월일을 출력하시오. 단 학생번호는 앞 6자리만 출력하고 성별 뒤에는 '성'을 붙이시오.`](https://user-images.githubusercontent.com/61646760/150735778-ffc4f124-2e07-4b9b-91aa-5cd61ebc14c5.png)
+    - [정답 보기](https://user-images.githubusercontent.com/61646760/150735861-d4abd8ed-0a4c-4212-b44b-756f35886e30.png)
