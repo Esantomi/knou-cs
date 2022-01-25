@@ -19,6 +19,8 @@
 - [5강. SQL (2)](#5강-SQL-2)
   - [데이터 삽입, 수정, 삭제](#데이터-삽입-수정-삭제)
   - [데이터 검색 (1)](#데이터-검색-1)
+- [6강. SQL (3)](#6강-SQL-3)
+  - [데이터 검색 (2)](#데이터-검색-2)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -795,3 +797,47 @@
         ![image](https://user-images.githubusercontent.com/61646760/150735734-abc9e7c6-8ad0-43cd-bd26-f151a94baa14.png)
   - [`예) 학생의 학생번호, 학생이름, 성별, 생년월일을 출력하시오. 단 학생번호는 앞 6자리만 출력하고 성별 뒤에는 '성'을 붙이시오.`](https://user-images.githubusercontent.com/61646760/150735778-ffc4f124-2e07-4b9b-91aa-5cd61ebc14c5.png)
     - [정답 보기](https://user-images.githubusercontent.com/61646760/150735861-d4abd8ed-0a4c-4212-b44b-756f35886e30.png)
+
+## 6강. SQL (3)
+### 데이터 검색 (2)
+- **집계 함수(Aggregate function)**
+  - 특정 컬럼에 집계 함수를 통해 다양한 통계 연산을 수행할 수 있는 기능
+    - `SELECT` 절 또는 `HAVING` 절에 기술
+  - 집계 함수의 종류
+    - `COUNT` : 컬럼에 있는 값들의 개수
+    - `SUM` : 컬럼에 있는 값들의 합
+    - `AVG` : 컬럼에 있는 값들의 평균
+    - `MAX` : 컬럼에서 가장 큰 값
+    - `MIN` : 컬럼에서 가장 작은 값
+  - [`예) 단과대학의 개수를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150988882-cc327fab-6ba5-4570-b1b0-c25df5cd2072.png)
+    - [정답 보기 : 단과대학 전체 개수](https://user-images.githubusercontent.com/61646760/150988784-89a13463-5f5f-46ad-b029-9024b62bd79a.png)
+    - [정답 보기 : `DISTINCT`를 통한 중복 제거 개수](https://user-images.githubusercontent.com/61646760/150989026-fa696cef-ceaa-4538-8491-2e0aeae5bc8b.png)
+      - `COUNT` 함수 내부에 `DISTINCT` 사용
+    - [정답 보기 : `AS`를 통한 임시 컬럼명 변경](https://user-images.githubusercontent.com/61646760/150989197-cfcaa8e3-5020-4936-a865-9062ec2f9af1.png)
+      - `COUNT` 함수 뒤에 `AS 컬럼명` 사용
+- **그룹 질의(Group Query)**
+  - 특정 기준으로 레코드를 그룹화하고 각 레코드 그룹에 대해 집계 함수를 적용하는 질의
+    - **주의 : SELECT 절에 그룹의 기준과 집계 함수 이외의 컬럼은 포함될 수 없음**
+      - [`예) 잘못된 예시`](https://user-images.githubusercontent.com/61646760/150990166-e2d7c85c-826a-492d-82d8-568fc8bcd392.png)
+        - 그룹의 기준은 `GROUP BY` 뒤의 컬럼(소속학과), 집계 함수의 컬럼은 `SELECT` 뒤의 컬럼(소속학과)
+  - 구문 형식
+    ```
+    SELECT 질의
+      GROUP BY 컬럼
+    ```
+  - [`예) 소속학과별 교수의 수를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150989937-0636c94d-bf4d-4dc4-9407-a7cd7e600ec2.png)
+    - [정답 보기](https://user-images.githubusercontent.com/61646760/150990102-fdea6eb0-8741-456a-a388-2fb9be5d9599.png)
+  - **HAVING절**
+    - 그룹 질의의 결과 레코드에 대해 출력 조건을 기술하기 위한 절
+    - 구문 형식
+      ```
+      SELECT 질의
+        GROUP BY 컬럼
+        HAVING 조건
+      ```
+    - 조건 기술 절
+      - `WHERE` : 레코드에 대한 조건을 기술
+      - `HAVING` : 집계 결과 레코드에 대한 조건을 기술
+  - [`예) 2개 이상의 전공을 신청한 학생의 학생번호와 신청 전공수를 출력하시오.`](https://user-images.githubusercontent.com/61646760/150990930-1108b87a-3fca-402f-86b5-290cfe0a00b2.png)
+    - [학생번호별 신청 전공수 `COUNT`](https://user-images.githubusercontent.com/61646760/150991282-6e1111e2-cd08-42ec-b03d-9f5fc795cef6.png)
+    - [정답 보기 : 신청 전공수 2 이상 `COUNT`](https://user-images.githubusercontent.com/61646760/150991694-4460e5b4-b64c-47e6-8a90-b7a96520a3c6.png)
