@@ -1318,7 +1318,7 @@
 </details>
 
 <details>
-  <summary>Q10. 다음은 무엇에 대한 설명인가? <br>개체 집합의 각 개체마다 서로 다른 값을 갖는 속성을 뜻한다. 즉, 어떤 개체의 이 값은 각각의 개체들을 서로 구별하는 데 사용되는 개체 집합에서 유일한 값이다.</summary>
+  <summary>Q10. 다음은 무엇에 대한 설명인가?<blockquote>개체 집합의 각 개체마다 서로 다른 값을 갖는 속성을 뜻한다. 즉, 어떤 개체의 이 값은 각각의 개체들을 서로 구별하는 데 사용되는 개체 집합에서 유일한 값이다.</blockquote></summary>
 
   키 속성
 </details>
@@ -1337,7 +1337,7 @@
 </details>
 
 <details>
-  <summary>Q13. 아래의 릴레이션에서 빈칸에 들어가야 하는 용어로 올바르지 않는 것은?<blockquote></blockquote>①스키마 ②차수 ③레코드 ④인스턴스</summary>
+  <summary>Q13. 아래의 릴레이션에서 빈칸에 들어가야 하는 용어로 올바르지 않는 것은?<blockquote>①스키마 ②차수 ③레코드 ④인스턴스</blockquote></summary>
 
   ②차수
 </details>
