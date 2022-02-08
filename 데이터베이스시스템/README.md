@@ -26,6 +26,7 @@
   - [좋은 릴레이션과 나쁜 릴레이션](#좋은-릴레이션과-나쁜-릴레이션)
   - [함수적 종속성](#함수적-종속성)
   - [정규화](#정규화)
+- [8강. 연습문제 풀이 (1)](#8강-연습문제-풀이-1)
 
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
@@ -1257,3 +1258,176 @@
   - 정규화되지 않은 스키마와 역정규화 스키마는 구별
     - 역정규화는 정규화를 한 뒤, 다시 통합 및 재조정한 것
     - 정규화를 아예 하지도 않은 스키마와 정규화 후 역정규화한 스키마는 효율성, 구조 측면에서 다름
+
+## 8강. 연습문제 풀이 (1)
+[08강_강의록.pdf](https://github.com/Esantomi/knou/files/8022821/08._.pdf)
+<details>
+  <summary>Q01. DBMS 사용 이전의 데이터 관리 방식으로 운영체제의 지원으로 여러 파일에 나누어 데이터를 영구 저장하고 운영하는 시스템을 무엇이라고 하는가?</summary>
+
+  파일 처리 시스템
+</details>
+
+<details>
+  <summary>Q02. 다음 중 파일 처리 방식의 데이터 관리가 갖는 문제점으로 볼 수 없는 것은? <blockquote>①데이터의 독립 ②데이터의 확장 ③데이터의 무결성 훼손 ④동시 접근 이상</blockquote></summary>
+
+  ①데이터의 독립
+</details>
+
+<details>
+  <summary>Q03. DBMS가 데이터베이스 자체 뿐만 아니라 데이터에 대한 정의나 설명에 대한 것까지 포함하고 있는 특성을 무엇이라 하는가?</summary>
+
+  자기 기술성
+</details>
+
+<details>
+  <summary>Q04. 데이터베이스 언어의 한 영역으로 데이터베이스에 의해 구조화된 데이터에 사용자가 접근 및 사용할 수 있도록 지원하는 언어를 무엇이라고 하는가?</summary>
+
+  데이터 조작 언어
+</details>
+
+<details>
+  <summary>Q05. DBMS를 외부, 개념, 내부 스키마로 분리하고 각 단계 간 사상을 통해 구조화하는 방식을 무엇이라고 하는가?</summary>
+
+  3단계 구조
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152957736-97855794-43d3-48ae-adff-6b48c558154a.png)
+
+<details>
+  <summary>Q06. 클라이언트와 서버 사이에 데이터에 접근하는 데 사용되는 비즈니스 규칙을 저장한 중간 계층을 삽입하여 운용하는 데이터베이스 시스템 아키텍처는?</summary>
+
+  3계층 클라이언트 서버 구조
+</details>
+
+<details>
+  <summary>Q07. 다음 중 데이터베이스 모델링 단계가 순서대로 나열된 것은? <blockquote>①개념-요구분석-논리-물리 ②개념-논리-물리-요구분석 ③요구분석-개념-논리-물리 ④요구분석-물리-논리-개념</blockquote></summary>
+
+  ③요구분석-개념-논리-물리
+</details>
+
+<details>
+  <summary>Q08. 사용자 요구사항 분석 과정에서 데이터베이스를 구축하기 위한 목표와 조사 범위를 결정하고 필요한 자료를 수집하는 등을 수행하는 세부 단계는?</summary>
+
+  사용자 요구사항 도출
+</details>
+
+<details>
+  <summary>Q09. ER 모델의 구성요소 중 실세계에 존재하는 다른 모든 객체와 구별되는 유·무형의 대상의 모임을 무엇이라고 하는가?</summary>
+
+  개체 집합
+</details>
+
+<details>
+  <summary>Q10. 다음은 무엇에 대한 설명인가? <br>개체 집합의 각 개체마다 서로 다른 값을 갖는 속성을 뜻한다. 즉, 어떤 개체의 이 값은 각각의 개체들을 서로 구별하는 데 사용되는 개체 집합에서 유일한 값이다.</summary>
+
+  키 속성
+</details>
+
+<details>
+  <summary>Q11. 다음 요구 사항에 대해 ER 모델링한 결과로 올바르게 표현된 학생 개체는?<blockquote>학생은 이름, 학번, 학과명, 주소로 구성된다. 학번은 입학년도, 학과코드 및 일련번호로 이루어지고, 학과명은 학과 코드를 통해 알 수 있다.</blockquote></summary>
+
+  ![image](https://user-images.githubusercontent.com/61646760/152959394-f5e0bf3c-372f-4010-8ec4-9ecbbcd3a6b4.png)
+</details>
+
+<details>
+  <summary>Q12. 다음 요구사항을 참조하여 물음에 답하시오.<blockquote> 전산화 시스템을 도입하는 A 은행에서는 고객은 이름, 고객번호, 주소, 전화번호, 신용도 값으로 구성된다. 각각의 고객은 고객번호로 구분되며, 한 고객에 대해 여러 전화번호를 기록할 수 있다. 고객이 소유하는 계좌는 계좌번호와 잔액으로 구성된다. 한 고객은 여러 개의 계좌를 소유할 수 있으며, 반면 한 계좌는 단 한 명의 고객에만 소유된다. 계좌를 소유하지 않는 고객은 있지만, 모든 계좌는 반드시 고객에게 소유된다.</blockquote>위 요구 사항에 대한 ER 모델링 결과 고객 개체 집합을 올바르게 표현한 것은?<br>그리고 고객과 계좌 개체 집합 사이의 소유 관계 집합에 대해 사상수를 올바르게 표현한 것은? (단, 개체 집합은 개체 집합 이름만 표현한다.)</summary>
+
+  ![image](https://user-images.githubusercontent.com/61646760/152960466-49fa2a50-3b2b-4d4b-8f7c-2b8caa1c2b23.png)  
+  ![image](https://user-images.githubusercontent.com/61646760/152960524-299b73a5-4bb9-43b2-870c-871285c3745b.png)
+</details>
+
+<details>
+  <summary>Q13. 아래의 릴레이션에서 빈칸에 들어가야 하는 용어로 올바르지 않는 것은?<blockquote></blockquote>①스키마 ②차수 ③레코드 ④인스턴스</summary>
+
+  ②차수
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152962247-1ddd77c5-2620-4da5-904f-f9a78c60c228.png)
+
+<details>
+  <summary>Q14. 다음은 릴레이션의 어떤 특징에 대한 설명인가?<blockquote>한 릴레이션을 구성하는 컬럼 사이에는 순서가 없고 이름과 값의 쌍으로 구성된다.</blockquote></summary>
+
+  컬럼의 무순서성
+</details>
+
+<details>
+  <summary>Q15. 다음은 무엇에 대한 설명인가?<blockquote>두 개의 릴레이션 사이에 명시되는 제약조건으로 한 릴레이션에 있는 레코드가 다른 릴레이션에 있는 레코드를 참조하려면 반드시 존재하는 릴레이션만 참조해야 하는 제약조건을 명시한다.</blockquote></summary>
+
+  참조 무결성 제약조건
+</details>
+
+<details>
+  <summary>Q16. 다음의 ER 다이어그램을 관계형 모델로 올바르게 변환한 것은?</summary>
+
+  ![image](https://user-images.githubusercontent.com/61646760/152963182-c13f14f2-7237-4de9-bd60-d54ce7430be5.png)
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152963093-b6bc7bfb-ed97-4ebd-9382-c894e96b2be9.png)
+
+<details>
+  <summary>Q17. 아래의 스키마를 참조하여 다음 물음에 답하시오.<blockquote>"강좌명이 '요가'인 강좌의 강좌번호, 강좌명, 강사번호를 출력하시오."에 대한 관계 대수 연산식으로 올바른 것은?<br>"'홍길동' 강사의 종목을 출력하시오."에 대한 관계 대수 연산식은?</blockquote></summary>
+
+  ![image](https://user-images.githubusercontent.com/61646760/152963672-5a69a96b-2131-4eb7-aac5-ea8eb81380de.png)  
+  ![image](https://user-images.githubusercontent.com/61646760/152963905-7a7d3253-9a1d-4bff-8d33-075132d57f74.png)
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152963408-f0cb542f-2e1a-45f5-9b40-637e121b90f0.png)
+
+<details>
+  <summary>Q18. 테이블 스키마 정의, 테이블 삭제, 테이블 스키마 변경 및 제약조건을 명시하는 기능을 하는 SQL 언어 영역을 무엇이라고 하는가?</summary>
+
+  데이터 정의 언어
+</details>
+
+<details>
+  <summary>Q19. 다음 중 데이터베이스 언어의 영역이 나머지 셋과 다른 SQL 명령어는 무엇인가?<blockquote>①SELECT ②UPDATE ③INSERT ④DROP</blockquote></summary>
+
+  ④DROP
+</details>
+
+<details>
+  <summary>Q20. 다음 중 테이블의 컬럼을 삭제하는 데 사용하는 SQL 명령어는?<blockquote>①ALTER ②UPDATE ③DROP ④DELETE</blockquote></summary>
+
+  ①ALTER
+</details>
+
+<details>
+  <summary>Q21. "교수의 교수번호, 소속학과, 교수이름, 입사일을 입사일의 내림차순으로 정렬하여 출력하시오."를 수행하기 위한 SQL 문은?</summary>
+
+  SELECT 교수번호, 소속학과, 교수이름, 입사일<br>
+    FROM 교수 ORDER BY 입사일 DESC
+</details>
+
+<details>
+  <summary>Q22. 다음 중 정규화에 대한 설명으로 올바르지 않은 것은?<blockquote>①데이터가 삽입될 떄 릴레이션 재구성의 필요성을 줄인다.<br>②데이터의 중복을 제거하여 릴레이션의 효율성을 향상시킨다.<br>③삽입, 갱신, 삭제 이상(anomaly) 현상을 제거한다.<br>④릴레이션 간 공통 부분을 도출하고 유사 릴레이션을 통합하여 스키마의 구조를 간략화한다.</blockquote></summary>
+
+  ④릴레이션 간 공통 부분을 도출하고 유사 릴레이션을 통합하여 스키마의 구조를 간략화한다.
+</details>
+
+<details>
+  <summary>Q23. 다음은 무엇에 대한 설명인가?<blockquote>이것은 릴레이션 인스턴스를 분석하여 속성들 간의 연관관계를 표현한 것으로, 주어진 릴레이션 인스턴스에서 서로 다른 두 레코드와 속성 집합 X와 Y에 대해, 두 레코드의 X 속성값이 같을 때, Y의 속성값이 같으면 성립하는 특성을 말한다.</blockquote></summary>
+
+  함수적 종속성
+</details>
+
+<details>
+  <summary>Q24. 아래의 도크관리 릴레이션에 포함된 함수적 종속성이라고 할 수 없는 것은?<blockquote>①목적 → 담당도선사<br>②{도크번호, 입항시간} → 목적<br>③{도크번호, 입항시간} → 출항시간<br>④출항시간 → 목적</blockquote></summary>
+
+  ④출항시간 → 목적
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152965657-c0dd7708-750b-447d-8790-66af58ab5344.png)
+
+<details>
+  <summary>Q25. 제약조건이 강한 순으로 정규형 간의 관계가 올바른 것은?</summary>
+
+  제1정규형 < 제2정규형 < 제3정규형 < 제4정규형 < 제5정규형
+</details>
+
+<details>
+  <summary>Q26. 다음 릴레이션의 정규형은 무엇인가?</summary>
+
+  제2정규형
+</details>
+
+![image](https://user-images.githubusercontent.com/61646760/152966715-8bed8c61-bd29-4772-8bae-46b6673ef578.png)
