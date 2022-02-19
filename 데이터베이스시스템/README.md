@@ -2050,12 +2050,12 @@
 ### 트랜잭션의 회복
 - **회복(Recovery)**
   - 원자성을 보장하기 위해 트랜잭션 실패 시 실행된 모든 연산을 실행 이전 상태로 복원하는 기법
-- 회복 불가능한 스케줄  
+- **회복 불가능한 스케줄(Irrecoverable Schedule)**  
   ![image](https://user-images.githubusercontent.com/61646760/154726015-45d1a617-609b-4d11-b9f7-c0f2f3bb39ad.png)
     - Read(B) 도중 실패 발생
     - 𝑇<sub>6</sub>가 𝑇<sub>5</sub>가 기록한 𝐴를 읽고 커밋한 상태
     - 이미 커밋한 𝑇<sub>6</sub>는 롤백 불가능
-- 회복 가능한 스케줄
+- **회복 가능한 스케줄(Recoverable Schedule)**
   - 𝑇<sub>𝑖</sub>와 𝑇<sub>𝑗</sub>에 대해, 𝑇<sub>𝑖</sub>가 기록한 데이터를 𝑇<sub>𝑗</sub>가 읽을 때, 𝑇<sub>𝑖</sub>의 커밋이 𝑇<sub>𝑗</sub>보다 먼저 나타나는 스케줄
   - 연쇄적 롤백(Cascade Rollback) 유발이 가능하다는 문제점이 있음  
     ![image](https://user-images.githubusercontent.com/61646760/154730909-3279d5a4-4a88-42da-b4ef-6e34a42918b3.png)
