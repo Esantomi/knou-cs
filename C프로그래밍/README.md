@@ -8,6 +8,7 @@
 - [2강. 자료형과 선행처리기](#2강-자료형과-선행처리기)
   - [상수와 변수](#상수와-변수)
   - [자료형과 변수 선언](#자료형과-변수-선언)
+  - [선행처리기](#선행처리기)
 
 ## 1강. C 언어의 개요
 ### C 언어의 정의, 역사, 특징
@@ -81,4 +82,46 @@
     - `예) 변수의 사용`  
       ![image](https://user-images.githubusercontent.com/61646760/155344721-36cda294-5eb5-454d-89ad-004f7be5680d.png)
 ### 자료형과 변수 선언
+- 변수 선언
+  - 변수명과 변수가 가질 자료형을 지정하여 변수를 위한 기억 공간을 할당하는 것  
+    ![image](https://user-images.githubusercontent.com/61646760/155559083-6fc52830-dc6f-4d82-ba6b-26468e841c09.png)
+  - 변수 선언 시 고려 사항
+    - 변수에 저장될 **값의 크기(범위)**
+      - `예)` short int 자료형의 경우 -32768 ~ 32767까지의 범위를 가지므로, 다음이 성립한다.
+        ![image](https://user-images.githubusercontent.com/61646760/155560757-f10a8794-398e-4c12-91b9-b1e588af5e37.png)
+        - `num1`이 32768의 값을 가질 수 없으므로 `32768 + 1 = -32768`이 성립한다.
+    - 변수의 **선언 위치**  
+      ![image](https://user-images.githubusercontent.com/61646760/155559495-59ec743b-f206-4004-a1d9-a367966bed17.png)
+    - 변수의 **초기화**  
+      ![image](https://user-images.githubusercontent.com/61646760/155562155-fd186634-f6ba-471b-a11c-55fdfb26a12e.png)
+      - 변수 `i`는 for문 내에서 1로 초기화됨
+      - 변수 `sum`은 초기화되지 않음
+- 자료형 종류  
+  ![image](https://user-images.githubusercontent.com/61646760/155507571-84a5e331-29e8-4744-82e6-37a646fe1262.png)
+  - 정수형  
+    ![image](https://user-images.githubusercontent.com/61646760/155514312-f9b70bb7-8d47-4a71-808a-0ed4699be58c.png)
+    - 운영체제에 따라 표현 범위가 다름
+  - 실수형  
+    ![image](https://user-images.githubusercontent.com/61646760/155514383-4bbcced3-5420-4971-80be-505a6e32580c.png)
+    - 기본형은 double형
+  - 문자형  
+    ![image](https://user-images.githubusercontent.com/61646760/155514417-16d5acb9-25c6-4e14-8ed3-3a958130fda4.png)
+    - ASCII 코드를 사용하여 처리
+    - `예) 문자형의 사용`  
+      ![image](https://user-images.githubusercontent.com/61646760/155515374-303bf80e-a87d-4b11-af79-238b0b8c5198.png)
+      - `'A'`는 아스키 코드 값인 65로 사용되므로, char형 변수든 int형 변수든 어디에 할당돼도 동일한 값을 가짐
+        - `%d`로 출력 시, `ch`를 출력해도 `in`을 출력해도 동일하게 65가 출력됨
+        - `%c`로 출력 시, `ch`를 출력해도 `in`을 출력해도 동일하게 d가 출력됨
+  - 열거형
+    - 숫자 대신 단어를 사용
+      - 정수형 상수에 이름을 붙여서 코드를 이해하기 쉽게 해줌
+      - `예) enum Color {Yellow, Red, Blue, Black, Green`
+        - 노랑은 0, 빨강은 1, 파랑은 2, 검정은 3, 초록은 4
+    - 형식 : `enum 태그명 {열거자1, 열거자2, ...}`  
+      ![image](https://user-images.githubusercontent.com/61646760/155514565-ff890302-4836-434b-bdf2-23c21e2ef3bc.png)
+      - enumerate : 열거하다는 의미
+      - 열거자1은 `0`, 열거자2는 `1` … 로 자동 할당됨
+        - `{열거자1=2, …}`로 설정하면 `2`부터 자동 할당됨
+    - `예) 열거형의 사용`  
+      ![image](https://user-images.githubusercontent.com/61646760/155557546-c9ed286f-b52a-4110-930e-a0dcab7cb546.png)
 ### 선행처리기
