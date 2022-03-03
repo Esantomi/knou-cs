@@ -5,6 +5,10 @@
   - [컴퓨터와 통신](#컴퓨터와-통신)
   - [데이터 통신 시스템](#데이터-통신-시스템)
   - [통신 프로토콜](#통신-프로토콜)
+- [2강. 데이터 통신의 기초(I)](#2강-데이터-통신의-기초I)
+  - [데이터 통신의 개요](#데이터-통신의-개요)
+  - [변조 및 복조](#변조-및-복조)
+  - [전송 코드](#전송-코드)
 
 ## 1강. 컴퓨터 통신망의 소개
 ### 컴퓨터와 통신
@@ -104,3 +108,41 @@
     ![image](https://user-images.githubusercontent.com/61646760/156527215-75764754-2b09-490c-b92e-0166ee84752c.png)
     - 7-Layered Reference Model
     - 국제표준화기구(ISO)에서 개발
+
+## 2강. 데이터 통신의 기초(I)
+### 데이터 통신의 개요
+- 통신이란? 한 점으로부터 다른 점으로 어떤 정보(data 또는 message)를 전달
+  - 통신의 3대 요소  
+    ![image](https://user-images.githubusercontent.com/61646760/156584998-129939fe-c8c1-405e-a251-0e16cd695523.png)
+  - 통신 성능의 요인
+    - 메시지가 서로 이해되어야 함 (coding)
+    - 통신상의 간섭 현상이 있을 수 있음 (noise)
+### 변조 및 복조
+- **모뎀(MODEM, MOdulator and DEModulator)**
+  - 정보 전달(주로 디지털 정보)을 위해 신호를 **변조**하여 송신하고 수신측에서 원래의 신호로 복구하기 위해 **복조**하는 장치
+- **변조(modulation)**
+  - 전송 신호(baseband signal)를 높은 주파수 대역의 반송파 신호(carrier signal)에 싣는 과정  
+    ![image](https://user-images.githubusercontent.com/61646760/156586189-af9bbc72-1f5b-460f-9cad-81a2ef5fccea.png)
+    - 위가 AM, 아래가 FM
+    - oscillator로 반송파 생성
+    - 반송파는 정현파라고도 함
+  - 변조의 종류
+    - 아날로그 변조 : 전송 신호가 아날로그 신호인 경우
+    - 디지털 변조 : 전송 신호가 디지털 신호인 경우
+  - 변조의 방식
+    - 진폭 변조(Amplitude Modulation, AM)
+    - 주파수 변조(Frequency Modulation, FM)
+    - 위상 변조(Phase Modulation, PM)
+- 아날로그 변조
+  - **진폭 변조(Amplitude Modulation, AM)**
+    - 베이스밴드 신호의 순간 진폭에 비례하여 반송파 신호의 순간 진폭을 변화시키는 방법  
+      ![image](https://user-images.githubusercontent.com/61646760/156592652-026d97b8-aaf6-45cc-8408-9a226ec38690.png)
+      - modulating signal이 곧 baseband signal
+  - **주파수 변조(Frequency Modulation, FM)**
+    - 반송파 신호의 진폭은 일정하게 한 채로 베이스밴드 신호를 주파수 변화로 변환시키는 방법  
+      ![image](https://user-images.githubusercontent.com/61646760/156592742-c9e37f77-ef4b-4a15-afff-f02084241e50.png)
+  - **위상 변조(Phase Modulation, PM)**
+    - 반송파 신호의 진폭은 일정하게 한 채로 베이스밴드 신호를 주파수 위상각의 변화로 변환시키는 방법  
+      ![image](https://user-images.githubusercontent.com/61646760/156592802-ad2c5d38-7d68-406c-ac32-365448dc74b0.png)
+- 디지털 변조
+### 전송 코드
