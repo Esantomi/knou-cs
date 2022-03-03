@@ -75,4 +75,17 @@
   - 웹 서비스
   - SNS
 ### 데이터 통신 시스템
+- 데이터 통신 시스템의 구성  
+  ![image](https://user-images.githubusercontent.com/61646760/156470144-5624ccb7-6521-4033-b0a1-e91a9d96cccf.png)
+  - 단말 장치(DTE: Data Terminal Equipment)
+  - 데이터 전송 회선
+    - 신호 변환 장치(Data Communication Equipment) : Modem, DSU(Digital Service Unit)
+    - 통신 회선
+  - 통신 제어 장치(CCE: Communication Control Equipment) : CCP라고도 함
+  - 컴퓨터
+- 데이터 통신 시스템의 기능  
+  ![image](https://user-images.githubusercontent.com/61646760/156470438-03d070ce-43c3-40d9-98c8-9f8129859c9f.png)
+- **통신 소프트웨어(Communication software)**
+  - 데이터 전송 회선과 통신 제어 장치를 이용하여 컴퓨터와 단말 장치 사이에서 정보를 송수신하기 위한 프로그램  
+    ![image](https://user-images.githubusercontent.com/61646760/156470640-f6ed61be-0d5a-402b-91dc-30c8632faac0.png)
 ### 통신 프로토콜
