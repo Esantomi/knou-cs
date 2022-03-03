@@ -84,8 +84,23 @@
   - 통신 제어 장치(CCE: Communication Control Equipment) : CCP라고도 함
   - 컴퓨터
 - 데이터 통신 시스템의 기능  
-  ![image](https://user-images.githubusercontent.com/61646760/156470438-03d070ce-43c3-40d9-98c8-9f8129859c9f.png)
+  ![image](https://user-images.githubusercontent.com/61646760/156523391-8c0d39ff-a9db-4356-bbcc-c458e2bcd4e6.png)
 - **통신 소프트웨어(Communication software)**
   - 데이터 전송 회선과 통신 제어 장치를 이용하여 컴퓨터와 단말 장치 사이에서 정보를 송수신하기 위한 프로그램  
     ![image](https://user-images.githubusercontent.com/61646760/156470640-f6ed61be-0d5a-402b-91dc-30c8632faac0.png)
 ### 통신 프로토콜
+- **통신 프로토콜(communication protocol)**
+  - 통신을 원하는 두 개체 간에 무엇을, 어떻게, 언제 통신할 것인지를 서로 정한 규약
+  - 프로토콜의 주요 요소
+    - 구문(syntax) : 데이터 형식이나 신호 수준 등을 포함한다.
+    - 의미(semantic) : 전송의 조정, 오류 관리를 위한 제어 정보를 포함한다.
+    - 타이밍(timing) : 전송 속도 조절 및 전송 순서 조정 등을 포함한다.
+- **컴퓨터 통신망 구조(computer network architecture)**
+  - 모든 통신 기능을 담고 있는 하나의 프로토콜을 사용하는 대신 통신 기능을 구현하는 프로토콜의 구조적 집합
+    - **A set of protocols**
+  - IBM, SNA(System Network Architecture) : 1974년에 만들어진 IBM의 사유 네트워크 아키텍처
+  - DEC, DNA(Digital Network Architecture)
+  - **OSI 참조 모델(Open Systems Interconnection Reference Model)**  
+    ![image](https://user-images.githubusercontent.com/61646760/156527215-75764754-2b09-490c-b92e-0166ee84752c.png)
+    - 7-Layered Reference Model
+    - 국제표준화기구(ISO)에서 개발
