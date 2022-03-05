@@ -133,7 +133,7 @@
     - 진폭 변조(Amplitude Modulation, AM)
     - 주파수 변조(Frequency Modulation, FM)
     - 위상 변조(Phase Modulation, PM)
-- 아날로그 변조
+- **아날로그 변조(Analog Modulation)**
   - **진폭 변조(Amplitude Modulation, AM)**
     - 베이스밴드 신호의 순간 진폭에 비례하여 반송파 신호의 순간 진폭을 변화시키는 방법  
       ![image](https://user-images.githubusercontent.com/61646760/156592652-026d97b8-aaf6-45cc-8408-9a226ec38690.png)
@@ -144,5 +144,35 @@
   - **위상 변조(Phase Modulation, PM)**
     - 반송파 신호의 진폭은 일정하게 한 채로 베이스밴드 신호를 주파수 위상각의 변화로 변환시키는 방법  
       ![image](https://user-images.githubusercontent.com/61646760/156592802-ad2c5d38-7d68-406c-ac32-365448dc74b0.png)
-- 디지털 변조
+- **디지털 변조(Digital Modulation)**
+  - **진폭 편이 변조(Amplitude Shift Keying, ASK)**
+    - 변조 신호를 가지고 반송파의 진폭을 변화시키는 변조 방식  
+      ![image](https://user-images.githubusercontent.com/61646760/156890092-4525a52d-d8a7-44c1-be0d-a421727abf01.png)
+  - **주파수 편이 변조(Frequency Shift Keying, FSK)**
+    - 변조 신호를 가지고 반송파의 주파수를 변화시키는 변조 방식  
+      ![image](https://user-images.githubusercontent.com/61646760/156890102-ad193329-1aa5-4052-8ba6-9206b28430c6.png)
+  - **위상 편이 변조(Phase Shift Keying, PSK)**
+    - 변조 신호를 가지고 반송파의 위상을 변화시키는 변조 방식  
+      ![image](https://user-images.githubusercontent.com/61646760/156890112-9dd49e45-4ab3-4c26-97e5-be0c88889b3e.png)
+      - 0에서 1로 바뀔 때와 1에서 0으로 바뀔 때, x축을 기점으로 방향이 전환됨
+  - 디지털 변조 한눈에 보기  
+    ![image](https://user-images.githubusercontent.com/61646760/156890360-41745faa-57ed-446d-a3c9-6ad410de502d.png)
+- 정보의 디지털화
+  - **펄스(pulse)**
+    - 매우 짧은 시간 동안 진행되는 네모꼴의 전자기 파형
+    - 펄스의 3대 요소  
+      ![image](https://user-images.githubusercontent.com/61646760/156890489-c43a9234-b66b-4f31-bdb6-ffac33e6dc11.png)
+      - 진폭(amplitude) : 전자기 파형의 높이
+      - 위치(position) : 기준 시각부터 펄스 발생 시각까지의 시간
+      - 폭(width) : 전자기 파형이 어느 정도 유지되었는지
+  - **펄스 코드 변조(PCM: Pulse Code Modulation)**
+    - 아날로그 신호를 디지털 신호로 바꾸는 과정
+      - 표본화(sampling) 과정
+      - 양자화(quantization) 과정
+      - 부호화(encoding) 과정
+    - `예) PCM 부호화 과정`  
+      ![image](https://user-images.githubusercontent.com/61646760/156890757-aaca882a-be19-4428-b4b8-086787ce0737.png)
+        - PAM(Pulse Amplitude Modulation) 펄스 : 원신호를 표본화(sampling)한 것
+        - PCM(Pulse Code Modulation) 펄스 : PAM 펄스를 양자화(quantization)한 것
+        - PCM 결과 : PCM 펄스를 부호화(encoding)한 것
 ### 전송 코드
