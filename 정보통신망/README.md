@@ -179,12 +179,8 @@
 - **코드(code)**
   - 암호, 부호, 규칙, 법규
     - '약속'이라는 공통적인 의미 요소를 지님
-  - 코드 종류
-    - Baudot code
-    - ASCII code
-    - BCD code
-    - EBCDIC code
-    - Unicode
+  - 코드 종류  
+    ![image](https://user-images.githubusercontent.com/61646760/159013864-93db82be-0a4a-47ea-8711-330005ae385f.png)
 - **Baudot 코드**
   - Murray code
     - CCITT Alphabet No.2
