@@ -111,9 +111,13 @@
 
 ## 2강. 데이터 통신의 기초(I)
 ### 데이터 통신의 개요
-- 통신이란? 한 점으로부터 다른 점으로 어떤 정보(data 또는 message)를 전달
+- **통신(communication)**
+  - 한 점으로부터 다른 점으로 어떤 정보(data 또는 message)를 전달
   - 통신의 3대 요소  
     ![image](https://user-images.githubusercontent.com/61646760/156584998-129939fe-c8c1-405e-a251-0e16cd695523.png)
+    - 정보원
+    - 전달매체
+    - 수신체
   - 통신 성능의 요인
     - 메시지가 서로 이해되어야 함 (coding)
     - 통신상의 간섭 현상이 있을 수 있음 (noise)
@@ -195,11 +199,14 @@
   - ISO Seven-Bit Coded Character Set
     - for Information Processing Interchange
   - 7bit ➔ 128개의 문자 표현 가능
+    - 정보를 표현하기 위해 7비트를 사용하고, 데이터 전송의 오류를 검사하기 위해 (패리티 검사를 위해) 별도의 1비트를 사용
+    - 즉, ASCII 코드는 7비트의 정보와 패리티 검사를 위한 1비트로 구성된 8비트 코드
   - `예) ASCII code table`  
     ![image](https://user-images.githubusercontent.com/61646760/159002493-b4629757-8b44-48d1-b609-5ac4213a5e12.png)
     - `H`는 1001000에 해당
     - `SYN` 패킷은 흐름 제어, 오류 제어를 위한 패킷으로, 0010110에 해당
       - 1은 3비트로 001, 06은 4비트로 0110에 해당
+    - ASCII 문자 세트에서 32개의 제어 문자가 있으며, 이들은 전송제어, 포맷제어, 장치제어, 정보분리의 기능을 갖고 있음
   - **패리티 비트(parity bit)**
     - 전송 오류 제어를 위한 비트
       - 정보의 전달 과정에서 오류가 생겼는지를 검사하기 위해 추가된 비트 (ASCII 7bit + parity 1bit)
