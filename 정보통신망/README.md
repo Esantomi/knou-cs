@@ -176,3 +176,76 @@
         - PCM(Pulse Code Modulation) 펄스 : PAM 펄스를 양자화(quantization)한 것
         - PCM 결과 : PCM 펄스를 부호화(encoding)한 것
 ### 전송 코드
+- **코드(code)**
+  - 암호, 부호, 규칙, 법규
+    - '약속'이라는 공통적인 의미 요소를 지님
+  - 코드 종류
+    - Baudot code
+    - ASCII code
+    - BCD code
+    - EBCDIC code
+    - Unicode
+- **Baudot 코드**
+  - Murray code
+    - CCITT Alphabet No.2
+    - International Alphabet No.2
+  - Telex code
+    - 텔렉스 망에서 사용
+  - 5bit ➔ 32개의 문자 표현 가능
+- **ASCII 코드**
+  - American Standard Code for Information Interchange
+    - CCITT Alphabet No.5
+    - International Alphabet No.5
+  - ISO Seven-Bit Coded Character Set
+    - for Information Processing Interchange
+  - 7bit ➔ 128개의 문자 표현 가능
+  - `예) ASCII code table`  
+    ![image](https://user-images.githubusercontent.com/61646760/159002493-b4629757-8b44-48d1-b609-5ac4213a5e12.png)
+    - `H`는 1001000에 해당
+    - `SYN` 패킷은 흐름 제어, 오류 제어를 위한 패킷으로, 0010110에 해당
+      - 1은 3비트로 001, 06은 4비트로 0110에 해당
+  - **패리티 비트(parity bit)**
+    - 전송 오류 제어를 위한 비트
+      - 정보의 전달 과정에서 오류가 생겼는지를 검사하기 위해 추가된 비트 (ASCII 7bit + parity 1bit)
+      - 문자열 내 1비트의 모든 숫자가 짝수 또는 홀수인지를 보증하기 위해 전송하고자 하는 데이터의 각 문자에 1비트를 더하여 전송하는 방법
+    - 두 종류의 패리티
+      - **짝수(even) 패리티** : 전체 비트에서 1의 개수가 짝수가 되도록 패리티 비트를 정하는 것인데, 이를테면 데이터 비트에서 1의 개수가 홀수이면 패리티 비트를 1로 정함
+      - **홀수(odd) 패리티** : 전체 비트에서 1의 개수가 홀수가 되도록 패리티 비트를 정하는 방법
+    - 패리티 검사  
+      ![image](https://user-images.githubusercontent.com/61646760/159006817-f9ea01e6-98ed-49d8-8bd8-c34bd7770a33.png)
+      - 1개의 비트가 잘못된 경우
+        - 홀수 패리티까지, 1의 개수가 5개
+        - 전송 오류가 발생해서 4번째 칸의 1이 0으로 바뀜
+          - 1의 개수가 4개
+          - 홀수 패리티인데 4개면 전송 오류가 발생했음을 알 수 있음
+      - 2개의 비트가 잘못된 경우
+        - 홀수 패리티까지, 1의 개수가 5개
+        - 전송 오류가 발생해서 4번째 칸, 5번째 칸의 1이 0으로 바뀜
+          - 1의 개수가 3개
+          - 홀수 패리티이니 전송 오류 식별 불가
+        - 짝수 개의 비트가 잘못된 경우 패리티 비트로 오류 검출이 불가함
+          - 이후 오류 제어 부분에서 공부
+- **BCD 코드**
+  - Binary Coded Decimal
+    - 2진 코드로 만들어진 10진 숫자
+  - 컴퓨터 내부 코드
+  - 10진 숫자의 표현
+    - `0000` : 1
+    - `0001` : 2
+    - `1000` : 8
+    - `1001` : 9
+    - `1010`~`1111` : 미사용
+      - `예) 5는 0101, 9는 1001, 159는 0001 0101 1001`
+        - 159의 실제 2진수 표현은 `10011111`
+        - 즉, 2진 숫자 같지만 10진 숫자처럼 사용한 것
+- **EBCDIC 코드**
+  - Extended BCD Interchange Code
+  - 8bit ➔ 256개의 문자 표현 가능
+  - IBM 컴퓨터 내부 데이터 전송용
+- **유니코드**
+  - 만국 공통 국제 문자 코드
+    - 26개 언어의 문자 및 특수 기호
+  - 데이터, 프로그램, 시스템의 호환성과 확장성
+  - 2byte (16bit) ➔ 2<sup>16</sup>개(65536개)의 문자 표현 가능  
+  - IBM, Microsoft, Lotus, Sun Microsystems
+  - ISO/IEC Universal Multi-Octet Coded Character Set
