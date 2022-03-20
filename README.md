@@ -1,13 +1,18 @@
 # knou
-한국방송통신대학교(KNOU: Korea National Open University) 컴퓨터과학과 전공 과목 MARKDOWN 형식 개인 정리
+한국방송통신대학교(Korea National Open University) 컴퓨터과학과 전공 과목 강의 정리
+
+## 열람 순서
+1. [인터넷과정보사회](https://github.com/Esantomi/knou/tree/main/%EC%9D%B8%ED%84%B0%EB%84%B7%EA%B3%BC%EC%A0%95%EB%B3%B4%EC%82%AC%ED%9A%8C) : 컴퓨터, 컴퓨터과학 전반에 대한 개괄. 컴퓨터를 잘 모른다면 가장 먼저 읽기를 권함.
+2. 이후 필요한 순서로 열람
 
 ## 과목 목록
 ### 21년 2학기
 - [X] 자료구조
 
 ### 22년 1학기
+- [ ] 인터넷과정보사회
 - [ ] C프로그래밍
 - [ ] 알고리즘
 - [ ] 운영체제
-- [ ] 정보통신망
 - [ ] 데이터베이스시스템
+- [ ] 정보통신망
