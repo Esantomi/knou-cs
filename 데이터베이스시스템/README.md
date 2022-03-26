@@ -44,6 +44,15 @@
   - [트랜잭션의 동시성](#트랜잭션의-동시성)
   - [트랜잭션의 회복](#트랜잭션의-회복)
 
+### 출석 과제
+- `2022-03-26` 대구/경북 지역 줌강
+  1. 파일 처리 싀스템의 4가지 문제점에 대하여 1000자 정도로 구체적으로 설명하시오.(10점)
+  2. 아래의 아기용품 대여점 데이터베이스 시스템의 사용자 요구사항을 참조하여 ERD를 작성하시오.(20점)
+      - 소프트웨어 툴을 사용해서 그릴 것
+      - 완벽하지도 않아도 되니 고민을 많이 한 흔적을 보일 것
+### 기말 범위
+- 4장, 7장 제외 전체
+
 ## 1강. 데이터베이스의 이해
 ### 데이터 관리와 파일 처리 시스템
 - **데이터(Data)**
@@ -51,39 +60,43 @@
     - [Data Storage Units](https://user-images.githubusercontent.com/61646760/149938472-559d71d6-1ac0-49ea-9ca0-397e2f942d76.png)
     - 빅데이터 처리
       - [IoT > Big Data > AI](https://user-images.githubusercontent.com/61646760/149781586-ae918fdf-8552-4098-83c0-5f9c017a1463.png)
-  - 데이터 관리의 필요성
-    - 대량의 데이터를 저장 및 관리하고 필요한 데이터를 신속히 검색할 수 있도록 보조하는 장치
-      - `예) 파일 처리 시스템, SQL, 데이터 웨어하우스 등`
+  - 데이터 관리 장치
+    - 대량의 데이터를 저장 및 관리하고 필요한 데이터를 신속히 검색할 수 있도록 보조하는 장치  
+      ![image](https://user-images.githubusercontent.com/61646760/160229202-bb28aaac-0a36-4a3f-bce8-06e04aab9672.png)
+    - `예) 파일 처리 시스템, SQL, 데이터 웨어하우스 등`  
+      ![image](https://user-images.githubusercontent.com/61646760/160229214-92d54869-0077-4da3-be2f-c2f86a0a407c.png)
 - **파일 처리 시스템(File Processing System)**
   - 파일을 사용하여 업무에 사용되는 데이터를 관리하는 방식
     - 데이터베이스가 개발되기 전에 데이터 관리에 사용
-    - 업무별 애플리케이션이 개별 데이터를 데이터 파일에 저장·관리하는 시스템
+    - 업무별 애플리케이션이 개별 데이터를 데이터 파일에 저장·관리하는 시스템  
+      ![image](https://user-images.githubusercontent.com/61646760/160229168-28c00668-3632-4ddb-94cd-47596e09fceb.png)
   - 발생 가능한 문제
-    1. 데이터 종속의 문제
+    1. **데이터 종속의 문제**
         - 저장된 데이터가 특정 H/W에서 또는 사용자 및 S/W만 사용될 있도록 제한되는 문제
         - 물리적 데이터 종속, 논리적 데이터 종속
-    2. 데이터 중복의 문제
+    2. **데이터 중복의 문제**
         - 동일한 사항에 대한 중복 데이터는 일관성, 보안성, 경제성 측면에서 문제 발생
           - 일관성 : 한 사실에 대해 한 개의 데이터 값을 유지
           - 보안성 : 같은 데이터에 같은 수준의 보안 유지
           - 경제성 : 데이터에 대해 최소한의 저장 공간만을 점유
-    3. 데이터 무결성 훼손의 문제
+    3. **데이터 무결성 훼손의 문제**
         - 실세계의 데이터는 데이터가 가질 수 있는 가능 범위(제약 조건)를 포함
           - `예) 1학기 최대 수강 과목은 18학점`
         - **데이터 무결성(Data Integrity)**
           - 데이터의 값과 값에 대한 제약 조건을 동시에 만족함으로써 데이터의 정확성 보장
         - 파일 시스템은 데이터 무결성을 보장하기 위한 기능을 제공하지 않음
-    4. 데이터 동시 접근의 문제
+    4. **데이터 동시 접근의 문제**
         - 동일 데이터에 다수 사용자의 접근 허용 시 일관성이 훼손
 
 ### 데이터베이스와 DBMS
 - **데이터베이스 시스템(Database System)**
   - 정보를 데이터베이스에 저장·관리하여 사용자에게 요구된 형태의 정보로 제공하는 컴퓨터 기반 시스템
     - 즉, `데이터베이스 시스템 = 데이터베이스 + 데이터베이스 관리 시스템(DBMS)`
-  - 데이터베이스 시스템의 구성
-    ![image](https://user-images.githubusercontent.com/61646760/149782623-b6906d5a-c3cf-4cb3-b3f2-3876e2d50873.png)
+  - 데이터베이스 시스템의 구성  
+    ![image](https://user-images.githubusercontent.com/61646760/160229246-000c41bf-209f-41a9-af11-d5713b892ba4.png)
     - **메타데이터(Metadata)**
-      - 데이터에 대한 데이터
+      - 데이터에 대한 데이터  
+        ![image](https://user-images.githubusercontent.com/61646760/160229258-76abcc8d-bd5b-4edc-9b66-f409cc4eb7d8.png)
 - **데이터베이스(Database)**
   - 특정 기관의 애플리케이션 시스템에서 사용되는 데이터의 집합
   - 데이터베이스의 특징
@@ -97,12 +110,12 @@
       4. 데이터 공유와 다수 사용자 트랜잭션 처리
           - 다수의 데이터 조작 요청을 동시성 제어 기능을 통해 데이터의 일관성을 보장하면서 동시에 작업을 수행
 - **데이터베이스 관리 시스템(Database Management System: DBMS)**
-  - 데이터베이스에 저장된 데이터의 구성, 저장, 관리, 사용을 위한 소프트웨어 패키지
-    ![image](https://user-images.githubusercontent.com/61646760/150522013-193db0de-06dd-4a55-8038-69cdbd4f099b.png)
+  - 데이터베이스에 저장된 데이터의 구성, 저장, 관리, 사용을 위한 소프트웨어 패키지  
+    ![image](https://user-images.githubusercontent.com/61646760/160229414-88817221-c99b-4527-8bf3-aa1b8ed60c89.png)
     - 데이터 사용과 데이터 관리 측면을 분리
   - **DBMS 3단계 구조(DBMS Three Level Architecture)**
-    - 데이터 추상화와 데이터 독립성을 확보하기 위한 개념적-논리적-물리적 3단계 구조
-      ![image](https://user-images.githubusercontent.com/61646760/149783043-713498db-ca00-4c0c-904d-be33c01f6933.png)
+    - 데이터 추상화와 데이터 독립성을 확보하기 위한 개념적-논리적-물리적 3단계 구조  
+      ![image](https://user-images.githubusercontent.com/61646760/160229281-46162bef-d52a-4bde-b8d5-8911c5c79502.png)
       - **외부 단계(External Level)**
         - 사용자 뷰
         - **외부 스키마(External Schema)**
@@ -127,7 +140,8 @@
         - 개념 스키마와 내부 스키마 간의 대응 관계를 정의
 - **트랜잭션(Transaction)**
   - 하나의 논리적 작업을 처리하기 위한 일련의 데이터베이스 명령의 집합
-    - [`예) 트랜잭션 1, 트랜잭션 2`](https://user-images.githubusercontent.com/61646760/149785989-7e8d4a9a-5dc0-41c7-a282-2faf22583b41.png)
+    - `예) 트랜잭션 1, 트랜잭션 2`  
+      ![image](https://user-images.githubusercontent.com/61646760/160229335-13d558fc-9f6c-48dc-9ada-751368ad4c22.png)
       - 트랜잭션 1은 `Read(A)`와 `Write(A)`로 구성돼 있으며, 트랜잭션 1이 끝난 뒤에야 트랜잭션 2를 수행할 수 있다.
 
 ### 데이터베이스 언어와 아키텍처
@@ -157,8 +171,8 @@
       - **클라이언트-서버 데이터베이스 시스템(Client-Server Database System)**
         - 애플리케이션 프로그램의 부하를 분산
         - 소프트웨어의 유지 보수 비용을 절감 및 이식성 증가
-        - 2계층 구조(2 Tier Architecture)와 3계층 구조(3 Tier Architecture)
-          ![image](https://user-images.githubusercontent.com/61646760/149785804-75c02032-065f-4290-b22e-88d3b15f9622.png)
+        - 2계층 구조(2 Tier Architecture)와 3계층 구조(3 Tier Architecture)  
+          ![image](https://user-images.githubusercontent.com/61646760/160229428-94aae3ee-6423-4242-b857-a69e41d0acd3.png)
           - [다층 구조 문서 참고하기](https://ko.wikipedia.org/wiki/%EB%8B%A4%EC%B8%B5_%EA%B5%AC%EC%A1%B0)
 
 ## 2강. 데이터베이스 모델링
@@ -168,8 +182,8 @@
     - 데이터베이스 모델링의 필요성
       - 비즈니스적 관점 : 어떤 데이터를 저장해야 하는가
       - 컴퓨터 프로그래머 관점 : 어떻게 데이터를 저장해야 하는가 
-    - 데이터베이스 모델링의 단계
-      ![image](https://user-images.githubusercontent.com/61646760/149943771-2b232079-98fe-4914-8240-17a3cbd9d0c5.png)
+    - 데이터베이스 모델링의 단계  
+      ![image](https://user-images.githubusercontent.com/61646760/160229371-b50b5178-cb3e-485f-9730-47c5e45bba30.png)
       1. **개념적 데이터 모델링(Conceptual Data Modeling)**
           - 요구 사항의 해석 오류를 방지
           - 실세계의 데이터를 개념적으로 일반화시켜 데이터 구조 데이터 타입, 속성, 관계, 제약 조건 등을 이끌어 내는 과정
@@ -208,7 +222,7 @@
         - 결과물의 완성도 저하 및 사용자 신뢰도 추락
         - 개발 후 발생하는 에러 수정에 많은 추가 비용 지출
   - 사용자 요구사항 분석의 과정  
-    ![image](https://user-images.githubusercontent.com/61646760/149949955-b2fe2a33-65fe-4667-bcda-332cd17a6ba6.png)
+    ![image](https://user-images.githubusercontent.com/61646760/160229456-6a881e18-aa68-445e-b7b8-3420999d942a.png)
     1. 요구사항 도출
         - 구축 대상, 프로젝트 목표, 범위를 기준으로 조사 범위를 결정
         - 업무 관계자 인터뷰
@@ -291,7 +305,7 @@
         - `예)` [`일대일(1:1)`](https://user-images.githubusercontent.com/61646760/149970202-a8891941-90e4-4c42-9399-5ffa0ce2847c.png), [`일대다(1:N)`](https://user-images.githubusercontent.com/61646760/149970476-df8b256a-efe9-49b1-8e9d-24a8377ba0ee.png), `다대일(N:1)`, [`다대다(M:N)`](https://user-images.githubusercontent.com/61646760/149970621-24b0baa5-923e-457d-a642-cfccd10f8b15.png)
       - **참가 제약 조건(Participation Constraints)**
         - 전체적 참가 : 어떤 개체 집합의 모든 개체가 관계 집합에 참여하는 조건  
-          ![image](https://user-images.githubusercontent.com/61646760/149971097-f7958b1e-8f58-4822-a602-10583148ca3d.png)
+          ![image](https://user-images.githubusercontent.com/61646760/160229472-17985dad-5eff-41aa-92b5-5141388d3902.png)
           - 이중 선을 통해 전체 참가 표시 (모든 과목은 교수와 관계를 가져야 함)
         - 부분적 참가 : 어떤 개체 집합의 일부 개체가 관계 집합에 참여하는 조건
           - '교수'는 부분적 참가를 하는 집합이며, 단일 선으로 표시 (강의를 맡지 않는 교수도 있음)
@@ -310,7 +324,7 @@
     - [`예) 선수과목코드는 같은 집합 내 과목코드와 관계를 가짐`](https://user-images.githubusercontent.com/61646760/149973496-b209f9f3-3e40-4a4f-814b-119f1fa565b7.png)
   - 특수 관계  
     - **약한 개체 집합(Weak Entity Set)**  
-      ![image](https://user-images.githubusercontent.com/61646760/149974696-0ca3e774-5d91-40e1-9a9d-7c201806a53c.png) 
+      ![image](https://user-images.githubusercontent.com/61646760/160229502-e8a0c59f-8075-40bd-bcab-a99b4643d6dd.png)
       - 개체의 존재 유무가 관계를 맺고 있는 개체의 존재에 종속되는 개체 집합
       - `예) 계좌 개체는 학생 개체에 종속되어, 학생이 자퇴를 하면 계좌도 사라짐`
         - 이중 선은 참가 제약 조건의 전체적 참가 표시!!
@@ -329,8 +343,8 @@
     - Oracle, DB2, PostgreSQL, MySQL, MSSQL 등
 - **릴레이션(Relation)**
   - 표와 매우 유사한 구조이지만 일반 표와는 달리, 레코드의 유일성, 레코드의 무순서성, 컬럼의 무순서성, 컬럼 값의 유일성이라는 특징을 갖는다.
-  - 릴레이션의 구성
-    ![image](https://user-images.githubusercontent.com/61646760/150096225-ea4ce392-3c10-45b9-8533-ed30d795a991.png)
+  - 릴레이션의 구성  
+    ![image](https://user-images.githubusercontent.com/61646760/160229524-5b22ea3b-ff24-4a6b-8fc2-506b012ffa1e.png)
     - **스키마(Schema)**
       - 열에 대한 의미를 갖는 표 머리
       - `예) 학과이름, 단과대학, 주소, 전화번호, 졸업학점`
