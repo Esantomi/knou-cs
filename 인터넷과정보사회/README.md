@@ -314,18 +314,46 @@
 - **IP 주소(IP address)**
   - 장치 식별을 위한 고유 주소 체계
     - 수신 장치까지 메시지(데이터)를 전송하는 과정에서 사용  
-      ![image](https://user-images.githubusercontent.com/61646760/159970127-0739b6a6-77c4-41ae-9675-36820855b784.png)
+      ![image](https://user-images.githubusercontent.com/61646760/160743247-ddd99035-3bb3-4b7a-8521-1512eb02b0da.png)
   - **IPv4**가 대표적으로 사용  
     ![image](https://user-images.githubusercontent.com/61646760/159969182-cfaf9b4c-c629-48a2-8421-f22a81d22a16.png)
     - IPv4로 만들 수 있는 주소의 개수는 약 40억 개
-      - 심지어 그중 20억 개는 선점
+      - 하지만 그중 20억 개는 이미 선점됨 (정부 부처 등)
     - 인터넷에 연결되는 장치가 급속도로 증가하여 빠른 속도로 고갈
       - 이에 대한 대안으로 128비트의 주소 체계를 갖는 **IPv6**가 제시됨  
         ![image](https://user-images.githubusercontent.com/61646760/159971055-eda31688-799b-41f4-8950-8b2bda5cf12f.png)
 - **MAC 주소**
   - 네트워크 인터페이스 카드에 할당되는 고유 값
   - 기기 식별에 사용 : [물리적 주소 부분](https://user-images.githubusercontent.com/61646760/159971249-471c77e3-0ef5-4883-ad65-5e721b647d21.png)
-
+- **DNS(Domain Name Service)**
+  - 텍스트 주소를 IP 주소로 번역해 주는 서비스  
+    ![image](https://user-images.githubusercontent.com/61646760/160743153-d2190fa1-57f2-4473-9151-091a35e3d5ea.png)
+    - 텍스트 형태의 주소(도메인 이름)로 웹 자원에 접근 가능
+- **UURL(Uniform Resource Locator)**
+  - 자원(데이터)의 위치를 표시하기 위한 규약  
+    ![image](https://user-images.githubusercontent.com/61646760/160743397-0c7681c5-b842-44c6-ad7f-7bcb12154f04.png)
+    - 프로토콜, 서버 주소, 파일경로 등에 대한 정보를 포함
 ### 웹 브라우저
-
+- **웹 브라우저(web browser)**
+  - 정보를 요청하고 HTML과 같은 표준 언어로 구성된 하이퍼 텍스트 문서를 가독성이 높은 문서의 형태로 변환하는 소프트웨어  
+    ![image](https://user-images.githubusercontent.com/61646760/160743564-d2603a7f-7186-4fba-a0a5-e651a51faf67.png)
+- **웹 브라우저 엔진(web browser engine)**
+  - 웹 자원의 형식에 맞게 자원을 가공하여 사용자에게 전달하는 **렌더링** 역할
+  - HTML(Hypertext Markup Language)과 같은 언어로 작성된 문서를 처리하여 가시화  
+    ![image](https://user-images.githubusercontent.com/61646760/160743718-2f25ca37-2be9-4c4f-be8a-41e2dd09edef.png)
 ### 웹 브라우저의 종류
+- 현재 시장 점유율 : 크롬(63%) > 사파리(20%) > 파이어폭스(4%) > 엣지(4%) > 삼성 인터넷(3%) > 오페라(2%)
+- **크롬(chrome)**
+  - 구글사가 개발한 웹 브라우저
+  - 빠른 속도가 장점이나 다른 브라우저에 비해 메모리를 많이 소모하는 편
+- **사파리(safari)**
+  - 애플에서 제공하는 웹브라우저로 맥OS와 iOS에 기본 설치
+  - 애플에서 제작한 하드웨어에 최적화
+- **파이어폭스(firefox)**
+  - 넷스케이프사의 넷스케이프가 모체
+    - 월드 와이드 웹(넥서스) → 모자이크 → 넷스케이프 → 모질라 애플리케이션 스위트 → 피닉스 → 파이어버드 → 파이어폭스로 이어지는 오랜 역사
+  - 페르소나, 애드온 등을 통해 추가적인 기능 확장 가능
+- **인터넷 익스플로러** & **엣지**
+  - MS사의 웹 브라우저로 ActiveX, ASP 지원
+  - 점유율이 90%에 달했으나 점차 감소 중
+  - 윈도우 10부터는 엣지(크롬 기반)로 대체
