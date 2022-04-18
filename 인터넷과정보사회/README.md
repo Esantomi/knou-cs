@@ -28,6 +28,7 @@
   - [인터넷 주소](#인터넷-주소)
   - [웹 브라우저](#웹-브라우저)
   - [웹 브라우저의 종류](#웹-브라우저의-종류)
+- [8강. 정보 검색](#8강-정보-검색)
 
 ## 1강. 데이터와 정보
 ### 데이터와 정보
@@ -361,3 +362,55 @@
   - MS사의 웹 브라우저로 ActiveX, ASP 지원
   - 점유율이 90%에 달했으나 점차 감소 중
   - 윈도우 10부터는 엣지(크롬 기반)로 대체
+
+## 8강. 정보 검색
+### 검색 엔진의 이해
+- **검색**
+  - 목적에 따라 필요한 정보를 찾는 작업
+  - 많은 데이터를 처리하는 컴퓨터 환경에서 검색 기능의 활용은 일반적인 과정
+- **검색 엔진(search engine)**
+  - 인터넷상에서 분산된 방대한 양의 문서에서 사용자가 원하는 정보를 쉽게 검색 가능하도록 도와 주는 소프트웨어  
+    ![image](https://user-images.githubusercontent.com/61646760/163816848-2b711cbd-d9e1-42ea-856b-2a49037cbb1c.png)
+    ![image](https://user-images.githubusercontent.com/61646760/163816936-62456144-599d-42de-bc71-1e3a0402677e.png)
+  - **수집기(crawler)**
+    - 웹상의 문서를 자동으로 탐색하여 검색 엔진이 보유한 문서 저장소를 최신 상태로 유지  
+      ![image](https://user-images.githubusercontent.com/61646760/163817207-a932aff9-b6a0-43f6-b912-553bb312ffcf.png)
+### 검색 엔진의 동작 원리
+- **유사도(similarity)**
+  - 검색어와 문서 또는 문서와 문서 간의 내용이 서로 비슷한 정도를 나타내는 정량적인 수치
+- **검색 모델(search model)**
+  - 각 문서를 간단하고 수학적으로 표현하고, 문서 간의 유사성을 수치화할 수 있는 모델
+    ![image](https://user-images.githubusercontent.com/61646760/163817487-9f47b7b0-5db1-4a27-9d2c-c61307e9351e.png)
+  - 검색 모델은 고유한 내부 표현으로 문서를 변환하고 이를 토대로 유사성을 판단하여 결과를 수치적으로 생성
+    ![image](https://user-images.githubusercontent.com/61646760/163817580-ee0300cd-64f6-44a3-b706-babe4439402d.png)
+  - 검색 모델의 종류
+    - 불리언 모델(boolean model)
+    - 벡터 공간 모델(vector space model)
+- **불리언 모델(boolean model)**
+  - 웹 문서를 지정된 색인어 집합으로 표현
+  - 문서와 검색어와의 관련성을 Yes 또는 No 이분법적으로 판단하는 모델
+    - `예) 색인어 : ‘검색’, ‘대한민국’, ‘사람’, ‘모델’, ‘한국’`  
+      ![image](https://user-images.githubusercontent.com/61646760/163817807-24493391-e927-43e0-8a20-e100e25a6760.png)
+    - 검색어 표현 : 색인어 포함 여부
+    - 유사성 판단 : 문서가 검색어를 만족하면 1, 아니면 0  
+      ![image](https://user-images.githubusercontent.com/61646760/163817979-bdef79e6-4ceb-4897-b38c-a7f36d995443.png)
+  - **역인덱스(inverted index)**
+    - 각 문서가 특정 색인어를 포함하는지에 대한 빠른 탐색을 위해 관리하는 인덱스
+    - 색인어를 기준으로, 각 색인어가 포함된 문서를 나열한 테이블  
+      ![image](https://user-images.githubusercontent.com/61646760/163818116-bf00b99c-2cb6-4579-acab-183c01154e0a.png)
+      ![image](https://user-images.githubusercontent.com/61646760/163818146-b9db0ba2-248c-478c-bf7b-2ecb688d7bf3.png)
+  - 불리언 모델의 한계
+    - 문서를 이분법적으로 구분
+    - 검색 결과에 복수 개의 문서가 포함될 경우 문서 간 중요도 판단이 불가능
+- **벡터 공간 모델(vector space model)**
+  - 문서와 검색어를 벡터 공간의 한 점으로 표현
+  - 유사성 판단
+    - **문서 간의 거리** : 문서 간의 거리가 0에 가까울수록 서로 유사
+    - **코사인 유사도(cosine similarity)** : 두 벡터 사이의 각도가 0에 가까울수록 서로 유사
+  - 문서의 벡터 표현 과정
+    - 각 차원의 값은 해당 색인어의 사용 횟수 등에 의해 결정  
+      ![image](https://user-images.githubusercontent.com/61646760/163818369-b3b41cdd-48d8-47e6-93a1-ec3d2ddc7e9c.png)
+    - 문서 간 거리의 한계  
+      ![image](https://user-images.githubusercontent.com/61646760/163818497-48d7dde5-5853-44a3-97f0-51ba4ec134a8.png)
+    - 코사인 유사도  
+      ![image](https://user-images.githubusercontent.com/61646760/163818556-d0ebe3f0-ece5-473d-bf7f-08fe9e39692f.png)
