@@ -9,6 +9,11 @@
   - [데이터 통신의 개요](#데이터-통신의-개요)
   - [변조 및 복조](#변조-및-복조)
   - [전송 코드](#전송-코드)
+- [11강. TCP/IP(III)](#11강-TCPIPIII)
+  - [주소 변환](#주소-변환)
+  - [ICMP](#ICMP)
+  - [IGMP](#IGMP)
+  - [DHCP](#DHCP)
 
 ## 1강. 컴퓨터 통신망의 소개
 ### 컴퓨터와 통신
@@ -252,3 +257,47 @@
   - 2byte (16bit) ➔ 2<sup>16</sup>개(65536개)의 문자 표현 가능  
   - IBM, Microsoft, Lotus, Sun Microsystems
   - ISO/IEC Universal Multi-Octet Coded Character Set
+## 11강. TCP/IP(III)
+### 주소 변환
+- **ARP**(Address Resolution Protocol) : IP 주소를 물리 주소로 매핑해 주는 프로토콜
+- **RARP**(Reverse Address Resolution Protocol) : 물리 주소로 호스트 자신의 IP 주소를 찾는 프로토콜
+### ICMP
+- **ICMP**(Internet Control Message Protocol)
+  - 인터넷 계층 프로토콜
+  - IP는 비연결성, 비신뢰성 전송 서비스 (실패 가능성 있음)
+  - IP 데이터그램 전송의 오류가 발생할 경우 오류 메시지 또는 제어 메시지를 제공해 주는 프로토콜
+    - 즉, 전송 오류 제어
+  - ICMP 메시지 유형
+    - 오류 보고 메시지(error reporting)
+    - 질의 메시지(simple query)
+### IGMP
+- **IGMP**(Internet Group Management Protocol)
+  - 인터넷에서 multicast 서비스를 위해 사용되는 프로토콜
+  - IP 호스트가 어떤 멀티캐스트 그룹에 참가하고 있는지를 멀티캐스트 라우터에 통보하는 프로토콜
+    - Multicast : 하나의 그룹에 속한 호스트들에게 메시지 전송 (1-to-many)
+  - 클래스 D 주소 사용
+### DHCP
+#### IP 주소 관리
+- IP 주소 (32 비트. 150.183.135.215 등으로 표시)
+  - 기억하기 어려움 ➔ 주소 관리 방법의 필요
+    - Host Table
+    - DNS (Domain Name System)
+    - BOOTP (Bootstrap Protocol)
+    - DHCP (Dynamic Host Configuration Protocol)
+- **Host Table**
+  - 모든 IP 주소와 이와 mapping되는 호스트 이름으로 구성된 테이블
+- **DNS** (Domain Name System)
+  - 계층적 구조 및 분산 관리 특성
+    - `예) 도메인 이름 : knou.ac.kr`
+- **BOOTP** (Bootstrap Protocol)
+  - 기존의 방식은 IP 주소를 수작업으로 할당 (정적 할당)
+  - BOOTP는 동적으로 IP 주소를 할당
+  - 디스크가 없는 호스트(X 터미널)에 대해 주소 및 설정 정보를 자동적으로 할당하고 관리하는 프로토콜
+#### DHCP 메시지 형식
+- **DHCP**(Dynamic Host Configuration Protocol)
+  - 응용 계층 프로토콜
+  - BOOTP에서 발전된 동적 주소 할당 프로토콜로서, IP 주소 재사용이 가능함
+    - 동적 주소 할당 프로토콜
+      - IP 주소 pool에서 사용 가능한 IP 주소를 선택하여 원하는 호스트에게 일정 기간 임대해 줌
+    - **IP 주소 자동 할당**
+  - DHCP 메시지 형식은 BOOTP와 동일함
