@@ -22,9 +22,14 @@
   - [LAN 참조 모델](#LAN-참조-모델)
   - [무선 LAN](#무선-LAN)
   - [고속 LAN](#고속-LAN)
-- [14강. 네트워크 보안(I)](#네트워크-보안I)
+- [14강. 네트워크 보안(I)](#14강-네트워크-보안I)
   - [네트워크 보안 개요](#네트워크-보안-개요)
   - [보안 위협 유형](#보안-위협-유형)
+- [15강. 네트워크 보안(II)](#15강-네트워크-보안II)
+  - [암호 기법](#암호-기법)
+  - [디지털 서명](#디지털-서명)
+  - [웹 보안 프로토콜](#웹-보안-프로토콜)
+  - [방화벽과 프락시 서버](#방화벽과-프락시-서버)
 
 ## 1강. 컴퓨터 통신망의 소개
 ### 컴퓨터와 통신
@@ -473,3 +478,74 @@
   - Phishing + Farming
   - 정당한 웹 사이트의 도메인을 탈취하거나 DNS 이름을 속여 미리 정해 놓은 웹 사이트로 data traffic을 유인한 뒤, 개인 정보를 빼낸 뒤 이를 불법적으로 이용하는 범죄
   - 피싱의 한 유형이지만 더 위협적임
+## 15강. 네트워크 보안(II)
+### 암호 기법
+- 암호 기법의 개요  
+  ![image](https://user-images.githubusercontent.com/61646760/174325502-926b0cac-7429-47f6-abc1-8c48460fb09e.png)
+  - **암호화(encryption)**
+    - 누구나 읽을 수 있는 평문(plaintext)을 제3자가 읽을 수 없는 형태인 암호문(ciphertext)으로 변환하는 과정
+  - **복호화(decryption)**
+    - 암호문을 평문으로 변환하는 과정
+  - **키(key)**
+    - 암호화 키, 복호화 키
+- 암호화 기술 분류
+  - 동작 형태 : 대치 암호, 전치 암호, 혼합 암호, 대수화 암호
+  - 평문의 처리 방법 : 스트림 암호화, 블록 암호화
+  - 암호화 키 : 대칭 키 암호화, 공개 키 암호화
+#### 동작 형태
+  - **대치 암호 (치환 암호; substitution cipher)**
+    - 메시지의 각 글자를 다른 글자로 대치하는 방식
+  - **전치 암호 (전위 암호; transposition cipher)**
+    - 평문의 글자를 재배열하는 방식 (문자의 위치를 바꿔 암호문을 작성)
+  - **혼합 압호(product cipher)**
+    - 대치와 전치 두 방법 모두를 사용하는 방식
+  - **대수적 암호(algebraic cipher)**
+    - 각 글자를 숫자로 바꾸어 수학적으로 처리하는 방식
+#### 평문 처리 방법
+- **스트림 암호화(stream cipher [state cipher] encryption)**
+  - 평문과 같은 길이의 키 스트림을 생성하여 평문과 키를 비트 단위로 합하여 암호문을 얻는 방법
+  - 평문은 한 번에 한 비트씩, random하게 생성되는 키 스트림과 XOR 연산으로 합해져서 전송됨
+- **블록 암호화(block cipher [state cipher] encryption)**
+  - 평문을 일정한 길이의 단위(block)로 나눈 뒤, 각 block 단위로 암호화 과정을 수행하여 암호문을 얻는 방법
+- 비교
+  - 스트림 암호화 방식 : 비트 단위의 암호화
+  - 블록 암호화 방식 : 블록 단위의 암호화
+#### 암호화 키
+- **대칭 키 암호화(symmetric key encryption)**  
+  ![image](https://user-images.githubusercontent.com/61646760/174327600-5915d07d-142b-44ef-b929-95a38ff91a33.png)
+  - 암호화 키 = 복호화 키
+  - 유사어 : **공통 키(common key) 암호화**, 비밀 키(secret key) 암호화, 관용 암호화(conventional encryption)
+  - **DES(Data Encryption Standard)**
+    - 대칭 키를 사용하는 블록 암호화 방식
+    - IBM에서 개발한 LUCIFER의 확장된 형태로 제안되어 1976년 NBS에서 미국 정부 표준 암호 방법으로 제정
+  - **AES(Advanced Encryption Standard)**
+    - 2001년 NIST에서 미국 정부 표준 암호 방법으로 제정
+- **공개 키 암호화 방식(public key encryption)**  
+  ![image](https://user-images.githubusercontent.com/61646760/174328479-d185e965-50de-46a3-881f-0fb47c96d3dc.png)
+  - 암호화 키 = 공개 키(public key) / 복호화 키 = 개인 키(private key)
+  - 유사어 : **비대칭 키(asymmetric key) 암호화**
+  - **RSA 암호화 알고리즘**
+    - 1978년 MIT의 3명의 수학자(Rivest, Shamir, Adleman)가 개발
+    - 가장 대중화된 공개 키 암호화 방식
+    - 2개의 큰 소수 p, q를 구하고, 두 소수의 곱 n을 구해 사용하는데, 이 암호화 방식의 안전도는 n의 소인수 분해 난이도에 종속됨
+#### 키 관리
+- 공개 키 기반 구조
+  - Public Key Infrastructure (PKI)
+    - 공개 키 인증서를 발급하고 사용할 수 있는 인증서 관리 구조
+  - 인증 기관 (Certificate Authority; CA)
+    - 일반인에게 개인 키와 공개 키를 부여하고, 인증서를 통해 상대방의 공개 키를 제공하는 서비스 기관
+### 디지털 서명
+- **디지털서명(digital signature)**
+  - 공개 키 암호화 방식에서의 메시지 암호화는 개인 키를 이용한 메시지 작성자만이 할 수 있으므로 이를 이용하여 메시지의 작성자 본인을 알리는 서명을 작성함
+  - 서명 알고리즘 및 증명 알고리즘  
+    ![image](https://user-images.githubusercontent.com/61646760/174329959-dadbec58-824b-4c9a-be8c-5e48a4834d06.png)
+  - 디지털 서명을 포함하는 메시지 전송  
+    ![image](https://user-images.githubusercontent.com/61646760/174329865-74cfd783-bcce-4ac1-9de0-d5d8829db7fc.png)
+- 디지털 서명의 유효성을 위한 5가지 조건
+  - **서명자 인증(user authentication)** : 디지털 서명의 서명자를 불특정한 다수의 사람들이 검증할 수 있어야 함
+  - **부인 불가(non-repudiation)** : 서명자는 서명 이후 서명 사실을 부인할 수 없어야 함
+  - **변경 불가(unalterable)** : 서명한 문서의 내용은 변경할 수 없어야 함
+  - **재사용 불가(not reusable)** : 어느 한 전자 문서의 디지털 서명을 다른 전자 문서의 디지털 서명으로 사용할 수 없어야 함
+  - **위조 불가(unforgeable)** : 적법적인 서명자만이 디지털 서명을 할 수 있어야 함
+### 웹 보안 프로토콜
+### 방화벽과 프락시 서버
