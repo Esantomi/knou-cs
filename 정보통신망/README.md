@@ -9,6 +9,9 @@
   - [데이터 통신의 개요](#데이터-통신의-개요)
   - [변조 및 복조](#변조-및-복조)
   - [전송 코드](#전송-코드)
+- [9강. TCP/IP(I)](#9강-TCPIPI)
+  - [TCP/IP 개념과 기본구조](#TCPIP-개념과-기본구조)
+  - [IP](#IP)
 - [11강. TCP/IP(III)](#11강-TCPIPIII)
   - [주소 변환](#주소-변환)
   - [ICMP](#ICMP)
@@ -273,6 +276,99 @@
   - 2byte (16bit) ➔ 2<sup>16</sup>개(65536개)의 문자 표현 가능  
   - IBM, Microsoft, Lotus, Sun Microsystems
   - ISO/IEC Universal Multi-Octet Coded Character Set
+
+## 9강. TCP/IP(I)
+### TCP/IP 개념과 기본구조
+- **Internetworking Technology**
+  - 네트워크들을 상호 연결하는 기술
+  - 서로 다른 네트워크에 연결되어 있는 컴퓨터 사이의 통신이 가능
+  - DoD ARPA(Advanced Research Project Agency)
+- **DoD 모델 (DARPA 모델)**  
+  ![image](https://user-images.githubusercontent.com/61646760/174346343-c07da143-7a2f-4163-b4bc-f88be96eba2d.png)
+  - 4계층 모델
+- **TCP/IP**
+  - Transmission Control Protocol / Internet Protocol의 약자
+  - TCP/IP Internet Protocol Suite
+    - 인터넷 프로토콜 스위트는 인터넷에서 컴퓨터들이 서로 정보를 주고받는 데 쓰이는 통신규약(프로토콜)의 모음을 말한다. (주로 TCP/IP를 지칭)
+  - 1970년대 Robert Kahn과 Vinton Cerf 등에 의해 개발
+    - 1982년 미군 컴퓨터 네트워킹의 표준으로 제정
+- TCP/IP의 특징
+  - 연결형 서비스 및 비연결형 서비스 제공
+  - 패킷 교환
+  - 동적 경로 할당
+  - 공통의 응용 프로그램 제공
+- TCP/IP 계층의 역할
+  - **데이터링크 계층**
+    - 네트워크 인터페이스
+    - device driver와 interface card로 데이터 통신 처리
+    - 대표적 프로토콜
+      - ARP(Address Resolution Protocol) : IP 주소 ➔ 물리 주소
+      - RARP(Reverse ARP) : 물리 주소 ➔ IP 주소
+  - **인터넷 계층**
+    - 네트워크상에서 패킷의 이동을 처리 (패킷 라우팅 등)
+    - 대표적 프로토콜
+      - IP(Internet Protocol)
+      - ICMP(Internet Control Message Protocol) : 전송 오류 제어
+      - IGMP(Internet Group Management Protocol) : multicast 서비스 사용을 위한 프로토콜
+  - **전송 계층**
+    - 호스트 컴퓨터 사이의 데이터 전송 서비스
+    - 대표적 프로토콜
+      - TCP(Transmission Control Protocol)
+      - UDP(User Datagram Protocol)
+  - **응용 계층**
+    - 응용 프로세스를 위한 프로토콜
+    - 대표적 프로토콜
+      - TCP 이용 : FTP, SMTP(Simple Mail Transfer Protocol), Telnet 등
+      - UDP 이용 : TFTP(Trivial FTP), DNS(Domain Name System), BOOTP(Bootstrap Protocol) 등
+      - IP 직접 이용 : traceroute 프로그램
+      - ICMP 직접 이용 : ping 프로그램
+#### 인터넷 주소
+- 호스트 식별
+  - 인터넷에 연결되어 있는 호스트 식별
+  - 3가지 종류의 주소
+    - **물리 주소** : 네트워크 내에서 호스트를 식별하는 물리적 하드웨어 주소로서 네트워크 인터페이스 주소
+    - **인터넷 주소 (IP 주소)** : 서로 다른 네트워크 간에 호스트를 식별하는 논리 주소
+    - **포트 주소** : 프로세스를 식별하는 포트 번호
+- **IP 주소**
+  - 4바이트(32비트)로 구성
+  - 클래스 A, B, C, D, E로 구성  
+    ![image](https://user-images.githubusercontent.com/61646760/174348550-c6c8ae04-a2d8-4ec2-a6e0-26c0437fcaa8.png)
+- **포트 주소**
+  - 포트 번호(port number)
+    - TCP 및 UDP에 의해 응용 프로그램을 식별
+    - 2바이트(16비트)로 구성  
+      ![image](https://user-images.githubusercontent.com/61646760/174348711-6adb9bdd-6fef-41a7-a4ca-4e6ae68201aa.png)
+    - FTP 서버(TCP 21번), TFTP 서버(UDP 69번), Telnet 서버(TCP 23번), SMTP 서버(TCP 25번)
+#### 캡슐화
+- **캡슐화(Encapsulation)**
+  - 데이터에 각 계층의 제어 정보를 추가하는 것
+  - Service Data Unit + Protocol Control Information → Protocol Data Unit
+- **역캡슐화(Decapsulation)**
+  - 수신 측 시스템의 해당 계층에서 수행되는 캡슐화의 반대 과정
+  - 물리 계층 이외의 모든 계층에서 수행됨
+### IP
+- **IP(Internet Protocol)**
+  - 인터넷 프로토콜
+    - OSI 모델의 **네트워크 계층의 기능**
+  - 사용자에게 복잡한 인터넷의 개별 네트워크들의 구조를 숨겨 모든 호스트들을 연결하는 1개의 가상 네트워크로 보이도록 함
+  - 네트워크 계층의 투명성(transparency)을 제공함
+    - 비연결형(Connectionless) 서비스
+    - 경유해야 하는 데이터링크 및 라우터 정보를 무시
+  - IP 역할 : **호스트의 주소 지정 및 데이터그램 전송** 
+- **데이터그램(datagram)**
+  - IP 계층의 패킷  
+    ![image](https://user-images.githubusercontent.com/61646760/174349603-10aa0fb9-44ed-4399-8dee-0fa6dfd20cc1.png)
+- **IP 단편화(IP Fragmentation)**
+  - IP 데이터그램의 분할
+  - IP 데이터그램은 전송 중 각 네트워크의 MTU에 적합한 크기로 분할되었다가 목적지 호스트에서 각 fragment들을 재조립함
+    - **MTU(Maximum Transfer Unit)** : 네트워크 링크에서 허용하는 프레임당 데이터의 최대 길이
+- **라우팅(Routing)**
+  - IP 데이터그램이 목적지 호스트까지 진행하면서 경유할 경로를 결정하는 것
+  - 비교
+    - IP : 송신자, 수신자 그리고 그 사이의 경로상에 있는 모든 라우터들이 IP 데이터그램 전달에 관여
+    - TCP : 송신자와 수신자만 TCP 세그먼트 전달에 관여
+  - 라우팅 테이블(Routing table)
+    - 호스트는 자신의 물리적 네트워크에 연결된 라우터에 대한 정보를 자신의 라우팅 테이블에 관리
 ## 11강. TCP/IP(III)
 ### 주소 변환
 - **ARP**(Address Resolution Protocol) : IP 주소를 물리 주소로 매핑해 주는 프로토콜
@@ -317,6 +413,7 @@
       - IP 주소 pool에서 사용 가능한 IP 주소를 선택하여 원하는 호스트에게 일정 기간 임대해 줌
     - **IP 주소 자동 할당**
   - DHCP 메시지 형식은 BOOTP와 동일함
+
 ## 12강. 근거리 통신망(I)
 ### 근거리 통신망 개요
 - **LAN**(Local Area Network)
@@ -336,6 +433,7 @@
 #### 전송 매체에 의한 분류
 #### 전송 방식에 의한 분류
 #### 매체 접근 방법에 의한 분류
+
 ## 13강. 근거리 통신망(II)
 ### LAN 참조 모델
 - OSI 참조 모델과 LAN 참조 모델  
@@ -398,6 +496,7 @@
     - 정해진 규칙에 따라 1개의 링을 선택하여 사용
     - multi token 방식 이용
     - 전송 방향이 서로 반대
+
 ## 14강. 네트워크 보안(I)
 ### 네트워크 보안 개요
 #### 보안의 필요성
@@ -478,6 +577,7 @@
   - Phishing + Farming
   - 정당한 웹 사이트의 도메인을 탈취하거나 DNS 이름을 속여 미리 정해 놓은 웹 사이트로 data traffic을 유인한 뒤, 개인 정보를 빼낸 뒤 이를 불법적으로 이용하는 범죄
   - 피싱의 한 유형이지만 더 위협적임
+
 ## 15강. 네트워크 보안(II)
 ### 암호 기법
 - 암호 기법의 개요  
