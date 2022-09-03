@@ -73,6 +73,7 @@
     - 주어진 데이터 집합을 이용하여 학습 시스템이 달성해야 하는 목표를 기계가 알 수 있는 수학적 함수로 정의한 것
   - **오차 함수(error function)**
     - 대표적인 목적 함수
+      - 손실 함수(loss function), 비용 함수(cost function)라고도 함
     - 학습 시스템의 출력 값과 원하는 출력 값의 차이(‘오차’)로 정의
     - 학습의 목적 : 오차를 최소화하는 것
   - 오차 함수를 이용한 성능 평가 기준
@@ -95,21 +96,25 @@
 ### 머신러닝에서의 주제
 - 데이터 분석
   - **분류(classification)**
-    - 입력 데이터가 어떤 부류에 속하는지를 자동으로 판단하는 문제
+    - 입력 데이터가 어떤 부류(class)에 속하는지를 자동으로 판단하는 문제
+      - `예) ~인식 (숫자인식, 얼굴인식, 생체인식)`
     - 베이즈 분류기, K-최근접이웃 분류기, 결정 트리, 랜덤 포레스트, SVM, 신경망(MLP, CNN, LSTM 등)
   - **회귀(regression)**
     - 입력 변수와 출력 변수 사이의 매핑 관계를 분석
+      - `예) 시계열 예측 : 시장 예측, 환율 예측, 주가 예측 등`
     - 선형회귀, 비선형회귀, 로지스틱 회귀, SVM, 신경망(MLP, RBF, CNN, LSTM)
   - **군집화(clustering)**
     - 데이터 집합을 서로 비슷한 몇 개의 그룹(군집, cluster)으로 묶는 문제
+      - `예) 데이터 그룹화, 영상 분할`
     - 분류 문제와 달리 클래스 정보가 주어지지 않음
     - K-평균 군집화, 계층적 군집화, 가우시안 혼합 모델, 신경망(SOM)
 - 데이터 표현
   - **특징 추출(feature extraction)**
     - 원래 데이터로부터 데이터 분석에 적용하기 좋은 특징을 찾아내는 문제
       - `예) 영상 데이터의 차원 축소, 데이터 시각화`
+    - 딥러닝에서는 **Representation learning**이라고 함
     - 주성분분석(PCA), 선형판별분석(LDA), MDS, t-SNE
-- 분류(classification)
+- **분류(classification)**
   - 분류 시스템의 입·출력 관계  
     ![image](https://user-images.githubusercontent.com/61646760/186642140-fe2126c7-1585-420c-8536-37d37a8da47d.png)
   - 학습 결과 : <strong>결정 경계(decision boundary)</strong>와 **결정 함수(decision function)**
@@ -120,6 +125,65 @@
     - 분류 오차(classification error)
   - 2차원 분류 문제의 예  
     ![image](https://user-images.githubusercontent.com/61646760/186642800-7e6671d5-7ed7-4bd2-9bba-3eb94814efdc.png)
+- **회귀(regression)**
+  - 회귀 시스템의 입·출력의 관계  
+    ![image](https://user-images.githubusercontent.com/61646760/188251410-70337ed3-96d7-4c67-baec-b41e490867fc.png)
+  - 학습 결과 : 회귀 함수(regression function)
+  - 학습 목표 : 회귀 오차를 최소화하는 최적의 회귀 함수 <strong>𝑦=𝑓(𝒙;𝜽)</strong>를 찾는 것  
+    ![image](https://user-images.githubusercontent.com/61646760/188251488-fa12c227-3b8f-4bcd-b818-934509a8a983.png)
+  - **제곱 오차(squared error)**  
+    ![image](https://user-images.githubusercontent.com/61646760/188251478-fd803582-eb08-4201-b8d3-8ff16fcfd113.png)
+- **군집화(clustering)**
+  - 군집화 시스템의 입·출력의 관계  
+    ![image](https://user-images.githubusercontent.com/61646760/188251538-4afe5f23-09ee-4683-a2ca-1c68cde5d5d3.png)
+  - 학습 결과 : K개의 서로소(disjoint)인 부분집합(클러스터)
+  - 학습 목표 : 최적의 클러스터의 집합을 찾는 것
+    - 클러스터 내의 분산은 최소화, 클러스터 간의 분산은 최대화  
+      ![image](https://user-images.githubusercontent.com/61646760/188251576-d0e1d1d1-77c0-419a-afa8-fe3b9fda45ae.png)
+- **특징 추출(feature extraction)**
+  - 특징추출 시스템의 입·출력의 관계  
+    ![image](https://user-images.githubusercontent.com/61646760/188251806-46056a91-a366-4694-8641-19fb1bf56af7.png)
+  - 학습 결과 : 변환 함수(embedding function)
+  - 학습 목표 : 분석 목적에 따라 달라짐
+    - `예) 차원 축소 : 원래 데이터가 가지는 정보로부터의 손실량 최소화`  
+      ![image](https://user-images.githubusercontent.com/61646760/188251860-c61352a3-eba9-4e79-8d1a-ba2bf70b18d7.png)
+### 학습 시스템 관련 개념
+- 머신러닝의 유형  
+  ![image](https://user-images.githubusercontent.com/61646760/188251893-85263aa5-318c-4ee0-957a-381fc8f3ea38.png)
+  - **지도학습, 교사학습(supervised learning)**
+    - 학습할 때 시스템이 출력해야 할 목표 출력 값(교사)을 함께 제공
+    - **분류, 회귀**
+  - **비지도학습, 비교사학습(unsupervised learning)**
+    - 학습할 때 목표 출력 값에 대한 정보가 없음
+    - **군집화**
+  - **준지도학습, 반지도학습(semi-supervised learning)**
+    - 지도학습 + 비지도학습
+    - 클래스 레이블링 비용을 줄이려는 목적
+  - **강화학습(reinforcement learning)**
+    - 출력 값에 대한 교사 신호가 ‘보상(reward)’ 형태로 제공
+    - 교사 신호는 정확한 값이 아니고, 즉시 주어지지 않음
+- 학습 시스템의 복잡도  
+  ![image](https://user-images.githubusercontent.com/61646760/188252218-79b5987b-1247-4c4b-b876-3f18e9aa8a9c.png)
+- **과다적합(overfitting)**
+  - 학습 시스템이 학습 데이터에 대해서만 지나치게 적합한 형태로 결정 경계가 형성되는 현상  
+    ![image](https://user-images.githubusercontent.com/61646760/188252103-551b7e27-dccd-4e7e-85ba-b580a935cfc1.png)
+    - 검증 오차가 증가하기 시작하는 지점이 최적의 복잡도
+  - 원인 : 학습 데이터의 확률적 잡음과 학습 데이터 개수의 부족
+  - 영향 : 일반화 성능 저하 초래
+- 학습 시스템의 복잡도를 조정하는 방법
+  - 다양한 변형을 가진 충분한 학습 데이터 사용
+  - 조기 종료 방법
+  - 정규항을 가진 오차 함수 사용
+  - 모델 선택 방법
+- 머신러닝의 고급 주제
+  - **앙상블 학습(ensemble learning)**
+    - 복수 개의 간단한 학습 시스템을 결합하여 일반화 성능을 향상시킴
+  - **능동 학습(active learning)**
+    - 학습 과정에서 데이터를 선별적으로 선택하여 수행
+  - **메타 학습과 자동 머신러닝(meta-learning, auto ML)
+    - 학습 시스템의 복잡도 등의 하이퍼파라미터까지 학습을 통해 최적화
+  - **지속/증분 학습(continual/incremental learning)**
+    - 기존에 학습된 내용에 대한 손실 없이 새로운 내용을 추가로 학습
 
 ## 2강. 지도학습: 분류
 ### 분류의 개념
@@ -140,5 +204,4 @@
 ### 베이즈 분류기
 - 확률 분포에 기반한 분류의 개념  
   ![image](https://user-images.githubusercontent.com/61646760/188248333-34a7fe72-8efe-4d20-b001-b357654c00b0.png)
-
 ### K-최근접이웃 분류기
