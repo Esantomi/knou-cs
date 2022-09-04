@@ -13,7 +13,7 @@
   - [K-최근접이웃 분류기](#K-최근접이웃-분류기)
 - [3강. 지도학습: 회귀](#3강-지도학습-회귀)
   - [회귀의 개념](#회귀의-개념)
-  - [선형회귀](#선형회귀]
+  - [선형회귀](#선형회귀)
   - [선형회귀의 확장](#선형회귀의-확장)
   - [로지스틱 회귀](#로지스틱-회귀)
 
@@ -73,7 +73,7 @@
     - 데이터로부터 학습을 통해 추출하고자 하는 정보를 표현하는 시스템  
       ![image](https://user-images.githubusercontent.com/61646760/186637805-7da3fb7f-9ac7-4af9-b2fe-bc5d5a2a7ae1.png)
     - 입·출력 매핑 형태의 함수로 정의
-    - 학습 : 데이터를 이용하여 함수 𝑓를 찾는 것 → 학습 시스템의 매개변수 𝜽를 찾는 것
+    - 학습 : 데이터를 이용하여 함수 `𝑓`를 찾는 것 → 학습 시스템의 매개변수 `𝜽`를 찾는 것
       - 학습의 궁극적 목표 : 앞으로 주어질 새로운 데이터에 대한 성능을 최대화하는 것
   - **목적 함수(objective function)**
     - 주어진 데이터 집합을 이용하여 학습 시스템이 달성해야 하는 목표를 기계가 알 수 있는 수학적 함수로 정의한 것
@@ -124,7 +124,7 @@
   - 분류 시스템의 입·출력 관계  
     ![image](https://user-images.githubusercontent.com/61646760/186642140-fe2126c7-1585-420c-8536-37d37a8da47d.png)
   - 학습 결과 : <strong>결정 경계(decision boundary)</strong>와 **결정 함수(decision function)**
-  - 학습 목표 : 분류 오차를 최소화하는 최적의 결정 경계 **𝑔(𝒙;𝜽)=0**를 찾는 것
+  - 학습 목표 : 분류 오차를 최소화하는 최적의 결정 경계 `𝑔(𝒙;𝜽)=0`를 찾는 것
   - 성능 평가 척도  
     ![image](https://user-images.githubusercontent.com/61646760/186642520-6f06f098-9a5c-4ed1-ab35-0fa468b6621d.png)
     - 분류율(classification rate)
@@ -135,7 +135,7 @@
   - 회귀 시스템의 입·출력의 관계  
     ![image](https://user-images.githubusercontent.com/61646760/188251410-70337ed3-96d7-4c67-baec-b41e490867fc.png)
   - 학습 결과 : 회귀 함수(regression function)
-  - 학습 목표 : 회귀 오차를 최소화하는 최적의 회귀 함수 <strong>𝑦=𝑓(𝒙;𝜽)</strong>를 찾는 것  
+  - 학습 목표 : 회귀 오차를 최소화하는 최적의 회귀 함수 `𝑦=𝑓(𝒙;𝜽)`를 찾는 것  
     ![image](https://user-images.githubusercontent.com/61646760/188251488-fa12c227-3b8f-4bcd-b818-934509a8a983.png)
   - **제곱 오차(squared error)**  
     ![image](https://user-images.githubusercontent.com/61646760/188251478-fd803582-eb08-4201-b8d3-8ff16fcfd113.png)
@@ -200,9 +200,9 @@
 - 분류기의 입출력 관계  
   ![image](https://user-images.githubusercontent.com/61646760/188248175-e9f8ffc8-ac4f-4278-93e5-07418b3dab9c.png)
   - 학습 결과 : 결정경계와 결정함수
-- 결정경계 𝑔(𝒙;𝜽)를 얻는 두 가지 접근법
+- 결정경계 `𝑔(𝒙;𝜽)`를 얻는 두 가지 접근법
   - **확률 기반 방법**
-    - 𝑃(𝐶_𝑘|𝒙)를 추정하여 분류
+    - `𝑃(𝐶_𝑘|𝒙)`를 추정하여 분류
     - **베이즈 분류기**
   - **데이터 기반 방법**
     - 데이터 간의 관계를 바탕으로 분류
@@ -216,27 +216,82 @@
 ### 회귀의 개념
 - **회귀(regression)**
   - 입력 변수와 출력 변수 사이의 매핑 관계를 찾는 것
-    - 입력과 출력 간의 관계를 나타내는 함수 𝑓를 찾는 것
+    - 입력과 출력 간의 관계를 나타내는 함수 `𝑓`를 찾는 것
     - `예) 시계열 예측 → 주가 예측, 환율 예측 등`  
       ![image](https://user-images.githubusercontent.com/61646760/188299053-629c629e-3b8f-49c7-9179-b8431e4d1537.png)
   - 선형회귀, 비선형회귀, 로지스틱 회귀, SVM, 신경망(MLP, RBF, CNN, LSTM)
 - 입력·출력의 관계  
   ![image](https://user-images.githubusercontent.com/61646760/188299375-6a24560e-1659-4311-8e51-3143650437e9.png)
-  - 𝒙 : 입력
-  - 𝑦 : 목표 출력 값(target output)
+  - `𝒙_𝑖` : 입력
+  - `𝑦_𝑖` : 목표 출력 값(target output)
   - 분류 문제와의 차이
     - 출력 값 형태의 차이
     - 분류는 이산적인 값을 갖는 class label, 회귀는 연속적인 값을 갖는 실수
 - 학습 결과 : 회귀 함수
-- 학습 목표 : 예측 오차를 최소화하는 최적의 회귀 함수 𝑦=𝑓(𝒙;𝜽)를 찾는 것
+- 학습 목표 : 예측 오차를 최소화하는 최적의 회귀 함수 `𝑦=𝑓(𝒙;𝜽)`를 찾는 것
   - **최소제곱법(least square method)** : 제곱 오차 = (목표 출력 값 - 𝒙에 따른 실제 출력 값)의 제곱  
     ![image](https://user-images.githubusercontent.com/61646760/188299532-a0cc751a-d36e-47ef-a833-63d55d55d502.png)
 - 보간법(interpolation)과 회귀
   - 데이터를 가장 잘 표현하는 직선/곡선을 찾는 경우  
     ![image](https://user-images.githubusercontent.com/61646760/188299703-cead80a9-c4d7-4140-a5c3-32a3c1aa60d3.png)
-
+    - 보간 곡선 : 제곱 오차가 0이지만 매우 복잡
+    - 회귀 직선 : 작은 오차, 전체적인 데이터의 경향을 보여 주는 입출력의 관계 표현에 적합
+    - 주어진 데이터가 어느 정도의 노이즈, 관측 오차를 포함하고 있다는 가정하에, 보간 곡선과 같이 모든 점들을 지나는 정확한 곡선을 찾는 것은 별 의미가 없고, 전체적인 데이터가 어떤 경향을 갖는 보여 주는 직선 또는 곡선을 찾는 것이 보다 합리적임
 ### 선형회귀
-
+- **선형회귀(linear regression)**
+  - 데이터집합 `𝐷={(𝑥_𝑖, 𝑦_𝑖)}_𝑖=1,⋯,𝑁 (𝑥_𝑖∈𝑅, 𝑦_𝑖∈𝑅)`에 대해 `(𝑥, 𝑦)` 관계(입력-출력 관계)를 설명할 수 있는 선형 함수 `𝑦=𝑤_1𝑥 + 𝑤_0 + 𝑒`를 찾는 것  
+    ![image](https://user-images.githubusercontent.com/61646760/188301357-37e5050b-beca-4515-a45d-1d2f0053f7d4.png)
+    - `𝑤_1` : 기울기
+    - `𝑤_0` : 절편
+    - `𝑒` : 오차 또는 잔차(residual)
+    - 선형 함수상의 `𝑦_𝑖` 값과 실제 `𝑦` 값은 `𝑒_𝑖`의 오차를 가짐
+- 좋은 선형회귀 모델
+  - 모든 데이터에 대해서 잔차가 가능한 작아야 함  
+    ![image](https://user-images.githubusercontent.com/61646760/188302130-0d4a537a-6f88-44a2-a736-1e9f9d4fbce1.png)
+    - 즉 `𝑒_𝑖`가 작아야 함
+  - 평가 기준
+    - 모든 데이터에 대한 잔차의 합  
+      ![image](https://user-images.githubusercontent.com/61646760/188302177-e9c9250a-e296-455d-bb20-f9b473876a48.png)
+      - 부적합한 방법  
+        ![image](https://user-images.githubusercontent.com/61646760/188302304-556193d9-7c7e-4a85-8253-29a57ca6e4fa.png)
+        - `𝑒_𝑖`가 양수일 수도, 음수일 수도 있으므로 실선일 수도, 점선일 수도 있음 (두 직선이 생성)
+    - **잔차의 제곱의 합**  
+      ![image](https://user-images.githubusercontent.com/61646760/188302197-8d61ff80-6b5d-4f66-8dff-00865324ea7f.png)
+      - 주어진 데이터 집합에 대해 유일한 직선을 생성
+        - 원래 `1/𝑁`이 시그마 앞에 있어야 하지만, 없어도 무방하여 제거함
+      - **평균 제곱 오차(MSE, Mean Squared Error)**
+- 최적의 회귀 매개변수
+  - 오차 함수  
+    ![image](https://user-images.githubusercontent.com/61646760/188302399-873432db-d12a-4454-960e-f88e9c0aec08.png)
+    - 평균 제곱 오차(MSE)
+    - 오차 함수에서 찾아야 할 패러미터는 `𝑤_1`(기울기)과 `𝑤_0`(절편)
+  - 최적의 매개변수  
+    ![image](https://user-images.githubusercontent.com/61646760/188302407-04944ac2-785b-44e2-89aa-14dc374b286a.png)
+    - `𝑤_1`(기울기)과 `𝑤_0`(절편)를 구하는 공식
+      - 데이터를 바탕으로 `𝑤_1`을 먼저 계산하고, 그를 바탕으로 대입해서 `𝑤_0`를 계산하면 됨
+    - `𝒙_bar`는 𝒙의 평균, `𝑦_bar`는 𝑦의 평균
+- 매개변수 계산 과정
+  ![image](https://user-images.githubusercontent.com/61646760/188303516-93d7cb3b-ebab-4a39-864e-5d7d171be8ac.png)
+  - 색칠 칸은 각각 '각 매개변수에 대해서 편미분 수행', '연립방정식 형태로 정리'
+  - `𝑤_0`에 대해 편미분, `𝑤_1`에 대해 편미분 후 -2는 날리고 시그마를 배분하여 `𝑤_0`과 `𝑤_1`에 해당하는 이원 일차 연립방정식 형태로 정리 후 풀어 주면 최적의 매개변수 `𝑤_1`과 `𝑤_0`을 구할 수 있음
+  - 예제  
+    ![image](https://user-images.githubusercontent.com/61646760/188304116-302571b9-7592-4b68-aee9-d781e4121454.png)
+    - 상단 '데이터', 하단 '회귀함수'
+- 예측과 평가
+  - 회귀 함수를 사용한 새 데이터 `𝑥_𝑛𝑒𝑤`에 대한 예측  
+    ![image](https://user-images.githubusercontent.com/61646760/188304256-b0dac235-5b36-4bb0-a6cd-2a4b41dea3f9.png)
+  - 테스트 데이터 집합 ![image](https://user-images.githubusercontent.com/61646760/188304296-4b4e013f-10a7-48bb-b311-68c3fd41ea52.png)에 대한 평가 기준
+    - **평균 제곱 오차(Mean Squared Error: MSE)**  
+      ![image](https://user-images.githubusercontent.com/61646760/188304359-52f0609b-57ce-43cd-9384-8fd4147a8e8e.png)
+      - 목표 출력 값과 실제(시스템) 출력 값의 차 제곱의 평균
+    - **평균 제곱근 오차(Root Mean Square Error: RMSE)**  
+      ![image](https://user-images.githubusercontent.com/61646760/188304368-1673cde3-47f3-4301-9871-ddcaf6ba840d.png)
+      - 제곱에 루트를 씌움
+      - 루트 때문에 제곱이 사라지므로 목표 출력 값과 실제 출력 값 간의 차이를 보다 직관적으로 파악할 수 있음
+- **다변량 선형 회귀(Multivariate Linear Regression)**
+  - n차원 입력 벡터 `𝒙 = {𝑥_1, 𝑥_2, ⋯ , 𝑥_𝑛}`
+    - 하나의 데이터 `𝒙`가 n차원 즉, 𝑛개의 값으로 이루어짐
+  - 입력이 여러 개의 값으로 이루어진 경우 (실제로 많은 경우)
 ### 선형회귀의 확장
 
 ### 로지스틱 회귀
