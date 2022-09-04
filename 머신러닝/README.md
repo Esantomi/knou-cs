@@ -392,7 +392,7 @@
     ![image](https://user-images.githubusercontent.com/61646760/188307380-5f3e0a72-a348-4734-aae2-75171c99c41e.png)
   - `𝑝(𝑦|𝑥)`의 확률함수 : 베르누이 분포를 따름  
     ![image](https://user-images.githubusercontent.com/61646760/188307394-843ebda4-47ec-4eec-8fb0-3ef173e6342a.png)
-  - 목적 함수 : `𝐷`에 대한 로그 우도(log likelihood)
+  - 목적 함수 : `𝐷`에 대한 로그 우도(log likelihood)  
     ![image](https://user-images.githubusercontent.com/61646760/188307443-920fb150-bb79-43fb-9812-dd23a1dad03c.png)
     - 목적 함수를 이용해 `𝑚`과 `𝑏`를 찾아야 함
   - 추정 : **최대 우도 추정법(maximum likelihood estimation)**  
