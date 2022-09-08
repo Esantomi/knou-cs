@@ -16,6 +16,11 @@
   - [선형회귀](#선형회귀)
   - [선형회귀의 확장](#선형회귀의-확장)
   - [로지스틱 회귀](#로지스틱-회귀)
+- [5강. 데이터 표현: 특징추출](#5강-데이터-표현-특징추출)
+  - [선형변환에 의한 특징추출](#선형변환에-의한-특징추출)
+  - [주성분분석법](#주성분분석법)
+  - [선형판별분석법](#선형판별분석법)
+  - [거리 기반 차원 축소 방법](#거리-기반-차원-축소-방법)
 
 ### 교재 및 강의 구성
 ![image](https://user-images.githubusercontent.com/61646760/185350045-f4cea6ef-9456-49f8-959e-4b991fbc138f.png)
@@ -403,3 +408,20 @@
     ![image](https://user-images.githubusercontent.com/61646760/188307510-789afada-02af-4cd6-9197-be57c94e4c1e.png)
 ### 정리하기
 ![image](https://user-images.githubusercontent.com/61646760/188298889-9fbf6ece-1c46-4063-bbca-e23142f37116.png)
+
+## 5강. 데이터 표현: 특징추출
+### 선형변환에 의한 특징추출
+- **특징 추출(feature extraction)**  
+  ![image](https://user-images.githubusercontent.com/61646760/189130124-cc837069-3a4f-4083-92f3-4762db727128.png)
+  - 학습(데이터 분석)을 통해 변환함수 `Φ`를 찾는 것을 특징 추출이라고 함
+    - `Φ`를 통해 𝑛차원의 입력 데이터 `𝑥`는 `𝑦`라는 `𝑚` 차원의 특징 벡터로 변환됨
+  - 학습(특징 추출)의 목적
+    - 분석에 불필요한 정보를 제거하고 **핵심 정보만 추출**
+    - **차원 축소**를 통한 분석 시스템의 효율 향상
+      - 계산량/메모리 감소, 성능 향상
+- **변환함수(embedding function, transformation function)** 종류
+  - **선형변환(linear transformation)**
+  - **비선형변환(nonlinear transformation)**
+### 주성분분석법
+### 선형판별분석법
+### 거리 기반 차원 축소 방법
