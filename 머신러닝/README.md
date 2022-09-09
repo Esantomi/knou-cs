@@ -421,7 +421,45 @@
       - 계산량/메모리 감소, 성능 향상
 - **변환함수(embedding function, transformation function)** 종류
   - **선형변환(linear transformation)**
+    - 𝑛차원 열벡터 `𝒙`에 변환행렬 `𝐖(𝑛×𝑚)`를 곱하여 𝑚차원 특징을 획득  
+      ![image](https://user-images.githubusercontent.com/61646760/189291893-5e8ed868-ce17-4f69-a8af-c3a47771623e.png)
+      - `𝐖(𝑛×𝑚)`을 transpose한 것은 `(𝑚×𝑛)`이고, `𝒙`는 `(𝑛×1)`이므로, `𝑦`는 `(𝑚×1)`
+    - 통계적 방법으로 특징벡터 `𝒚`가 원하는 분포가 되도록 하는 `𝐖`를 찾음
   - **비선형변환(nonlinear transformation)**
+    - 복잡한 비선형 함수 `∅(𝒙)`를 이용하여 𝑛차원 벡터를 𝑚차원 벡터로 매핑
+    - 사용 방법
+      - 수작업(handcrafted)에 의한 특징추출
+      - 표현학습(representation learning) : 딥러닝에서 주로 사용하는 용어
+- **수작업에 의한 특징추출**
+  - 입력 데이터의 특성과 분석 목적에 맞는 특징을 개발자가 설계함
+    - 전통적인 방법 (여전히 사용)
+      - 데이터 특성에 따라 다른 특징 사용
+      - 어떤 특징을 사용할지는 개발자가 결정
+    - 숫자 인식을 위한 특징  
+      ![image](https://user-images.githubusercontent.com/61646760/189293737-e43efe76-c95b-456d-88be-2ab73a3e8795.png)
+    - 영상 분석을 위한 특징 : 에지, 가로/세로 방향 성분 등
+    - 문서 분석을 위한 특징 : 단어의 발생 빈도 등
+- **표현학습(representation learning)**
+  - 특징추출을 위한 비선형 변환함수를 신경망 등의 머신러닝 모델로 표현
+  - 학습을 통해 분석이 잘 되도록 변환함수의 최적화가 가능
+  - `예) 딥러닝 모델을 이용한 얼굴 인식용 특징추출 (CNN)`  
+    ![image](https://user-images.githubusercontent.com/61646760/189294756-a5d31c76-ecbf-4422-9519-4231e1f06dc9.png)
+- **선형변환에 의한 특징추출**
+  - 차원 축소 관점에서의 특징추출
+    - 데이터의 특성에 의존하지 않는 좀 더 일반적인 사용 가능
+    - 데이터의 차원이 크다는 것은 많은 정보를 가지고 있다는 것
+      - 많은 정보 중에는 불필요한 정보도 많음
+      - 이를 처리로 돌리면 처리 성능을 높일 수 있음
+    - 데이터의 차원이 커지면 성능도 계속 좋아질까?
+      - 어느 정도까지는 좋아지지만 갑자기 안 좋아지는 구간이 있으며, 이를 차원의 저주라고 부름  
+        ![image](https://user-images.githubusercontent.com/61646760/189297817-e6a739b3-ac51-4d57-810d-57f2f4c2e471.png)
+      - **[차원의 저주(Curse of Dimensionality)](https://en.wikipedia.org/wiki/Curse_of_dimensionality)** : 차원이 증가함에 따라 모델의 성능이 나빠지는 현상
+    - 차원 축소  
+      ![image](https://user-images.githubusercontent.com/61646760/189298448-15970ecf-a932-479d-90a8-282adc215dbb.png)
+      - 𝑛차원의 랜덤 벡터(`𝒙`)를 변환행렬 `𝐖`를 통해 𝑚차원의 특징 벡터(`𝑦`)로 축소 (당연히 𝑚은 𝑛보다 작음)  
+        ![image](https://user-images.githubusercontent.com/61646760/189299236-b46c2339-174a-451e-82e3-240f5df22e74.png)
+        - **특징값 `𝑦_𝑖` : `𝒙`를 `𝐖`의 열벡터 `𝒘_𝑖` 위로 사영한 값 (단, `𝒘_𝑖`는 단위벡터)**
+    
 ### 주성분분석법
 ### 선형판별분석법
 ### 거리 기반 차원 축소 방법
