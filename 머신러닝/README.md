@@ -36,6 +36,9 @@
   - [선형 분류기](#선형-분류기)
   - [SVM 분류기](#SVM-분류기)
   - [커널법](#커널법)
+- [9강. 신경망 (1)](#9강-신경망-1)
+  - [신경망 개요](#신경망-개요)
+  - [다층 퍼셉트론](#다층-퍼셉트론)
 
 ### 교재 및 강의 구성
 ![image](https://user-images.githubusercontent.com/61646760/185350045-f4cea6ef-9456-49f8-959e-4b991fbc138f.png)
@@ -872,3 +875,84 @@
     - α_hat_𝑖가 정해지면 𝑤_hat, 𝑤_hat_0의 값은 슬랙변수가 없는 경우와 완전히 동일!
       - `0 ≤ α_hat_𝑖 < 𝑐` 제외
 ### 커널법
+### 정리
+- 서포트 벡터 머신(SVM) : 여러 개의 선형 결정경계 중, 일반화 오차를 최소화하기 위한 마진이라는 개념을 도입하여 분류하는 선형 분류기
+- 슬랙 변수 : 선형 분리가 불가능한 경우를 위해 도입
+- 커널법
+  - 저차원의 입력을 고차원으로 변환(고차원 매핑)시켜 선형화하여 분류
+  - 계산량의 증가에 따른 문제 해결을 위해 커널 함수 사용
+
+## 9강. 신경망 (1)
+### 신경망 개요
+- 인공지능 접근 방법
+  - 크게 2가지 접근 방법이 있음  
+    ![image](https://user-images.githubusercontent.com/61646760/194739954-d90ccadb-785e-4428-ac8b-19eee87da928.png)
+    - **Symbolic AI (기호주의)**
+      - AI 초기의 접근 방법이므로, Classic AI라고도 함
+      - 부울 논리 기반, 규칙 기반 지식 표현, 논리 중심의 지식 표현을 위한 Prolog라는 언어도 개발됨
+        - 문제 처리 과정을 잘 알고 있는 경우에만 적용 가능
+      - 1997년의 IBM Deep Blue가 세계 체스 챔피언 카스파로프를 이김
+    - **Connectionist AI (연결주의)**
+      - 아주 간단한 기능을 수행하는 소자들을 연결하여 병렬적, 분산적으로 문제를 처리하겠다는 패러다임
+      - 인간의 두뇌를 모방 (Artificial Neural Networks)
+        - 최초의 신경망인 퍼셉트론 모델
+        - 퍼셉트론 모델이 좀 더 발전한 다층 퍼셉트론 모델
+        - 다층 퍼셉트론 모델이 좀 더 발전한 딥러닝 모델
+      - 명시적 지식의 표현이 어려울 때도 적용 가능 (일반화된 규칙 찾기)
+- **신경망(neural networks)**
+  - 생물학적 신경회로망을 모델링한 수학적 함수
+  - 원하는 입출력 매핑 함수의 형태를 스스로 찾는 학습 능력을 가짐
+  - 데이터를 이용하여 학습이 수행되므로 데이터 분석 툴로 사용
+  - 학습 방식(데이터 분석 용도)에 따라 다양한 모델이 존재
+  - 신경망 연구
+    - 인간 뇌의 구조와 뇌에서 수행되는 정보처리 방식을 모방함으로써 인간이 지능적으로 처리하는 복잡한 정보처리 능력을 기계를 통해 실현하고자 하는 연구
+- **심층 신경망(deep networks)**
+  - 가장 발전된 형태의 신경망 모델들
+- **딥러닝(deep learning)**
+  - 심층 신경망을 이용하여 데이터를 분석하는 머신러닝 기술
+- 생물학적 신경망
+  - 신경세포(neuron)의 구조와 연결  
+    ![image](https://user-images.githubusercontent.com/61646760/194740982-c10d8012-9584-4699-86ea-70adbe96cd60.png)
+    - 수상돌기 : 입력을 받는 부분
+    - 세포체 : 입력의 합이 역치를 넘으면 신호 발생(activate)
+    - 축색 : 절연체로 쌓여 있는 신호 전달의 통로(= 출력)
+    - 시냅스 : 뉴런 간 연결 부분 (가중치에 따라 +, - 다르게 전달)
+- **인공 신경망(artificial neural networks)**
+  - 인간 뇌의 정보처리 방식을 모델링하는 방법
+  - 인공 신경망의 구성 요소
+    - **(인공) 신경세포(neuron, node, unit)**
+      - 하나의 신경세포가 수행하는 기능을 수학적 함수로 정의
+    - **신경망 구조(network structure)**
+      - 신경세포들이 서로 정보를 전달하는 연결 구조
+    - **학습 알고리즘(learning algorithm)**
+      - 신경망이 원하는 기능을 수행할 수 있도록 신경세포들 간의 연결 강도를 조정(학습)하는 방법
+- 인공 신경세포  
+  ![image](https://user-images.githubusercontent.com/61646760/194741497-92b0c422-4e3e-4c34-86f1-ab34ec547c66.png)
+  - `𝑢 = (𝑥_1 * 𝑤_1) + (𝑥_2 * 𝑤_2) + ... (𝑥_n * 𝑤_n)`
+    - 활성화 함수 Ø는 𝑢가 역치(threshold)를 넘기면 1, 넘기지 않으면 0을 출력하도록 정의
+  - **활성화 함수(activation function)**
+    - 뉴런의 핵심 → 하나의 뉴런의 특성을 결정하는 역할  
+      ![image](https://user-images.githubusercontent.com/61646760/194741985-5a93df9b-19e5-447a-8ca0-8500a2b4f23f.png)  
+      ![image](https://user-images.githubusercontent.com/61646760/194742093-327a6b23-fd92-4577-a51f-fa000f0b8bc5.png)
+      - 계단 함수(step function) : 𝑥=0에서 미분 불가능
+      - 부호 함수(sign function) : 𝑥=0에서 미분 불가능
+      - 선형 함수(linear function) : 가중합을 그대로 출력
+      - 시그모이드 함수(sigmoid function) : 계단 함수와 유사. S자형 함수 (미분 가능)
+      - 하이퍼탄젠트 함수(hyperbolic function) : 부호 함수와 유사. S자형 함수 (미분 가능)
+      - ReLU 함수(Rectified Linear Unit function) : 0보다 작으면 0, 크면 선형 함수
+- 신경망 구조
+  - 신경세포들의 대표적 연결 방식
+    - **다층 전방향 신경망(multi-layer feed forward neural network)**  
+      ![image](https://user-images.githubusercontent.com/61646760/194742249-7a662b0d-707c-4a01-8d26-f1340e73cabe.png)
+      - 층상 구조
+      - 정보의 흐름이 전방향(feed-forward) : 입력층 to 출력층
+      - 노드 간 완전 연결(fully connected network = dense network)
+    - 은닉층의 존재 여부  
+      ![image](https://user-images.githubusercontent.com/61646760/194742419-1eb6a173-16e9-4638-aea9-7af4026862e2.png)
+        - 단층(single layer) 신경망 : 입력층과 출력층밖에 없음 (입력층은 전달 역할만 하므로 단층)
+        - 다층(multilayer) 신경망
+    - 정보 흐름의 방향  
+      ![image](https://user-images.githubusercontent.com/61646760/194742444-24efd3e4-bff6-416a-ba0b-c264fbd8fea5.png)
+        - 회귀(recurrent) 신경망(RNN) : 출력이 입력으로 제공, 층으로 구분돼 있지 않음 등등
+- 학습 알고리즘
+### 다층 퍼셉트론
