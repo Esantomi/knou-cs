@@ -998,3 +998,57 @@
   - 학습(learning) 능력 : 데이터에 대한 학습을 통해 최적의 함수를 찾을 수 있음
   - 일반화(generalization) 능력 : 데이터에 대한 단순한 암기가 아닌 데이터에서 일반화된 규칙을 찾음 → 새로운 데이터에 대해서도 처리 가능
 ### 다층 퍼셉트론
+- **M-P 뉴런**
+  - 1943년. MaCulloch & Pitts
+  - 단일 신경세포에 대한 첫 번째 모델  
+    ![image](https://user-images.githubusercontent.com/61646760/195245733-d139fc98-5ced-4599-a24d-34d439c84997.png)
+    - Σ(입력과 가중치를 곱한 가중합 + 바이어스)
+      - 바이어스는 역치로 보면 됨
+      - 𝑤_(𝑖𝑗)𝑥_𝑖가 바이어스 𝑤_0𝑗보다 크면 Ø(𝑢)는 1, 작으면 0
+- **퍼셉트론(perceptron)**
+  - 1958년. Rosenblatt
+  - M-P 뉴런을 여러 개 결합하여 네트워크 형태를 갖춘 신경망
+    - 패턴인식을 수행하는 최초의 신경망
+    - 단층 전방향 신경망
+  - 뉴런, 연결 구조, 학습 규칙
+    - 뉴런
+      - M-P 뉴런 → 계단함수  
+        ![image](https://user-images.githubusercontent.com/61646760/195246847-1a2c3866-df24-41fd-a074-7965a18c91fa.png)
+    - 연결 구조
+      - 단층, 전방향, 완전 연결(fully-connected)  
+        ![image](https://user-images.githubusercontent.com/61646760/195247119-698ed392-69f1-4a76-82fb-149f1527f7a9.png)
+    - 학습 규칙
+      - 이진 입출력을 사용한 지도학습
+  - 학습 규칙  
+    ![image](https://user-images.githubusercontent.com/61646760/195247444-58d951d0-a2eb-4665-89fe-20c63be7d011.png)
+    - 목표 출력과 실제 출력이 같으면 `목표 출력 - 실제 출력 = 0`이 되므로 가중치 변화 없음
+    - 목표 출력과 실제 출력이 다르면 오차만큼 가중치를 변화해 주는데, 이때 에타(η)라는 상수 값을 사용해 변화량 설정
+  - 퍼셉트론의 한계
+    - 선형 판별함수
+      - 비선형 결정경계를 표현할 수 없음
+    - **XOR 문제**
+      - Minsky & Papert가 XOR 문제의 해결 불가능을 지적 → 1차 암흑기  
+        ![image](https://user-images.githubusercontent.com/61646760/195247909-281d3402-2d35-4a83-b5ac-f2cd437862b6.png)
+        - 하나의 직선으로는 주황색 점들과 흰색 점들을 구분할 수 없음
+        - 두 개의 직선(z1, z2)이 필요함
+          - 중간에 층을 하나 더 넣는 것으로 가능함 → 다층 퍼셉트론
+- **다층 퍼셉트론(MLP, Multi-Layer Perceptron)**
+  - 1개 이상의 은닉층을 가짐  
+    ![image](https://user-images.githubusercontent.com/61646760/195249065-e364b874-95c0-4c3d-ae73-2ff03cb8c139.png)
+    - 2개 이상도 가능하지만 MLP는 보통 1개의 은닉층을 사용
+  - 뉴런, 연결 구조, 학습 규칙
+    - 뉴런
+      - 출력은 입력에 대한 비선형 매핑  
+        ![image](https://user-images.githubusercontent.com/61646760/195249207-edaf0141-28ab-4f67-8513-633a8386a9e1.png)
+        - 은닉층에서는 무조건 시그모이드, 하이퍼탄젠트 함수(미분 가능한 함수들) 사용
+        - 출력층에서는 다른 함수(선형함수 등)도 사용 가능
+    - 연결 구조
+      - 다층, 전방향, 완전 연결
+    - 학습 규칙
+      - **오류 역전파(error backpropagation) 알고리즘** → 지도학습
+  - 다층 퍼셉트론의 입출력 관계  
+    ![image](https://user-images.githubusercontent.com/61646760/195249610-c8c1ab42-530c-48b2-874d-194e96a2b928.png)  
+    ![image](https://user-images.githubusercontent.com/61646760/195249680-b27fd9aa-4abd-43f1-a2f4-6d5221a98530.png)  
+    ![image](https://user-images.githubusercontent.com/61646760/195249768-a8510603-9b2a-4df9-9bf1-b43513cfc22f.png)
+
+    
