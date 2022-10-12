@@ -1048,7 +1048,11 @@
       - **오류 역전파(error backpropagation) 알고리즘** → 지도학습
   - 다층 퍼셉트론의 입출력 관계  
     ![image](https://user-images.githubusercontent.com/61646760/195249610-c8c1ab42-530c-48b2-874d-194e96a2b928.png)  
-    ![image](https://user-images.githubusercontent.com/61646760/195249680-b27fd9aa-4abd-43f1-a2f4-6d5221a98530.png)  
-    ![image](https://user-images.githubusercontent.com/61646760/195249768-a8510603-9b2a-4df9-9bf1-b43513cfc22f.png)
-
-    
+    ![image](https://user-images.githubusercontent.com/61646760/195250497-ae8d90f4-8b77-4667-97f6-94e47c42d87d.png)
+    - 하나의 은닉층을 가진 MLP는 임의의 정확도로 모든 연속 함수의 근사가 가능
+    - 가중치를 적절히 조정함으로써 표현할 수 있는 함수의 형태가 매우 다양함  
+      ![image](https://user-images.githubusercontent.com/61646760/195250154-901c2196-bfa7-45f3-b759-6fc1334cad35.png)
+    - 입력 1개 - 출력 1개  
+      ![image](https://user-images.githubusercontent.com/61646760/195250698-5b7e5a88-0163-4fc9-b210-b152e1426742.png)
+      - 하나의 은닉층을 가진 MLP는 임의의 정확도로 모든 연속 함수의 근사가 가능!
+    - 표현력이 좋은 건 좋은데, 함수를 찾기 위한 실제 학습은 어떻게 할 것인가? → 10강에서 다룰 것!
