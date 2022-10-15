@@ -41,6 +41,9 @@
     - [뉴런, 신경망 구조, 학습](#뉴런-신경망-구조-학습)
     - [신경망의 응용적 이해](#신경망의-응용적-이해)
   - [다층 퍼셉트론](#다층-퍼셉트론)
+- [10강. 신경망 (2)](#10강-신경망-2)
+  - [다층 퍼셉트론의 학습](#다층-퍼셉트론의-학습)
+  - [응용: 숫자인식](#응용-숫자인식)
 
 ### 교재 및 강의 구성
 ![image](https://user-images.githubusercontent.com/61646760/185350045-f4cea6ef-9456-49f8-959e-4b991fbc138f.png)
@@ -1056,3 +1059,49 @@
       ![image](https://user-images.githubusercontent.com/61646760/195250698-5b7e5a88-0163-4fc9-b210-b152e1426742.png)
       - 하나의 은닉층을 가진 MLP는 임의의 정확도로 모든 연속 함수의 근사가 가능!
     - 표현력이 좋은 건 좋은데, 함수를 찾기 위한 실제 학습은 어떻게 할 것인가? → 10강에서 다룰 것!
+
+## 10강. 신경망 (2)
+### 다층 퍼셉트론의 학습
+- MLP의 수학적 표현  
+  ![image](https://user-images.githubusercontent.com/61646760/195983299-65c8152b-3315-4a09-aef0-a04aab23a244.png)
+  - `𝑥` : 입력 노드, 𝑛개
+  - `𝑧` : 은닉 노드, 𝑚개
+  - `𝑦` : 출력 노드, 𝑀개
+  - `𝑤_𝑖𝑗` : 𝑥_𝑖와 𝑧_𝑗를 연결하는 가중치
+  - `𝑣_𝑗𝑘` : 𝑧_𝑗와 𝑦_𝑘를 연결하는 가중치
+  - `𝑢_𝑗^ℎ` : 𝑗번째 hidden 노드의 가중합
+  - `𝑢_𝑘^𝑜` : 𝑘번째 출력 노드의 가중합
+  - `Ø_ℎ` : 은닉 노드의 활성화 함수
+  - `𝜃` : 𝑤, 𝑣 등의 패러미터 전체, 학습의 대상
+- 다층 퍼셉트론의 학습
+  - 신경망의 학습이란?
+    - 원하는 함수를 나타내는 가중치(weight)를 찾는 것
+  - MLP의 학습
+    - 기본적으로 지도학습
+      - 학습 데이터 집합은 입력과 목표 출력 값(𝑡)이 하나의 쌍으로 주어짐  
+        ![image](https://user-images.githubusercontent.com/61646760/195984005-d0b350e1-ecf7-4ff0-86b2-e92daa2970e1.png)
+        - 𝑥, 𝑡가 진한 까닭은 벡터이기 때문
+    - 학습의 목적
+      - 입력 𝒙_𝑖에 대한 신경망의 출력 𝒚_𝑖와 목표 출력 𝒕_𝑖의 차이를 최소화
+    - 목적 함수로 오차함수를 사용 → 평균 제곱 오차  
+      ![image](https://user-images.githubusercontent.com/61646760/195984045-8d0b2c0a-b2df-4eb1-b22e-c6dee3ea8091.png)
+      - 최적의 가중치 `𝜃^*` : 오차함수 𝐸(𝑋, 𝜃)를 최소화하는 𝜃
+  - 오차함수의 일반적 형태
+    - 매우 복잡한 형태의 비선형 함수  
+      ![image](https://user-images.githubusercontent.com/61646760/195986850-908b09ef-dff3-4c85-ae0f-c44160ca21a5.png)
+      - **오류 역전파 학습 알고리즘(error backpropagation learning algorithm)** : 기울기 강하 학습법(gradient descent learning method)을 다층 퍼셉트론에 적용하여 알고리즘 형태로 구체화한 것
+- **기울기 강하 학습법(gradient descent learning method)**  
+  ![image](https://user-images.githubusercontent.com/61646760/195986974-255601ef-5fe9-42fe-8018-f0b6462f363f.png)
+  - 미분을 통해 기울기를 파악(이 경우 벡터에 대한 미분이므로 편미분), 기울기가 줄어드는 방향으로 이동
+  - η : 학습률
+- **오류 역전파 학습 알고리즘(error backpropagation learning algorithm)**
+  - 전체 도식  
+    ![image](https://user-images.githubusercontent.com/61646760/195987765-d762b5f9-b0c5-424b-a8fe-7d5e44ed4794.png)
+  - 현재 입력 𝑥에 대한 오차 함수 (온라인 학습 모드)  
+    ![image](https://user-images.githubusercontent.com/61646760/195987446-23fdfe4d-e697-4395-bd5c-e7d188e07346.png)
+    - 온라인 학습 모드 : 학습 데이터 전체가 아닌 학습 데이터 하나씩에 대해 학습을 수행하는 학습 방식
+  - 은닉층에서 출력층으로의 가중치 𝑣_𝑗𝑘의 수정식  
+    ![image](https://user-images.githubusercontent.com/61646760/195987460-8978e5ba-0e7f-42f3-91b8-966f0ebdd21a.png)
+  - 입력층에서 은닉층으로의 가중치 𝑤_𝑖𝑗의 수정식  
+    ![image](https://user-images.githubusercontent.com/61646760/195987655-9c02921d-9d90-4cc3-91fc-1d1487177be4.png)
+### 응용: 숫자인식
