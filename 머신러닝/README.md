@@ -47,6 +47,11 @@
 - [12강. 딥러닝 (2)](#12강-딥러닝-2)
   - [기본 순환 신경망(RNN)](#기본-순환-신경망RNN)
   - [LSTM과 GRU](#LSTM과-GRU)
+- [13강. 딥러닝 응용 (1)](#13강-딥러닝-응용-1)
+  - [컴퓨터비전 응용](#컴퓨터비전-응용)
+  - [객체인식을 위한 CNN 모델](#객체인식을-위한-CNN-모델)
+  - [영상이해를 위한 딥러닝](#영상이해를-위한-딥러닝)
+  - [영상변환 및 생성을 위한 딥러닝](#영상변환-및-생성을-위한-딥러닝)
 
 ### 교재 및 강의 구성
 ![image](https://user-images.githubusercontent.com/61646760/185350045-f4cea6ef-9456-49f8-959e-4b991fbc138f.png)
@@ -1251,3 +1256,72 @@
       ![image](https://user-images.githubusercontent.com/61646760/205088415-04ceb6c9-715d-4a13-9dc7-96c70c117076.png)
   - 출력 `ℎ_t` 계산  
     ![image](https://user-images.githubusercontent.com/61646760/205088531-68d51a39-f29f-4500-b53b-6373e15ce321.png)
+
+## 13강. 딥러닝 응용 (1)
+### 컴퓨터비전 응용
+- **컴퓨터 비전(Computer Vision)**
+  - 영상 데이터를 주요 처리 대상으로 하여 인간의 다양한 시각적인 정보처리를 기계에 구현하려는 분야
+    - 문제/주제의 종류는 매우 다양 : 카메라, 적외선 카메라, 레이더, X-ray, 초음파, CCTV, 블랙박스 등
+  - 딥러닝 모델의 입력/출력을 기준으로 CV 응용의 구분
+    - 영상 이해(image understanding)
+    - 영상 변환(image transformation)
+    - 영상 생성(image generation)
+    - 다양한 입력 형태로의 확장
+- **영상 이해(image understanding)**
+  - 하나의 영상을 입력받아 그 안에 포함된 의미적 정보를 분석하여 추상적인 개념이나 정량적인 정보량을 출력
+    - 정보량 : 객체 정보, 패턴 클래스, 두 영상 간의 의미적 유사도 등
+  - 분류  
+    ![image](https://user-images.githubusercontent.com/61646760/205241579-0b012e7f-e575-428c-a288-d0249cefbceb.png)
+    - object recognition
+      - 객체가 무엇인지 인식
+      - 분류 문제로 볼 수 있음
+    - object detection & localization
+      - 객체 탐지 및 bounding box를 통한 객체 위치 출력
+    - object description
+      - 영상 안에 포함된 객체들의 의미 정보를 통합적으로 파악한 뒤 문장으로 설명
+      - 이미지 캡셔닝과 동일
+- **영상 변환(image transformation)**
+  - 하나의 영상을 입력받아 그 안에 포함된 정보를 분석하여 원하는 형태로 변환된 새로운 영상을 출력
+  - 분류  
+    ![image](https://user-images.githubusercontent.com/61646760/205242646-3b3f0d0b-9c12-4bb6-817a-e66ce8abf5d6.png)
+    - 영상 분할(image segmentation) : 군집화 문제
+    - 영상 개선(image enhancement) : 해상도 향상 (`e.g. Super resolution`)
+    - 기타 변환 : 다양한 효과 적용
+  - **영상 분할(image segmentation)**
+    - 의미적(semantic) 영상 분할  
+      ![image](https://user-images.githubusercontent.com/61646760/205244038-0b97dfbe-517b-42fc-ac9e-bac2302e4318.png)
+  - **Super Resolution**
+    - 저해상도 영상을 고해상도 영상으로 복원하는 문제
+      - SRCNN 2014, VDSR 2016, SRGAN 2017, EDSR 2017, DBPN 2018, …
+      - DBPN (ICCV2018) : winner of super resolution challenges (NTIRE2018)
+- **영상 생성(image generation)**
+  - 출력으로 새로운 영상을 생성하는 일종의 창작 과정
+    - “**GAN**” : 영상 생성을 위해 개발된 대표적인 딥러닝 모델  
+      ![image](https://user-images.githubusercontent.com/61646760/205245221-96ebec6b-5815-455d-be88-3ca8e320ff38.png)
+- 다양한 입력 형태로의 확장
+  - 좀 더 다양한 형태의 입력을 다루는 모델들이 등장
+    - 동영상, 3D 입체 영상 : 순환 연결을 가진 CNN, 3D CNN
+  - **시각적 문답(Visual Question and Answering)**
+    - 영상 신호 처리와 자연어 처리가 결합된 형태  
+      ![image](https://user-images.githubusercontent.com/61646760/205245703-cfbbece9-4500-4979-9719-01f603395e73.png)
+### 객체인식을 위한 CNN 모델
+- 객체인식과 ILSVRC
+  - **ImageNet Large-Scale Visual Recognition Challenge (ILSVRC, 2010)**
+    - 객체 분류 및 위치 탐지(localization) 문제를 다루는 경진 대회 (현재는 X)
+    - **ImageNet**
+      - 영상 DB(Database)
+      - 1,000개의 클래스와 120만 개의 영상 + 클래스 레이블을 지님
+      - 이 데이터베이스를 바탕으로 지도 학습 수행!
+  - 2012년 이후 딥러닝 모델이 우승을 차지  
+    ![image](https://user-images.githubusercontent.com/61646760/205247221-b9ca90b7-9b57-4794-a0bc-fc44a5bf8fc5.png)
+    - 딥러닝 모델을 사용한 SuperVision은 오류율이 16.4%로, 현저히 낮음
+- **AlexNet**
+  - Winner of 2012 (ILSVRC)
+  - Krizhevsky et. al.
+    - 2개의 CNN 구조 : 메모리 한계로 인해 듀얼 네트워크
+    - 5개의 콘볼루션층, 3개의 완전연결층
+- **VGG Net**
+- **GoogLeNet**
+- **ResNet**
+### 영상이해를 위한 딥러닝
+### 영상변환 및 생성을 위한 딥러닝
