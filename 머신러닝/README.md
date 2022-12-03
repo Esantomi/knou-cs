@@ -1535,3 +1535,78 @@
       - 의미에 대한 연산이 가능하다는 의미!
       - `예) 사랑+이별+만남 = 인연`
 ### 언어 모델을 위한 딥러닝
+- **언어 모델(Language model)**
+  - 단어 시퀀스를 입력으로 받아 확률 값을 출력하는 일종의 함수  
+    ![image](https://user-images.githubusercontent.com/61646760/205432767-3091192f-3e93-4050-90e4-c1365a2746d8.png)
+    - 단어의 시퀀스가 자연어 표현으로서 얼마나 적절한지를 평가하는 값
+      - 즉, 이러한 단어들의 시퀀스(𝑤1, 𝑤2, ⋯ 𝑤_n)가 얼마나 자연스러운지 평가하는 것
+    - 구현 방법
+      - 조건부 확률을 이용하는 방법 (전통적 방법)  
+        ![image](https://user-images.githubusercontent.com/61646760/205432795-bcf16581-b984-4707-a8f9-a3dd99c51d9a.png)
+      - 신경망(딥러닝)을 이용하는 방법 → 주로 RNN 사용
+  - 언어 모델의 활용
+    - 문장 생성(요약, 번역 등) : P(“나는 버스를 탄다”) > P(“나는 버스를 태운다”)
+    - 오타 교정 : P(“빠르게 달려갔다”) > P(“빠르게 잘려갔다”)
+- RNN 언어 모델(RNN language model)  
+  ![image](https://user-images.githubusercontent.com/61646760/205433434-08387402-693b-4efb-bfba-c30ded279128.png)
+  - 한번에 한 단어씩 들어오면 각 단어가 원핫벡터-임베딩 벡터로 바뀐 다음 LSTM의 입력으로 제공됨 
+  - 활용 : 텍스트 분류(감성 분류, 주제 분류 등), 기계번역 등
+- **Seq2Seq 모델(Sequence-to-Sequence Model)**
+  - 2014년 개발
+  - 입력된 시퀀스로부터 다른 도메인의 시퀀스를 출력
+    - 응용 : 기계번역, 대화, 질의응답, 요약, STT(speech to text)
+  - 인코더와 디코더로 구성
+    - 각각 RNN(LSTM, GRU) 구조를 가짐
+    - 인코더
+      - 입력 → 임베딩 벡터로 표현된 단어의 시퀀스
+      - 출력 → 입력 시퀀스를 하나의 벡터로 압축한 문맥 벡터(context vector)
+    - 디코더
+      - 입력 → 인코더에서 출력된 문맥 벡터
+      - 출력 → 단어 벡터를 순차적으로 출력
+  - 수행 과정  
+    ![image](https://user-images.githubusercontent.com/61646760/205433637-bf8f53ef-2f9b-4215-9fe8-f89258578d68.png)
+    - <sos> : 문장 시작
+    - <eos> : 문장 끝
+  - Seq2Seq 모델의 문제
+    - 인코더로부터 얻어진 정보를 하나의 고정된 특징벡터로 요약/압축
+      - 인코더에 들어온 값들이 하나의 정보(context)로 압축되면서 정보 손실 발생
+    - 입력 문장의 길이가 길어지면 성능 저하
+  - attention 모듈을 이용한 해결!
+- **Attention model**
+  - 디코더에서 출력 단어를 생성할 때마다 인코더의 전체 상태에 대한 선택적 주의를 통해 참조하는 방식  
+    ![image](https://user-images.githubusercontent.com/61646760/205436920-225e7ef4-9d0c-4ab4-aeea-ad2e97a65747.png)
+    - Seq2seq 모델과 달리 하나의 특징벡터(context)로 압축되지 않음
+    - 대신 LSTM을 통해 정보가 한 곳(attention)에 모여 있음
+    - 디코더에서 각각의 단어를 생성할 때마다 필요한 정보를 attention에서 가져옴
+    - 더 발전된 모델이 Transformer 모델
+- **Transformer model**
+  - Seq2Seq 모델의 인코더-디코더 구조 사용
+    - 인코더, 디코더 각각 여러 개 사용
+  - RNN 구조를 없애고 여러 개의 **인코더와 attention만으로 구현**
+    - 인코더 → 한 번에 전체 시퀀스를 입력받음
+      - 단어의 순서 정보를 나타내기 위해 positional encoding 사용
+    - 디코더 → 한 번에 하나씩 순차적으로 생성
+  - 빠른 학습, 우수한 성능
+- **BERT(Bidirectional Encoder Representations from Transformers)**
+  - 구글에서 만든 새로운 언어 모델
+    - transformer의 인코더 모델 기반  
+      ![image](https://user-images.githubusercontent.com/61646760/205441924-bf23b73d-09f5-4088-8c3d-0f9736daa5c7.png)
+  - 3종류의 입력 임베딩 수행  
+    ![image](https://user-images.githubusercontent.com/61646760/205441948-08f126c1-daa2-4448-9d06-20d7ee91844c.png)
+    - Token embedding : sub-word 기준 임베딩 (사전에 없는 단어도 처리)
+    - Segment embedding : 두 문장 학습에서 문장을 구분하기 위함
+    - Position embedding
+  - 사전학습(pre-training) 단계
+    - 방대한 양의 데이터를 이용하여 학습한 언어 모델 구축
+    - 책 말뭉치(800M 단어) + Wikipedia(2500M 단어)로 학습
+  - 미세조정(fine-tuning) 단계
+    - 사전에 학습된 모델을 **특정 NLP 문제에 맞춰 추가 학습**
+    - 12개의 자연어처리 문제에 대해 최고 성능을 기록
+- NLP 문제 유형에 따른 BERT 모델의 4가지 구성 방식  
+  ![image](https://user-images.githubusercontent.com/61646760/205442075-e5d86469-ae62-44d3-92b9-e6daac64cb7a.png)
+  - 문장 2개를 넣어 하나의 결과가 나오는 방식
+  - 문장 1개를 넣어 하나의 결과가 나오는 방식
+  - 질문과 단락을 넣어 답이 될 만한 걸 도출하는 방식
+  - 문장 1개를 넣어 대응되는 출력이 나오는 방식
+- ViLBERT
+  - Vision + Language BERT
