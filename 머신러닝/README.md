@@ -1334,5 +1334,93 @@
 ### 자연어처리 응용
 - **자연어 처리(NLP, Natural Language Processing)**
   - 컴퓨터로 자연어를 이해(understanding)하고, 번역(interpret)하고, 조작(manipulate)하기 위한 인공지능의 한 분야
+    - 자연어(Natural language) : 정보 전달의 수단으로 인간 고유의 능력 (`e.g. 한국어, 영어 등`) 
+    - 인공어(Artificial language) : 특정 목적을 위해 인위적으로 만든 언어 (`e.g. C, Python, Java 등`)
+- 자연어처리의 구성 요소  
+  ![image](https://user-images.githubusercontent.com/61646760/205424714-510a7827-cf00-43f1-9051-27eb6431c25c.png)
+  - 형태소 분석
+    - 문장을 이루는 최소 의미 단위인 형태소morpheme로 분리  
+      ![image](https://user-images.githubusercontent.com/61646760/205424938-c1f1dcd7-e135-4c65-8fe0-258de246b938.png)
+    - 형태소 분석의 어려움 → 중의성 ambiguity, 접두사/접미사 처리
+    - 언어에 따라 난이도가 달라짐
+  - 구문 분석(Parsing)
+    - 주어진 문장의 구조를 문법에 맞춰 분석
+      - 문법 : 문장의 구조적 성질을 규칙으로 표현한 것  
+        ![image](https://user-images.githubusercontent.com/61646760/205424991-4d795fab-b8bb-418f-a238-5415b584abd6.png)
+    - 어려움 : 구조적 중의성(structural ambiguity)
+      - `예) Time flies like light.`
+      - `예) A man see a woman with a telescope.`
+  - 의미 분석
+    - 구문 분석 결과에 의미를 가하여 문장이 가진 의미를 분석
+    - 형태소가 가진 의미를 표현하는 지식표현 기법이 필요
+    - 문법은 맞으나 의미적으로 틀린 문장을 검사
+      - `예) 기차가 구름을 먹는다.`
+    - 어려움 : 의미적 중의성
+      - `예) 말이 많다.`
+        - Many horses? chatty?
+  - 화용 분석
+    - 문장이 실제로 사용될 때 연관관계를 분석
+    - **담화 분석(discourse analysis)**
+      - 상호참조(coreference) : 대명사가 지시하는 대상 확인
+        - `예) John’s boss said he was getting better.`
+          - He는 누구?
+      - 화행(speech act) 분석 : 발화의 의도 분석(정보요구, 정보제공, 거절 등)
+        - `예) Can you give me a salt?`
+          - Can의 의도는?
+    - 실세계의 지식 표현이 필요
+- 자연어처리의 어려움
+  - 문법과 규칙에 기반 but 많은 예외사항이 존재
+  - 모호성(중의성) 존재
+    - 문맥 정보와 엄청난 양의 지식이 필요
+  - 높은 차원
+    - 많은 개수의 단어가 사용 → 효율적인 표현 방법이 필요
+  - 순차적인 입력과 출력
+    - 시퀀스가 중요 → 시퀀스 처리 능력이 필요
+  - 머신러닝/딥러닝이 자연어처리의 좋은 도구가 될 수 있음!
+- 자연어처리의 응용
+  - 음성 신호처리(speech signal processing)
+    - 음성인식(speech recognition), 화자인식(speaker recognition), 음성합성(speech synthesis)
+  - 대화 수행(dialogue action)
+    - 정보검색(information retrieval), 질의응답(question-answering), 목적 지향 대화(task-oriented dialogue)
+  - 텍스트 분석(text analysis)
+    - 텍스트 분류(text classification)
+      - 스팸 필터링, 감성 인식(sentiment classification), 주제 분류(text categorization)
+    - 기계번역(machine translation)
+    - 텍스트 요약(text summarization)
+- **음성 신호처리(speech signal processing)**
+  - 사람의 목소리로 발화된 음성 신호에 포함된 언어 정보를 처리  
+    ![image](https://user-images.githubusercontent.com/61646760/205425927-62194222-17c5-4ff3-b0ef-0db0d58b9e9b.png)
+    - 음성인식(speech recognition) : STT(speech-to-text)
+    - 화자인식(speaker recognition) : 고유 값을 통한 개인 구분
+    - 음성합성(speech synthesis) : TTS(Text To Speech)
+- **대화 수행(dialogue action)**
+  - 상대방과 문장을 주고받는 형식으로 진행되는 작업
+    - AI 스피커, 챗봇 등의 핵심 기술
+    - **정보 검색(information retrieval)**
+      - 사용자가 준 쿼리를 인터넷/데이터베이스에서 유관 문서를 찾아옴  
+        ![image](https://user-images.githubusercontent.com/61646760/205426630-d4068143-d7ad-4d5f-9f68-11e535451e02.png)
+    - **질의응답(question-answering) 시스템**
+      - 정보를 검색해 순위를 매겨(ranking) 1위를 정답으로 산출  
+        ![image](https://user-images.githubusercontent.com/61646760/205426711-3927a592-25c9-416a-8524-b8726330d154.png)
+    - **목적 지향 대화(task-oriented dialogue) 시스템**
+      - 예매 등 특정 목적을 충족하기 위한 대화  
+        ![image](https://user-images.githubusercontent.com/61646760/205426923-3ef4c117-051a-4d56-b820-56d29825313d.png)
+- **텍스트 분석(text analysis)**
+  - 일련의 텍스트 정보를 입력으로 받아 그 의미적 내용과 문맥 등을 분석하여 원하는 결과를 도출
+  - **텍스트 분류(text classification)**
+    - 주어진 일련의 텍스트를 미리 정해진 몇 개의 클래스로 나누는 것
+    - 감성인식, 주제 분류, 스팸 필터링 등  
+      ![image](https://user-images.githubusercontent.com/61646760/205427280-fe7aaa1d-d05b-4e74-bee3-8eb1e7a73668.png)
+  - **기계번역(machine translation)**
+    - 문장을 입력받아 같은 의미를 가진 다른 언어의 문장을 생성
+      - 고전적인 접근법  
+        ![image](https://user-images.githubusercontent.com/61646760/205427331-529238d0-cb98-4aa3-babf-96e4072104b0.png)
+      - 딥러닝 접근법(neural machine translator)  
+        ![image](https://user-images.githubusercontent.com/61646760/205427359-73cd0064-ac81-48d4-95b2-84dbaed32504.png)
+  - **텍스트 요약(text summarization)**
+    - 긴 분량의 텍스트를 입력받아 짧게 요약된 문장으로 출력  
+      ![image](https://user-images.githubusercontent.com/61646760/205427303-178c978e-69bf-4f9f-9527-b356c9b52dc3.png)
+      - **추출 요약(extractive summarization)** : 가장 적절한 문장을 선택하여 조합 (sentence ranking을 통해 순위를 매김)
+      - **추상적 요약(abstractive summarization)** : 새로운 문장을 사용하여 요약
 ### 자연어처리를 위한 머신러닝 기법
 ### 언어 모델을 위한 딥러닝
