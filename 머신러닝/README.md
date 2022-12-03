@@ -1423,4 +1423,115 @@
       - **추출 요약(extractive summarization)** : 가장 적절한 문장을 선택하여 조합 (sentence ranking을 통해 순위를 매김)
       - **추상적 요약(abstractive summarization)** : 새로운 문장을 사용하여 요약
 ### 자연어처리를 위한 머신러닝 기법
+- NLP를 위한 ML 시스템 개발 단계  
+  ![image](https://user-images.githubusercontent.com/61646760/205427789-2cc95b21-dd57-4b2d-a871-38edc68e93a8.png)
+- NLP를 위한 데이터 수집
+  - **텍스트 말뭉치(text corpus)**
+    - 크고 구조화된 텍스트 데이터 집합
+    - 주요 말뭉치
+      - 구글 n-gram 말뭉치
+      - COCA(Corpus of Contemporary American English)
+      - 국립국어원 ‘모두의 말뭉치’
+    - WordNet
+      - a lexical database for English
+- 텍스트 전처리
+  - **토큰화(tokenization)**
+    - 말뭉치를 의미 있는 기본 단위(“token”)으로 나누는 작업
+    - 토큰의 기준 : 단어, 문장, 구 phrase, 형태소  
+      ![image](https://user-images.githubusercontent.com/61646760/205428192-6dd640d1-b054-4528-b199-dbc8e4319b8b.png)
+    - 고려 사항
+      - 구두점, 특수문자의 처리
+      - 줄임말, 단어 내 띄어쓰기
+      - 한국어의 경우 조사, 어간과 어미 분리
+  - 정제(cleaning), 정규화(normalization)
+    - **정제(cleaning)**
+      - 말뭉치로부터 데이터 분석에 방해되는 노이즈 데이터 제거
+        - 불필요한 단어 제거 → 등장 빈도가 적은 단어, 길이가 짧은 단어(예: it, at, to, on, in, by, …)
+        - 정규표현식을 사용하여 특정 표현 제거
+          - `예) 해시태그, 기사의 날짜 등`
+    - **정규화(normalization)**
+      - 표현 방법이 다른 단어들을 하나의 단어로 통합시키는 것
+        - 표기가 다른 단어들의 통합
+          - `예) US, USA`
+        - 대소문자 통합
+  - 토큰의 품사 태깅 작업  
+    ![image](https://user-images.githubusercontent.com/61646760/205428297-9be955e1-f225-4af0-a5b4-e9cf10a84623.png)
+- 데이터 표현
+  - **원핫인코딩(one-hot encoding)**
+    - 말뭉치로부터 획득한 단어집합 vocabulary의 각 단어를 고유 정수로 매핑한 후 원핫벡터로 표현
+      - m개의 단어가 있는 경우 : m차원 원핫벡터  
+        ![image](https://user-images.githubusercontent.com/61646760/205428361-dc46632a-07bd-4bc3-b3e4-e668aa47f6a9.png)  
+        ![image](https://user-images.githubusercontent.com/61646760/205428375-604bd2e7-24b5-4419-a119-fb2df3e95ef4.png)
+        - 단어가 9개라 9차원이 됨
+        - sparse하기 때문에 효율성이 떨어짐
+    - 한계점
+      - 단어수가 많아지면 차원이 높아짐
+      - 단어 간의 유사도 반영 불가
+  - **BoW(Bag of Words)**
+    - 단어의 출현 빈도수(frequency)를 고려한 텍스트 표현 방법
+      1. 단어집합에 포함된 각 단어에 고유한 정수 인덱스를 부여  
+          ![image](https://user-images.githubusercontent.com/61646760/205429301-4220fcbb-d818-41f7-ba0f-130104512eec.png)
+      2. 주어진 입력 텍스트에 대하여 각 단어의 출현 횟수를 계산  
+          ![image](https://user-images.githubusercontent.com/61646760/205429335-37434a32-5eee-45bf-9e42-5d43a0f9034d.png)
+      3. 각 단어의 대응 위치(인덱스)에 출현 회수를 정수 값으로 표현  
+          ![image](https://user-images.githubusercontent.com/61646760/205429353-ebf195ae-cefe-4d5c-8fbe-7ecbd28c22ae.png)
+    - 문서에 자주 출현하는 단어가 잘 표현됨. 하지만 단어의 발생 위치는 고려되지 않음
+      - 위에서 수박의 빈도는 2임
+      - 빈도 수를 이용해 간단한 문장 간 유사도 평가나 주제 분류 수행도 가능함
+  - **TF-IDF(Term Frequency-Inverse Document Frequency)**
+    - **문서-단어 행렬(Document-Term Matrix)**
+      - 다수 문서에 등장하는 각 단어들의 빈도수를 표현한 행렬  
+        ![image](https://user-images.githubusercontent.com/61646760/205429484-ba7b596e-c95c-4007-9e3f-b02c53580913.png)
+        - 행은 '문서 수', 열은 '단어의 개수'
+        - 1행만 놓고 보면, **문서1에 대한 BoW를 계산한 것과 동일**함!
+    - **단어 빈도(Term Frequency)**
+      - **TF(d, t)** : 문서 d에서 단어 t가 나타나는 횟수
+    - **문서 빈도(Document Frequency)**
+      - 각 단어가 나타나는 문서의 빈도수를 계산  
+        ![image](https://user-images.githubusercontent.com/61646760/205429500-5af972f6-d344-490a-ab5f-91bf10a84d8c.png)
+        - '먹고'는 문서1과 문서2에서 총 2번 나타남
+    - 즉, TF-IDF는 TF와 DF를 이용해서 계산한 것
+      - 어떤 단어가 여러 문서에서 많이 등장했다면, 해당 단어는 문서의 특성을 잘 나타내는 단어라고 보기는 어려움 (대명사, 관사 등)
+    - **IDF(Inverse Document Frequency)**
+      - 단어 t가 등장하는 문서의 개수 DF(t)에 반비례하는 값
+      - 왜 반비례?
+        - 여러 문서에 많이 나타나면 중요도가 덜함 
+    - TF-IDF란?
+      - **문서 내의 각 단어의 빈도수와 문서의 빈도를 함께 고려한 표현 방식**  
+        ![image](https://user-images.githubusercontent.com/61646760/205429678-b0ca1418-9e8a-43fb-b425-52a0096ac1bf.png)
+        - N은 문서의 수. 값이 기하급수적으로 커지는 걸 막기 위해 log를 씌움
+        - 어떤 단어는 아무 문서에도 등장하지 않을 수도 있으므로, 실제로는 분모 DF(t)에 1을 더해서 계산함
+      - 특정 문서에 국한된 단어는 큰 값, 일반적인 공용 단어는 낮은 값
+- 데이터 분석
+  - **워드 임베딩(word embedding)**
+    - 단어의 의미를 포함하는 벡터(“임베딩 벡터”)로 표현하는 방법
+      - 원핫벡터를 저차원 실수 공간의 벡터로 변환  
+        ![image](https://user-images.githubusercontent.com/61646760/205429972-94ec6e73-c453-422d-b147-6d9a6d32371b.png)
+    - 목적 : 유사한 의미의 단어를 가까운 위치에 표현
+    - 대표적 방법 : Word2Vec (CBoW, Skip-gram)
+- **Word2Vec**
+  - 원핫벡터를 저차원의 벡터로 변환하는 선형변환행렬 𝑊를 학습으로 찾고, 이를 이용하여 입력 단어를 사영함으로써 임베딩 벡터를 구함
+    - 말뭉치의 문맥 정보를 활용하여 학습을 수행
+    - 은닉층이 1개인 간단한 구조의 신경망 사용
+  - 학습 방식에 따라 두 가지 모델이 존재
+    - **CBoW(Continuous Bag of Words)**
+      - 주변 단어(문맥 앞뒤의 𝑛개 단어)들을 입력으로 받아 중심 단어를 예측
+    - **Skip-gram**
+      - 중심 단어를 입력으로 받아 주변 단어들을 예측
+  - Word2Vec의 수행 과정  
+    ![image](https://user-images.githubusercontent.com/61646760/205430644-cbfc1edf-d6af-409d-9127-a87a6c000117.png)
+    - sliding window가 2이므로 중심 단어(center word)를 기준으로 좌우에 2개의 문맥 단어(context word)가 있음
+    - CBoW 모델은 문맥 단어들을 입력으로 받아 중심 단어를 출력
+    - Skip-gram 모델은 중심 단어를 입력으로 받아 주변의 문맥 단어들을 출력
+    - 중간의 layer는 hidden layer가 아니라 projection layer
+      - 활성화 함수가 없고 룩업 테이블이라는 연산을 수행함
+    - Skip-gram이 CBoW보다 많이 사용되는 경향이 있음
+  - Word2Vec의 수행 결과의 예  
+    ![image](https://user-images.githubusercontent.com/61646760/205430697-64378856-2ffd-4b6d-a697-5d1f0d9d247e.png)
+    - 단어 → 원핫벡터 → 임베딩벡터 → 2차원으로 변환한 결과
+    - 단어의 의미적 관계가 표현되고 있음
+      - `예) man-woman, king-queen 등`
+    - 벡터 간 연산이 가능함
+      - 의미에 대한 연산이 가능하다는 의미!
+      - `예) 사랑+이별+만남 = 인연`
 ### 언어 모델을 위한 딥러닝
