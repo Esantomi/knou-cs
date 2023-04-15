@@ -53,11 +53,15 @@
   - [8.2 부울대수](#82-부울대수)
     - [쌍대성 원리 및 보수](#쌍대성-원리-및-보수)
   - [8.3 부울함수의 대수적 간소화](#83-부울함수의-대수적-간소화)
-- [9강. 그래프 I](#그래프-I)
+- [9강. 그래프 I](#9강-그래프-I)
   - [9.1 기본사항](#91-기본사항)
     - [그래프 탐색](#그래프-탐색)
   - [9.2 그래프의 종류](#92-그래프의-종류)
   - [9.3 그래프의 표현](#93-그래프의-표현)
+- [10강. 그래프 II](#10강-그래프-II)
+  - [10.1 그래프의 탐색](#101-그래프의-탐색)
+    - [해밀턴 경로와 해밀턴 사이클](#해밀턴-경로와-해밀턴-사이클)
+  - [10.2 그래프의 활용](#102-그래프의-활용)
 
 ## 1강. 이산수학의 개요
 ### 1.1 이산수학 - 개관
@@ -960,6 +964,7 @@
   ![image](https://user-images.githubusercontent.com/61646760/232198901-5bb079c3-30bc-43d1-b225-92c60ea81830.png)
   - **한붓그리기**는 홀수 점의 개수가 0 또는 2인 경우에만 가능함
     - 1736년에 레온하르트 오일러가 쾨니히스베르크의 다리 문제를 풀기 위하여 도입
+    - 닫힌 한붓그리기를 갖는 그래프를 '**오일러 그래프(Eulerian graph)**'라고 함
   - 경로가 닫혀 있는지 여부에 따라 오일러 경로(Euler trail), 또는 오일러 회로(Euler circuit)라고 부른다.
 - 그래프의 주요 용어
   - 그래프 G는 '**꼭지점(vertex)**'들과 '**변(edge)**'들로 구성
@@ -1097,3 +1102,87 @@
 - **인접 리스트(adjacency list)**
   - 각 꼭짓점에 인접하는 꼭짓점들을 차례로 연결 리스트로 표현한 것  
     ![image](https://user-images.githubusercontent.com/61646760/232206196-87b80c8d-8b62-4bcc-8c28-19daf5783bfa.png)
+
+## 10강. 그래프 II
+- 학습목표
+  - 주어진 그래프가 **평면 그래프**인지 판별할 수 있다.
+  - 주어진 그래프에서 **오일러 투어**를 찾아낼 수 있다.
+  - 주어진 그래프에서 **해밀턴 경로**를 찾아낼 수 있다.
+  - 가중 그래프에서 **최단 경로**를 찾을 수 있다.
+### 10.1 그래프의 탐색
+- **평면 그래프(planar graph)**
+  - 그래프의 모든 변을 서로 교차하지 않게 그릴 수 있는 그래프
+  - 평면 그래프가 아닌 예  
+    ![image](https://user-images.githubusercontent.com/61646760/232220402-50e0e6d9-6ac9-4d3d-96ab-23c9f42d5bc6.png)
+  - 평면 그래프의 예  
+    ![image](https://user-images.githubusercontent.com/61646760/232221353-ff392bf4-e2e8-4634-847e-6395a2897112.png)  
+    ![image](https://user-images.githubusercontent.com/61646760/232220495-069ffcaa-79b6-4e0a-bb4a-7413c8a566ab.png)
+    - **정규 그래프**는 모든 꼭짓점들이 동일한 수의 인접한 꼭짓점을 갖는 그래프
+    - **완전 그래프**는 임의의 두 꼭짓점을 연결하는 변이 항상 존재하는 그래프
+      - ∴ 𝑲_{𝒏}는 (n-1)-정규 그래프
+- **오일러의 공식(Euler’s Formula)**
+  - 연결된 평면 그래프에서 꼭짓점의 수를 𝒗, 변의 수를 𝒆, 면의 수를 𝒇라고 하면 **𝒗−𝒆+𝒇=𝟐**이다.
+    - 연결된 평면 그래프에서 **면(face)**
+      - 변들로 만들어지는 **사이클을 경계로 형성된 공간**  
+        ![image](https://user-images.githubusercontent.com/61646760/232221989-9ccb9bbb-d2eb-4aeb-90e9-205e145b19df.png)
+        - 𝒇𝟏 : 사이클 (1, 2, 3, 1)을 경계
+        - 𝒇𝟐 : 사이클 (2, 3, 4, 2)를 경계
+        - 𝒇𝟑 : 사이클 (1, 3, 4, 5, 4, 1)을 경계
+        - 𝒇𝟒 : 사이클 (1, 2, 4, 1)을 경계
+- **4색 정리(Four color theorem)**
+  - 지도의 인접한 구역을 서로 다른 색으로 칠하는 데 오직 4가지 색이면 충분하다.  
+    ![image](https://user-images.githubusercontent.com/61646760/232223079-4c7001ca-b6ed-431a-a201-d7c8c5fdd16f.png)
+    - 평면 그래프가 주어졌을 때, 각 꼭지점에 대하여 인접한 꼭짓점과 서로 다른 색으로 칠하는 데 필요한 색은 4가지면 충분하다.
+- **오일러 트레일(Eulerian trail)**
+  - 그래프의 모든 변들을 각각 한 번만 지나는 트레일
+- **오일러 투어(Eulerian tour[circuit/cycle])**
+  - 닫힌 오일러 트레일(즉, 시작점과 종점이 같은 오일러 트레일)
+  - 참고
+    - **트레일(trail)** : 모든 변들이 서로 다른 워크
+    - **투어(tour)** : 그래프의 모든 변들이 포함된 닫힌 워크
+    - **경로(path)** : 모든 꼭지점이 서로 다른 트레일
+    - **사이클(cycle)** : 닫힌 경로
+- **오일러 그래프(Eulerian graph)**
+  - 닫힌 한붓그리기(오일러 투어)를 갖는 그래프
+  - An **Eulerian graph** is a graph that has an Eulerian circuit.
+    - For an undirected graph, this means that the graph is connected and every vertex has even degree.  
+- **오일러 그래프 정리**
+  - 연결 그래프가 오일러 투어를 가지기 위한 필요충분조건은 **그래프의 모든 꼭지점의 차수가 짝수**인 것이다.
+    - 즉, **연결 그래프가 오일러 투어를 가지면 모든 꼭지점의 차수는 짝수**
+  - 오일러 그래프 탐색 알고리즘  
+    ![image](https://user-images.githubusercontent.com/61646760/232223887-977a3a97-fdd0-4d92-83e0-d510327b8af2.png)
+    1. 𝑮의 임의의 꼭지점 𝒗를 고른다.
+    2. 𝒗에서 시작하고 𝒗에서 끝나는 임의의 사이클 𝑪를 선택한다.
+    3. 𝑪가 오일러 투어이면 증명을 끝낸다. 만약 아니라면 아래 과정을 반복한다.
+        1. 𝑮에서 𝑪에 속하는 모든 변을 제거하고 새로운 𝑮′을 만든다.
+        2. 𝑪와 𝑮′가 공유하는 꼭지점 중 하나를 고르고 𝒘라 한다.
+        3. 𝒘에서 시작하고 𝒘에서 끝나는 임의의 사이클 𝑪′을 선택한다.
+        4. 기존의 𝑪와 새로 선택된 𝑪′을 합쳐서 새로운 𝑪를 만든다.
+#### 해밀턴 경로와 해밀턴 사이클
+- **해밀턴 경로(Hamiltonian path)**
+  - 그래프의 모든 꼭짓점들을 한 번씩만 지나는 경로
+  - A **Hamiltonian path** is a path in an undirected graph that **visits each vertex exactly once**.
+- **해밀턴 사이클(Hamiltonian cycle)**
+  - 닫힌 해밀턴 경로 (시작점과 종점이 같은 해밀턴 경로)  
+    ![image](https://user-images.githubusercontent.com/61646760/232224401-7e2c4346-0320-4de4-9f3c-94871d555655.png)
+    - 해밀턴 경로(左)와 해밀턴 사이클(右)
+  - [Herschel graph](https://en.wikipedia.org/wiki/Herschel_graph)
+    - a bipartite undirected graph with 11 vertices and 18 edges  
+      ![image](https://user-images.githubusercontent.com/61646760/232224562-741cc29a-c652-4843-905f-43948d0882ba.png)
+### 10.2 그래프의 활용
+- **가중 그래프(weighted graph)**
+  - 그래프의 각 변에 실수값이 붙여진 그래프
+  - 변에 부여된 값은 가중치(weight)라고 함
+- **최단 경로 문제(Shortest path problem)**
+  - 출발지와 도착지가 주어졌을 때 가장 짧은 경로를 찾는 문제
+- **최소 신장 트리(MST, minimum spanning tree) 문제**
+  - 그래프의 모든 꼭지점을 최소 수의 변으로 연결하는 문제
+  - 참고
+    - 트리(tree) : 사이클이 없는 연결 그래프
+    - **신장 트리(spanning tree)** : 그래프 𝑮=(𝑽,𝑬)의 모든 꼭짓점을 연결하고 사이클이 없는 𝑮의 부분 그래프
+    - **최소 신장 트리(MST, minimum spanning tree)** : 가중치 그래프 𝑮의 신장트리 중 총 가중치가 가장 작은 신장 트리
+- **다익스트라 알고리즘(Dijkstra algorithm)**
+  - 음의 가중치가 없는 그래프의 한 정점(vertex)에서 모든 정점까지의 최단거리를 각각 구하는 알고리즘(최단 경로 문제, Shortest Path Problem)
+  - cf. [나무위키 - 다익스트라 알고리즘](https://namu.wiki/w/다익스트라%20알고리즘)
+    - 𝒂에서 𝒅까지의 최단거리는?  
+      ![image](https://user-images.githubusercontent.com/61646760/232225280-429e74b4-145a-459c-87ef-c45412a3ad9e.png)
