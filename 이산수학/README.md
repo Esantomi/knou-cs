@@ -519,7 +519,7 @@
     - **열벡터(column vector)** : 𝒎×𝟏행렬
   - 컴퓨터 분야의 활용
     - 프로그래밍 언어, 자료구조, 컴퓨터 그래픽스, 패턴인식, 로봇동작, 인공지능 등
-- 영행렬(zero matrix)**
+- **영행렬(zero matrix)**
   - 모든 원소가 0인 행렬  
     ![image](https://user-images.githubusercontent.com/61646760/223028082-5c4a2540-11ca-46ae-8aec-f41b5a0e8c76.png)
 ### 5.2 행렬의 연산
